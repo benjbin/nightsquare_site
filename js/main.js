@@ -822,7 +822,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const trackCache = new Map();
     
     // Configuration de l'API backend
-    const API_BASE_URL = 'http://localhost:3000'; // Changez selon votre déploiement
+    // Détecter l'environnement : production (Vercel) ou développement (localhost)
+    const isProduction = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
+    const API_BASE_URL = isProduction 
+      ? `https://${window.location.hostname}/api` // Utiliser la fonction serverless Vercel
+      : 'http://localhost:3000'; // Développement local
     
     async function loadSpotifyTrack(artistItem) {
       const artistData = artistItem.getAttribute('data-artist');
