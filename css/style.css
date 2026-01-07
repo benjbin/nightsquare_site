@@ -847,8 +847,8 @@ main {
 /* Advantages Section */
 /* Current Events Section */
 .current-events-section {
-  /* Reduce bottom spacing to avoid huge gap before Advantages */
-  padding: 2rem 0 6rem 0;
+  /* Minimal spacing - remove giant gap */
+  padding: 2rem 0 2rem 0;
   background: var(--bg);
 }
 
@@ -1288,7 +1288,7 @@ main {
 
 @media (max-width: 768px) {
   .current-events-section {
-    padding: 6rem 0;
+    padding: 4rem 0 2rem 0;
   }
   
   .current-events-grid {
@@ -1331,8 +1331,8 @@ main {
 }
 
 .advantages-section {
-  /* Tighter section spacing (was too tall between DJs and Advantages) */
-  padding: 7rem 0;
+  /* Minimal spacing to reduce giant gap */
+  padding: 3rem 0 7rem 0;
   background: var(--bg);
   overflow: hidden;
 }
@@ -3926,15 +3926,15 @@ footer {
 
 /* Upcoming DJs Section - Inside Current Events */
 .upcoming-djs-wrapper {
-  /* Tighter spacing inside Current Events */
-  margin-top: 3rem;
-  padding-top: 2rem;
+  /* Minimal spacing inside Current Events */
+  margin-top: 2rem;
+  padding-top: 1.5rem;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .upcoming-djs-header {
   text-align: left;
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.25rem;
 }
 
 .upcoming-djs-title {
@@ -4151,8 +4151,8 @@ footer {
 
 @media (max-width: 768px) {
   .upcoming-djs-wrapper {
-    margin-top: 2.5rem;
-    padding-top: 1.5rem;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
   }
   
   .upcoming-djs-header {
