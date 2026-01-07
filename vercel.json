@@ -25,5 +25,21 @@
         }
       ]
     }
+  ],
+  "builds": [
+    { "src": "index.html", "use": "@vercel/static" },
+    { "src": "organizers.html", "use": "@vercel/static" },
+    { "src": "events.html", "use": "@vercel/static" },
+    { "src": "download.html", "use": "@vercel/static" },
+    { "src": "how-it-works.html", "use": "@vercel/static" },
+    { "src": "css/**", "use": "@vercel/static" },
+    { "src": "js/**", "use": "@vercel/static" },
+    { "src": "src/**", "use": "@vercel/static" },
+    { "src": "robots.txt", "use": "@vercel/static" },
+    { "src": "sitemap.xml", "use": "@vercel/static" }
+  ],
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/$1" }
   ]
 }
