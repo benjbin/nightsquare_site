@@ -825,8 +825,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Détecter l'environnement : production (Vercel) ou développement (localhost)
     const isProduction = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
     const API_BASE_URL = isProduction 
-      ? `https://${window.location.hostname}/api` // Utiliser la fonction serverless Vercel
-      : 'http://localhost:3000'; // Développement local
+      ? `https://${window.location.hostname}` // Production (Vercel) : les routes API sont sous /api/...
+      : 'http://localhost:3000'; // Développement local (Express)
     
     async function loadSpotifyTrack(artistItem) {
       const artistData = artistItem.getAttribute('data-artist');
