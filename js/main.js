@@ -668,15 +668,11 @@ document.addEventListener('DOMContentLoaded', function() {
           });
         }
         
-        const spotifyContainer = document.createElement('div');
-        spotifyContainer.className = 'spotify-widget-container';
-        
         infoDiv.appendChild(nameH3);
         infoDiv.appendChild(jobTitle);
         if (eventsContainer.children.length > 0) {
           infoDiv.appendChild(eventsContainer);
         }
-        infoDiv.appendChild(spotifyContainer);
         
         djItem.appendChild(imageDiv);
         djItem.appendChild(infoDiv);
@@ -692,28 +688,6 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // Generate JSON-LD structured data for all DJs
       generateDJsStructuredData(djsArray);
-      
-      // Reinitialize Spotify integration for new DJs and load music automatically
-      initSpotifyIntegration();
-      
-      // Load music automatically for all DJs (no hover needed)
-      setTimeout(() => {
-        const djItems = document.querySelectorAll('.upcoming-dj-item');
-        djItems.forEach(item => {
-          const spotifyContainer = item.querySelector('.spotify-widget-container');
-          if (spotifyContainer && !spotifyContainer.querySelector('iframe')) {
-            // Trigger music load
-            const isMobile = window.innerWidth <= 768;
-            if (!isMobile) {
-              // Desktop: load on hover (but also trigger immediately)
-              item.dispatchEvent(new Event('mouseenter'));
-            } else {
-              // Mobile: load automatically
-              item.dispatchEvent(new Event('click'));
-            }
-          }
-        });
-      }, 500);
       
       console.log('DJs loaded and displayed successfully');
       
@@ -780,9 +754,9 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('JSON-LD structured data generated for DJs');
   }
 
-  // Spotify Integration - Load tracks for artists
+  // Spotify Integration - Load tracks for artists (only for featured artists, not upcoming DJs)
   function initSpotifyIntegration() {
-    const artistItems = document.querySelectorAll('.artist-item, .upcoming-dj-item');
+    const artistItems = document.querySelectorAll('.artist-item');
     if (artistItems.length === 0) return;
     
     // Mapping des noms d'artistes pour la recherche Spotify
