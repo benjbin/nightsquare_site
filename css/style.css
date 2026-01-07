@@ -3092,6 +3092,10 @@ footer {
     padding: 0 2rem;
   }
   
+  .trust-carousel {
+    gap: 1.5rem;
+  }
+  
   .trust-logo {
     flex: 0 0 140px;
     width: 140px;
