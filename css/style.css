@@ -2593,7 +2593,8 @@ main {
 }
 
 /* Sections */
-section:not(.hero-section):not(.content-section):not(.trust-section):not(.final-cta-section) {
+/* NOTE: exclude sections that define their own spacing to avoid overriding them */
+section:not(.hero-section):not(.content-section):not(.trust-section):not(.final-cta-section):not(.current-events-section):not(.advantages-section) {
   padding: 10rem 0;
 }
 
@@ -4150,8 +4151,8 @@ footer {
 
 @media (max-width: 768px) {
   .upcoming-djs-wrapper {
-    margin-top: 4rem;
-    padding-top: 3rem;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
   }
   
   .upcoming-djs-header {
