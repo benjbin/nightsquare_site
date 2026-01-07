@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Night Square pour les organisateurs : plateforme complète de gestion pour le monde de la nuit. BackOffice, Application Manager, suivi en temps réel et data marketing.">
+    <meta name="keywords" content="backoffice organisateur, gestion événements, application manager, suivi réservations, plateforme nightlife, ERP nightlife">
+    <title>Pour les Organisateurs - Night Square | Plateforme Complète de Gestion Nightlife</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="src/img/logo.png">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <img src="src/img/logo.png" alt="Night Square" class="logo-img">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" data-translate="nav.home">Accueil</a></li>
+                <li><a href="how-it-works.html" data-translate="nav.howItWorks">Comment ça marche</a></li>
+                <li><a href="events.html" data-translate="nav.events">Événements</a></li>
+                <li><a href="organizers.html" data-translate="nav.organizers">Organisateurs</a></li>
+                <li><a href="download.html" data-translate="nav.download">Télécharger</a></li>
+            </ul>
+            <div class="lang-switcher">
+                <button data-lang="fr" class="active">FR</button>
+                <button data-lang="en">EN</button>
+            </div>
+            <button class="mobile-menu-toggle">☰</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- 4.1 Hero Section -->
+        <section class="hero-section organizers-hero">
+            <div class="container">
+                <div class="hero-stack">
+                    <div class="hero-badge organizers-badge">
+                        <span>✨ Plateforme professionnelle</span>
+                    </div>
+                    <h1 class="hero-title">The all-in-one platform built for nightlife organizers</h1>
+                    <p class="hero-subtitle">Manage events, tables, teams, payments and clients — all in one place.</p>
+                    
+                    <!-- Quick Stats -->
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-number" data-value="100">100%</div>
+                            <div class="stat-label">Centralisé</div>
+                            <div class="stat-description">Tous vos outils en un seul endroit</div>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <div class="stat-number">Temps réel</div>
+                            <div class="stat-label">Suivi live</div>
+                            <div class="stat-description">Vision instantanée de vos opérations</div>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-value="30">+30%</div>
+                            <div class="stat-label">Panier moyen</div>
+                            <div class="stat-description">Augmentation mesurée</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Trust Indicators -->
+                    <div class="hero-trust">
+                        <div class="trust-item">
+                            <div class="trust-icon">✓</div>
+                            <span>Solution opérationnelle</span>
+                        </div>
+                        <div class="trust-item">
+                            <div class="trust-icon">✓</div>
+                            <span>Utilisée par des clubs premium</span>
+                        </div>
+                        <div class="trust-item">
+                            <div class="trust-icon">✓</div>
+                            <span>Support dédié inclus</span>
+                        </div>
+                    </div>
+                    
+                    <div class="cta-buttons">
+                        <a href="#contact" class="app-button primary">
+                            <span>Request a demo</span>
+                        </a>
+                        <a href="mailto:contact@nightsquare.com?subject=Contact Organisateur" class="app-button secondary">
+                            <span>Contact us</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4.2 Problème actuel (Pain Points) -->
+        <section class="content-section pain-points-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">Les défis</span>
+                    <h2>Vous perdez du temps et de l'argent avec des outils dispersés</h2>
+                    <p class="section-subtitle">La gestion d'événements premium nécessite une solution professionnelle</p>
+                </div>
+                
+                <div class="grid grid-2 pain-points-grid">
+                    <div class="card pain-point-card">
+                        <div class="pain-point-header">
+                            <div class="card-icon-wrapper">
+                                <div class="card-icon">📊</div>
+                            </div>
+                            <h3>Outils dispersés</h3>
+                        </div>
+                        <p>Excel pour les tables, WhatsApp pour la coordination, billetterie séparée... Tout est éparpillé et difficile à synchroniser.</p>
+                        <div class="pain-point-impact">
+                            <span class="impact-label">Impact :</span>
+                            <span class="impact-text">-2h/jour en coordination</span>
+                        </div>
+                    </div>
+                    <div class="card pain-point-card">
+                        <div class="pain-point-header">
+                            <div class="card-icon-wrapper">
+                                <div class="card-icon">👁️</div>
+                            </div>
+                            <h3>Manque de visibilité</h3>
+                        </div>
+                        <p>Pas de vision en temps réel des entrées, des tables occupées ou des réservations. Vous naviguez à l'aveugle le soir même.</p>
+                        <div class="pain-point-impact">
+                            <span class="impact-label">Impact :</span>
+                            <span class="impact-text">Erreurs de gestion fréquentes</span>
+                        </div>
+                    </div>
+                    <div class="card pain-point-card">
+                        <div class="pain-point-header">
+                            <div class="card-icon-wrapper">
+                                <div class="card-icon">📱</div>
+                            </div>
+                            <h3>Data client inexploitée</h3>
+                        </div>
+                        <p>Vos clients réservent mais vous ne connaissez pas leurs préférences. Impossible de créer des campagnes ciblées ou de fidéliser.</p>
+                        <div class="pain-point-impact">
+                            <span class="impact-label">Impact :</span>
+                            <span class="impact-text">-40% de revenus récurrents</span>
+                        </div>
+                    </div>
+                    <div class="card pain-point-card">
+                        <div class="pain-point-header">
+                            <div class="card-icon-wrapper">
+                                <div class="card-icon">👥</div>
+                            </div>
+                            <h3>Coordination d'équipe</h3>
+                        </div>
+                        <p>Le soir même, la coordination entre managers, chefs de rang et scanneurs devient chaotique sans outil centralisé.</p>
+                        <div class="pain-point-impact">
+                            <span class="impact-label">Impact :</span>
+                            <span class="impact-text">Stress et erreurs opérationnelles</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4.3 La solution Night Square -->
+        <section class="content-section solution-section">
+            <div class="container">
+                <div class="solution-content">
+                    <div class="section-header">
+                        <span class="section-label">La solution</span>
+                        <h2>La solution Night Square</h2>
+                        <p class="section-subtitle">Un écosystème de gestion complet pensé spécifiquement pour le monde de la nuit</p>
+                    </div>
+                    
+                    <!-- Comparison -->
+                    <div class="comparison-wrapper">
+                        <div class="comparison-card before">
+                            <div class="comparison-label">Avant</div>
+                            <div class="comparison-items">
+                                <div class="comparison-item negative">
+                                    <span class="comparison-icon">✗</span>
+                                    <span>Outils dispersés (Excel, WhatsApp, billetterie séparée)</span>
+                                </div>
+                                <div class="comparison-item negative">
+                                    <span class="comparison-icon">✗</span>
+                                    <span>Pas de visibilité en temps réel</span>
+                                </div>
+                                <div class="comparison-item negative">
+                                    <span class="comparison-icon">✗</span>
+                                    <span>Data client inexploitée</span>
+                                </div>
+                                <div class="comparison-item negative">
+                                    <span class="comparison-icon">✗</span>
+                                    <span>Coordination chaotique le soir même</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="comparison-arrow">→</div>
+                        
+                        <div class="comparison-card after">
+                            <div class="comparison-label">Avec Night Square</div>
+                            <div class="comparison-items">
+                                <div class="comparison-item positive">
+                                    <span class="comparison-icon">✓</span>
+                                    <span>Plateforme 100% centralisée</span>
+                                </div>
+                                <div class="comparison-item positive">
+                                    <span class="comparison-icon">✓</span>
+                                    <span>Suivi en temps réel de toutes les opérations</span>
+                                </div>
+                                <div class="comparison-item positive">
+                                    <span class="comparison-icon">✓</span>
+                                    <span>Data exploitée pour campagnes ciblées</span>
+                                </div>
+                                <div class="comparison-item positive">
+                                    <span class="comparison-icon">✓</span>
+                                    <span>Coordination fluide avec app manager</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="solution-card">
+                        <div class="solution-icon">🎯</div>
+                        <p class="solution-text">Night Square n'est <strong>pas</strong> une simple billetterie ou une app grand public basique. C'est l'équivalent d'un <strong>ERP / Odoo adapté au nightlife</strong> — une plateforme centralisée utilisée en conditions réelles pour gérer soirées, flux et équipes.</p>
+                        <div class="solution-features">
+                            <div class="solution-feature">
+                                <span class="check-icon">✓</span>
+                                <span>Plateforme centralisée</span>
+                            </div>
+                            <div class="solution-feature">
+                                <span class="check-icon">✓</span>
+                                <span>Pensée pour la nuit</span>
+                            </div>
+                            <div class="solution-feature">
+                                <span class="check-icon">✓</span>
+                                <span>Utilisée en conditions réelles</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4.4 Les piliers de la solution -->
+        <section class="content-section pillars-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">Les piliers</span>
+                    <h2>Les 4 piliers de Night Square</h2>
+                    <p class="section-subtitle">Une solution complète pour chaque aspect de votre activité</p>
+                </div>
+                
+                <!-- BackOffice Organisateur -->
+                <div class="pillar-card pillar-alternate-left">
+                    <div class="pillar-wrapper">
+                        <div class="pillar-image">
+                            <img src="" alt="BackOffice Organisateur - Capture d'écran" class="pillar-screenshot">
+                        </div>
+                        <div class="pillar-content">
+                            <div class="pillar-header">
+                                <div class="pillar-icon">💼</div>
+                                <h3>BackOffice Organisateur</h3>
+                            </div>
+                            <div class="pillar-features">
+                                <div class="feature-item">
+                                    <span class="feature-check">✓</span>
+                                    <span>Gestion des événements</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-check">✓</span>
+                                    <span>Tables & billets</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-check">✓</span>
+                                    <span>Suivi des réservations</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-check">✓</span>
+                                    <span>Gestion des stocks</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-check">✓</span>
+                                    <span>Reporting & chiffres clés</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-check">✓</span>
+                                    <span>Données clients exploitables</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Application Manager -->
+                <div class="pillar-card pillar-alternate-right">
+                    <div class="pillar-wrapper">
+                        <div class="pillar-image">
+                            <img src="" alt="Application Manager - Capture d'écran" class="pillar-screenshot">
+                        </div>
+                        <div class="pillar-content">
+                            <div class="pillar-header">
+                                <div class="pillar-icon">📱</div>
+                                <h3>Application Manager (équipes)</h3>
+                            </div>
+                            <div class="pillar-features">
+                                <div class="feature-item">
+                                    <span class="feature-check">✓</span>
+                                    <span>Rôles par membre : manager, chef de rang, scanneur</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-check">✓</span>
+                                    <span>Suivi en temps réel : entrées, tables, statuts clients</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-check">✓</span>
+                                    <span>Coordination fluide pendant l'événement</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Application Utilisateur -->
+                <div class="pillar-card pillar-alternate-left">
+                    <div class="pillar-wrapper">
+                        <div class="pillar-image">
+                            <img src="" alt="Application Utilisateur - Capture d'écran" class="pillar-screenshot">
+                        </div>
+                        <div class="pillar-content">
+                            <div class="pillar-header">
+                                <div class="pillar-icon">⭐</div>
+                                <h3>Application Utilisateur</h3>
+                            </div>
+                            <div class="pillar-features">
+                                <div class="feature-item">
+                                    <span class="feature-check">✓</span>
+                                    <span>Réservation table ou ticket</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-check">✓</span>
+                                    <span>Multi-paiement</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-check">✓</span>
+                                    <span>Invitations clients</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-check">✓</span>
+                                    <span>QR codes synchronisés</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-check">✓</span>
+                                    <span>Expérience premium sans friction</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data & Marketing -->
+                <div class="pillar-card pillar-alternate-right">
+                    <div class="pillar-wrapper">
+                        <div class="pillar-image">
+                            <img src="" alt="Data & Marketing - Capture d'écran" class="pillar-screenshot">
+                        </div>
+                        <div class="pillar-content">
+                            <div class="pillar-header">
+                                <div class="pillar-icon">📈</div>
+                                <h3>Data & Marketing</h3>
+                            </div>
+                            <div class="pillar-features">
+                                <div class="feature-item">
+                                    <span class="feature-check">✓</span>
+                                    <span>Segmentation clients</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-check">✓</span>
+                                    <span>Campagnes ciblées (SMS / notifications)</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-check">✓</span>
+                                    <span>Recommandations basées sur les données</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-check">✓</span>
+                                    <span>Fidélisation long terme</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4.5 Bénéfices concrets -->
+        <section class="content-section benefits-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">Les résultats</span>
+                    <h2>Bénéfices concrets pour votre activité</h2>
+                    <p class="section-subtitle">Des résultats mesurables qui transforment votre business</p>
+                </div>
+                
+                <div class="grid grid-3 benefits-grid">
+                    <div class="card benefit-card">
+                        <div class="benefit-icon-wrapper">
+                            <div class="benefit-icon">⏱️</div>
+                        </div>
+                        <div class="benefit-number">-2h/jour</div>
+                        <h3>Gain de temps opérationnel</h3>
+                        <p>Centralisez tous vos outils en un seul endroit. Fini les allers-retours entre Excel, WhatsApp et votre billetterie.</p>
+                    </div>
+                    <div class="card benefit-card">
+                        <div class="benefit-icon-wrapper">
+                            <div class="benefit-icon">🎯</div>
+                        </div>
+                        <div class="benefit-number">100%</div>
+                        <h3>Meilleure organisation sur site</h3>
+                        <p>Coordination fluide entre vos équipes le soir même. Vision en temps réel de toutes les opérations.</p>
+                    </div>
+                    <div class="card benefit-card">
+                        <div class="benefit-icon-wrapper">
+                            <div class="benefit-icon">💎</div>
+                        </div>
+                        <div class="benefit-number">+85%</div>
+                        <h3>Meilleure expérience client</h3>
+                        <p>Réservations fluides, QR codes synchronisés, expérience premium qui fidélise vos clients.</p>
+                    </div>
+                    <div class="card benefit-card highlight">
+                        <div class="benefit-icon-wrapper">
+                            <div class="benefit-icon">💰</div>
+                        </div>
+                        <div class="benefit-number">+30%</div>
+                        <h3>Augmentation du panier moyen</h3>
+                        <p>Recommandations intelligentes et campagnes ciblées qui augmentent vos revenus par client.</p>
+                    </div>
+                    <div class="card benefit-card">
+                        <div class="benefit-icon-wrapper">
+                            <div class="benefit-icon">📊</div>
+                        </div>
+                        <div class="benefit-number">360°</div>
+                        <h3>Vision claire du chiffre d'affaires</h3>
+                        <p>Reporting complet : tables + billets + bar (si intégré). Tout votre CA en un coup d'œil.</p>
+                    </div>
+                    <div class="card benefit-card">
+                        <div class="benefit-icon-wrapper">
+                            <div class="benefit-icon">🚀</div>
+                        </div>
+                        <div class="benefit-number">+40%</div>
+                        <h3>Croissance durable</h3>
+                        <p>Exploitez vos données clients pour créer des campagnes qui génèrent des revenus récurrents.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4.6 Pour qui ? -->
+        <section class="content-section target-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">Pour qui</span>
+                    <h2>Pour qui ?</h2>
+                    <p class="section-subtitle">Night Square s'adapte à tous les types d'organisateurs</p>
+                </div>
+                
+                <div class="grid grid-2 target-grid">
+                    <div class="card target-card">
+                        <h3>🏢 Clubs</h3>
+                        <p>Gérez vos soirées récurrentes, vos résidences et vos événements spéciaux depuis une seule plateforme.</p>
+                    </div>
+                    <div class="card target-card">
+                        <h3>🎪 Résidences</h3>
+                        <p>Coordonnez vos événements réguliers avec une solution pensée pour la récurrence et la fidélisation.</p>
+                    </div>
+                    <div class="card target-card">
+                        <h3>🎭 Événements one-shot</h3>
+                        <p>Organisez vos événements ponctuels avec tous les outils nécessaires, même pour une seule soirée.</p>
+                    </div>
+                    <div class="card target-card">
+                        <h3>🎵 Festivals</h3>
+                        <p>Gérez plusieurs jours d'événements, plusieurs scènes et des milliers de participants.</p>
+                    </div>
+                    <div class="card target-card">
+                        <h3>✨ Lieux premium</h3>
+                        <p>Offrez une expérience VIP à vos clients avec une plateforme à la hauteur de vos standards.</p>
+                    </div>
+                    <div class="card target-card">
+                        <h3>🎨 Collectifs & Producteurs</h3>
+                        <p>Coordonnez vos équipes et gérez vos événements avec des outils professionnels adaptés.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4.7 Call to action final -->
+        <section class="content-section final-cta-section" id="contact">
+            <div class="container">
+                <div class="final-cta-content">
+                    <h2>Prêt à transformer la gestion de vos événements ?</h2>
+                    <p class="section-subtitle">Découvrez comment Night Square peut s'adapter à votre structure</p>
+                    
+                    <div class="cta-buttons">
+                        <a href="mailto:contact@nightsquare.com?subject=Demande de démo - Organisateur" class="app-button primary large">
+                            <span>Request a demo</span>
+                        </a>
+                        <a href="mailto:contact@nightsquare.com?subject=Contact équipe - Organisateur" class="app-button secondary large">
+                            <span>Talk to our team</span>
+                        </a>
+                    </div>
+                    
+                    <div class="reassurance-text">
+                        <p>✓ Solution déjà opérationnelle</p>
+                        <p>✓ Adaptable à chaque structure</p>
+                        <p>✓ Accompagnement inclus</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-main">
+                <img src="src/img/logo.png" alt="Night Square" class="footer-logo">
+                <p class="footer-tagline">Vivez une expérience nocturne exclusive avec Night Square</p>
+                
+                <a href="mailto:nightsquaresas@gmail.com" class="footer-email-button">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="currentColor"/>
+                    </svg>
+                    <span>nightsquaresas@gmail.com</span>
+                </a>
+                
+                <nav class="footer-nav">
+                    <a href="index.html#advantages">Avantages</a>
+                    <span class="footer-nav-separator">•</span>
+                    <a href="index.html#usage">Utilisation</a>
+                    <span class="footer-nav-separator">•</span>
+                    <a href="events.html">Les événements</a>
+                    <span class="footer-nav-separator">•</span>
+                    <a href="index.html#faq">FAQ's</a>
+                </nav>
+            </div>
+            
+            <div class="footer-divider"></div>
+            
+            <div class="footer-bottom">
+                <p class="footer-copyright">Copyright Night Square</p>
+                <div class="footer-social">
+                    <a href="#" class="social-icon" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" fill="currentColor"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" fill="currentColor"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="X (Twitter)" target="_blank" rel="noopener noreferrer">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" fill="currentColor"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="footer-legal-links">
+                    <a href="#privacy">confidentialitée</a>
+                    <span class="footer-nav-separator">•</span>
+                    <a href="#legal">mentions légales</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/translations.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/organizers.js"></script>
+</body>
+</html>
