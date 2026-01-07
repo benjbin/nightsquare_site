@@ -910,50 +910,33 @@ document.addEventListener('DOMContentLoaded', function() {
       spotifyContainer.appendChild(iframe);
     }
     
-    // Charger les tracks automatiquement pour tous les DJs
+    // Charger les tracks pour les featured artists uniquement (pas pour upcoming DJs)
     artistItems.forEach(item => {
       const isMobile = window.innerWidth <= 768;
-      const isUpcomingDj = item.classList.contains('upcoming-dj-item');
       
-      // Pour les DJs à venir: charger automatiquement
-      if (isUpcomingDj) {
-        // Charger automatiquement pour tous (desktop et mobile)
-        const artistData = item.getAttribute('data-artist');
-        
-        // Charger la musique automatiquement après un court délai
-        setTimeout(() => {
-          if (!trackCache.has(artistData)) {
-            loadSpotifyTrack(item).catch(err => {
-              console.warn(`Failed to load Spotify track for ${artistData}:`, err);
-            });
-          }
-        }, 100);
-      } else {
-        // Pour les autres DJs (featured-artists): comportement normal
-        // Desktop: charger au survol
-        if (!isMobile) {
-          item.addEventListener('mouseenter', function() {
-            if (!trackCache.has(item.getAttribute('data-artist'))) {
-              loadSpotifyTrack(item);
-            }
-          }, { once: true });
-        } else {
-          // Mobile: charger automatiquement
+      // Desktop: charger au survol
+      if (!isMobile) {
+        item.addEventListener('mouseenter', function() {
           if (!trackCache.has(item.getAttribute('data-artist'))) {
             loadSpotifyTrack(item);
           }
-          
-          const checkAndShow = () => {
-            const container = item.querySelector('.spotify-widget-container');
-            if (container && container.querySelector('iframe')) {
-              item.classList.add('touched');
-            } else {
-              setTimeout(checkAndShow, 100);
-            }
-          };
-          
-          setTimeout(checkAndShow, 500);
+        }, { once: true });
+      } else {
+        // Mobile: charger automatiquement
+        if (!trackCache.has(item.getAttribute('data-artist'))) {
+          loadSpotifyTrack(item);
         }
+        
+        const checkAndShow = () => {
+          const container = item.querySelector('.spotify-widget-container');
+          if (container && container.querySelector('iframe')) {
+            item.classList.add('touched');
+          } else {
+            setTimeout(checkAndShow, 100);
+          }
+        };
+        
+        setTimeout(checkAndShow, 500);
       }
     });
   }
