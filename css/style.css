@@ -2343,6 +2343,7 @@ main {
   text-align: center;
   margin-bottom: 3rem;
   color: var(--text-muted);
+  padding: 0 1rem;
 }
 
 .trust-carousels-container {
@@ -3085,6 +3086,10 @@ footer {
   
   .trust-section {
     padding: 6rem 0;
+  }
+  
+  .trust-section p {
+    padding: 0 2rem;
   }
   
   .featured-artists-section {
