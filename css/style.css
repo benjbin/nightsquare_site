@@ -3512,21 +3512,41 @@ main {
     padding: 4rem 0;
   }
   
+  .final-cta-wrapper {
+    gap: 3rem;
+    padding: 0 1.5rem;
+  }
+  
+  .final-cta-left {
+    padding: 0;
+    gap: 1.5rem;
+  }
+  
+  .final-cta-title {
+    text-align: center;
+    font-size: clamp(2rem, 8vw, 2.5rem);
+  }
+  
+  .final-cta-description {
+    text-align: center;
+    font-size: clamp(0.95rem, 4vw, 1.1rem);
+  }
+  
   .final-cta-buttons {
     flex-direction: column;
     align-items: stretch;
+    gap: 0.75rem;
   }
   
   .final-app-store-button,
   .final-play-store-button {
     min-width: auto;
     justify-content: center;
+    width: 100%;
   }
   
-  .final-cta-stats {
-    flex-direction: column;
-    gap: 2rem;
-    align-items: center;
+  .final-cta-right {
+    min-height: 400px;
   }
   
   .final-phone.back {
@@ -3534,7 +3554,9 @@ main {
   }
   
   .final-phone.front {
-    transform: none;
+    transform: translate(-50%, -50%);
+    width: clamp(200px, 60vw, 280px);
+    position: relative;
   }
 }
 
