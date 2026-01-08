@@ -2056,11 +2056,29 @@ document.addEventListener('DOMContentLoaded', function() {
   let currentSlide = 0;
   const totalSlides = slides.length;
   
-  function updateSlider() {
-    // Move track
+  function updateSlider(animate = true) {
+    // Remove active class from all slides
+    slides.forEach(slide => {
+      slide.classList.remove('active');
+    });
+    
+    // Add active class to current slide with animation
+    if (slides[currentSlide]) {
+      slides[currentSlide].classList.add('active');
+      
+      // Trigger reflow for animation
+      if (animate) {
+        slides[currentSlide].style.animation = 'none';
+        setTimeout(() => {
+          slides[currentSlide].style.animation = '';
+        }, 10);
+      }
+    }
+    
+    // Move track with smooth transition
     sliderTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
     
-    // Update dots
+    // Update dots with animation
     dots.forEach((dot, index) => {
       if (index === currentSlide) {
         dot.classList.add('active');
@@ -2069,19 +2087,19 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
     
-    // Update buttons
+    // Update buttons (allow looping)
     if (prevBtn) {
-      prevBtn.disabled = currentSlide === 0;
+      prevBtn.disabled = false;
     }
     if (nextBtn) {
-      nextBtn.disabled = currentSlide === totalSlides - 1;
+      nextBtn.disabled = false;
     }
   }
   
-  function goToSlide(index) {
+  function goToSlide(index, animate = true) {
     if (index < 0 || index >= totalSlides) return;
     currentSlide = index;
-    updateSlider();
+    updateSlider(animate);
   }
   
   function nextSlide() {
@@ -2090,7 +2108,7 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
       currentSlide = 0; // Loop back to start
     }
-    updateSlider();
+    updateSlider(true);
   }
   
   function prevSlide() {
@@ -2099,7 +2117,7 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
       currentSlide = totalSlides - 1; // Loop to end
     }
-    updateSlider();
+    updateSlider(true);
   }
   
   // Event listeners
@@ -2156,6 +2174,27 @@ document.addEventListener('DOMContentLoaded', function() {
     sliderWrapper.addEventListener('mouseleave', startAutoPlay);
   }
   
-  // Initialize
-  updateSlider();
+  // Initialize - show first slide with animation
+  setTimeout(() => {
+    updateSlider(false);
+    slides[0]?.classList.add('active');
+  }, 100);
+  
+  // Add intersection observer for animations
+  const observerOptions = {
+    threshold: 0.3,
+    rootMargin: '0px'
+  };
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+      }
+    });
+  }, observerOptions);
+  
+  slides.forEach(slide => {
+    observer.observe(slide);
+  });
 });
