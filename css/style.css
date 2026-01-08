@@ -3316,6 +3316,40 @@ main {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  position: relative;
+  padding: 2rem 0;
+}
+
+.final-cta-left::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -2rem;
+  right: -2rem;
+  bottom: 0;
+  background-image: 
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(197, 165, 114, 0.03) 10px,
+      rgba(197, 165, 114, 0.03) 20px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 10px,
+      rgba(197, 165, 114, 0.02) 10px,
+      rgba(197, 165, 114, 0.02) 20px
+    );
+  z-index: 0;
+  border-radius: 20px;
+  opacity: 0.5;
+}
+
+.final-cta-left > * {
+  position: relative;
+  z-index: 1;
 }
 
 .final-cta-title {
@@ -3434,12 +3468,13 @@ main {
   position: absolute;
   width: 90%;
   height: 90%;
-  background: linear-gradient(135deg, rgba(197, 165, 114, 0.15) 0%, rgba(197, 165, 114, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(197, 165, 114, 0.2) 0%, rgba(197, 165, 114, 0.08) 50%, rgba(197, 165, 114, 0.12) 100%);
   border-radius: 60px;
   z-index: 0;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  box-shadow: 0 20px 60px rgba(197, 165, 114, 0.1);
 }
 
 .final-phone {
