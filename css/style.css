@@ -3318,38 +3318,7 @@ main {
   gap: 2rem;
   position: relative;
   padding: 2rem 0;
-}
-
-.final-cta-left::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -2rem;
-  right: -2rem;
-  bottom: 0;
-  background-image: 
-    repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 10px,
-      rgba(197, 165, 114, 0.03) 10px,
-      rgba(197, 165, 114, 0.03) 20px
-    ),
-    repeating-linear-gradient(
-      -45deg,
-      transparent,
-      transparent 10px,
-      rgba(197, 165, 114, 0.02) 10px,
-      rgba(197, 165, 114, 0.02) 20px
-    );
-  z-index: 0;
-  border-radius: 20px;
-  opacity: 0.5;
-}
-
-.final-cta-left > * {
-  position: relative;
-  z-index: 1;
+  background: #ffffff;
 }
 
 .final-cta-title {
@@ -3466,22 +3435,21 @@ main {
 
 .final-phone-background {
   position: absolute;
-  width: 90%;
-  height: 90%;
-  background: linear-gradient(135deg, rgba(197, 165, 114, 0.2) 0%, rgba(197, 165, 114, 0.08) 50%, rgba(197, 165, 114, 0.12) 100%);
-  border-radius: 60px;
+  width: 85%;
+  height: 85%;
+  background: linear-gradient(135deg, #E8D5FF 0%, #D4B5FF 50%, #C19AFF 100%);
+  border-radius: 80px;
   z-index: 0;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  box-shadow: 0 20px 60px rgba(197, 165, 114, 0.1);
 }
 
 .final-phone {
-  position: relative;
-  width: clamp(200px, 25vw, 300px);
+  position: absolute;
+  width: clamp(220px, 28vw, 320px);
   height: auto;
-  border-radius: 30px;
+  border-radius: 35px;
   z-index: 1;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -3489,28 +3457,24 @@ main {
 .final-phone img {
   width: 100%;
   height: auto;
-  border-radius: 30px;
+  border-radius: 35px;
   display: block;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25);
 }
 
 .final-phone.front {
   z-index: 2;
-  transform: translateX(-20px) translateY(-10px);
+  left: 50%;
+  top: 50%;
+  transform: translate(-60%, -50%) scale(1);
 }
 
 .final-phone.back {
   z-index: 1;
-  transform: translateX(20px) translateY(10px) scale(0.9);
-  opacity: 0.9;
-}
-
-.final-cta-phones-wrapper:hover .final-phone.front {
-  transform: translateX(-25px) translateY(-15px) scale(1.02);
-}
-
-.final-cta-phones-wrapper:hover .final-phone.back {
-  transform: translateX(25px) translateY(15px) scale(0.88);
+  left: 50%;
+  top: 50%;
+  transform: translate(-20%, -50%) scale(0.85);
+  opacity: 0.95;
 }
 
 @media (max-width: 1200px) {
