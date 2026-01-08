@@ -5336,16 +5336,6 @@ footer {
   overflow: hidden;
 }
 
-.final-cta-section::before {
-  content: '';
-  position: absolute;
-  top: 20%;
-  left: 20%;
-  right: 20%;
-  bottom: 20%;
-  background: radial-gradient(circle at 50% 50%, rgba(178, 152, 107, 0.1) 0%, transparent 50%);
-  pointer-events: none;
-}
 
 .final-cta-content {
   position: relative;
