@@ -5329,7 +5329,7 @@ footer {
 
 /* Final CTA Section */
 .final-cta-section {
-  background: linear-gradient(135deg, rgba(28, 28, 28, 0.95) 0%, rgba(34, 33, 31, 0.98) 100%);
+  background: var(--bg);
   text-align: center;
   padding: 10rem 0;
   position: relative;
