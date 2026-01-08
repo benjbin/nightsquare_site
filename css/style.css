@@ -3297,7 +3297,7 @@ main {
 /* Final CTA Section */
 .final-cta-section {
   padding: 8rem 0;
-  background: var(--bg);
+  background: #ffffff;
   position: relative;
   overflow: hidden;
 }
@@ -3329,10 +3329,10 @@ main {
   right: 0;
   bottom: 0;
   background-image: 
-    url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,50 Q25,30 50,50 T100,50' stroke='rgba(197,165,114,0.05)' fill='none' stroke-width='2'/%3E%3Cpath d='M0,60 Q25,40 50,60 T100,60' stroke='rgba(197,165,114,0.05)' fill='none' stroke-width='2'/%3E%3C/svg%3E");
-  background-size: 200px 200px;
+    url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,100 Q50,60 100,100 T200,100' stroke='rgba(150,150,255,0.08)' fill='none' stroke-width='1.5'/%3E%3Cpath d='M0,120 Q50,80 100,120 T200,120' stroke='rgba(200,150,255,0.06)' fill='none' stroke-width='1.5'/%3E%3Cpath d='M0,140 Q50,100 100,140 T200,140' stroke='rgba(180,160,255,0.07)' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-size: 300px 300px;
   background-repeat: repeat;
-  opacity: 0.3;
+  opacity: 1;
   z-index: 0;
   pointer-events: none;
 }
@@ -3456,10 +3456,12 @@ main {
 
 .final-phone-background {
   position: absolute;
-  width: 85%;
-  height: 85%;
-  background: linear-gradient(135deg, #E8D5FF 0%, #D4B5FF 50%, #C19AFF 100%);
-  border-radius: 80px;
+  width: 100%;
+  height: 100%;
+  max-width: 600px;
+  max-height: 700px;
+  background: linear-gradient(135deg, #E8D5FF 0%, #D4B5FF 30%, #C19AFF 60%, #B085FF 100%);
+  border-radius: 100px;
   z-index: 0;
   top: 50%;
   left: 50%;
@@ -3468,9 +3470,7 @@ main {
 
 .final-phone {
   position: absolute;
-  width: clamp(220px, 28vw, 320px);
-  height: auto;
-  border-radius: 35px;
+  border-radius: 40px;
   z-index: 1;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -3478,24 +3478,26 @@ main {
 .final-phone img {
   width: 100%;
   height: auto;
-  border-radius: 35px;
+  border-radius: 40px;
   display: block;
-  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
 }
 
 .final-phone.front {
   z-index: 2;
+  width: clamp(280px, 35vw, 380px);
   left: 50%;
   top: 50%;
-  transform: translate(-70%, -50%) scale(1);
+  transform: translate(-75%, -50%);
 }
 
 .final-phone.back {
   z-index: 1;
+  width: clamp(200px, 25vw, 280px);
   left: 50%;
   top: 50%;
-  transform: translate(-10%, -50%) scale(0.75);
-  opacity: 0.9;
+  transform: translate(-5%, -50%);
+  opacity: 0.95;
 }
 
 @media (max-width: 1200px) {
