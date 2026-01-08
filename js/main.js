@@ -2174,27 +2174,9 @@ document.addEventListener('DOMContentLoaded', function() {
     sliderWrapper.addEventListener('mouseleave', startAutoPlay);
   }
   
-  // Initialize - show first slide with animation
-  setTimeout(() => {
+  // Initialize - show first slide immediately
+  if (slides.length > 0) {
+    slides[0].classList.add('active');
     updateSlider(false);
-    slides[0]?.classList.add('active');
-  }, 100);
-  
-  // Add intersection observer for animations
-  const observerOptions = {
-    threshold: 0.3,
-    rootMargin: '0px'
-  };
-  
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in-view');
-      }
-    });
-  }, observerOptions);
-  
-  slides.forEach(slide => {
-    observer.observe(slide);
-  });
+  }
 });

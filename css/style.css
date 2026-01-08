@@ -1694,12 +1694,11 @@ main {
   min-width: 100%;
   flex-shrink: 0;
   padding: 0 1rem;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  display: none;
 }
 
 .feature-slide.active {
-  opacity: 1;
+  display: block;
 }
 
 .feature-slide-content {
