@@ -2019,7 +2019,7 @@ main {
 }
 
 .quick-reservation-section::before {
-  content: 'FONCTIONNALITÉS';
+  content: "LET'S GO !";
   position: absolute;
   top: 50%;
   left: 50%;
