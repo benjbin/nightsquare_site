@@ -3442,8 +3442,8 @@ main {
   position: absolute;
   width: 100%;
   height: 100%;
-  max-width: 400px;
-  max-height: 400px;
+  max-width: 100px;
+  max-height: 100px;
   background: linear-gradient(135deg, #E8D5FF 0%, #D4B5FF 30%, #C19AFF 60%, #B085FF 100%);
   border-radius: 100px;
   z-index: 0;
