@@ -737,16 +737,6 @@ main {
   margin-top: 4rem;
 }
 
-.hero-phones::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 40%;
-  pointer-events: none;
-  background: linear-gradient(to top, var(--bg) 0%, rgba(28, 28, 28, 0.95) 30%, rgba(28, 28, 28, 0.5) 60%, transparent 100%);
-}
 
 .hero-phone {
   position: absolute;
