@@ -789,7 +789,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Mapping des tracks spécifiques (optionnel)
     const trackNameMap = {
       'levi': 'Jump',
-      'babar': 'Babar' // Track spécifique pour Babar si nécessaire
+      'babar': 'Babar', // Track spécifique pour Babar si nécessaire
+      'reznik': 'Cloudy Eyes',
+      'rivo': 'You & Me'
     };
     
     // Cache pour éviter les appels API multiples
