@@ -1683,11 +1683,13 @@ main {
   overflow: hidden;
   border-radius: 20px;
   margin-bottom: 2.5rem;
+  width: 100%;
 }
 
 .features-slider-track {
   display: flex;
   transition: transform 0.5s ease;
+  width: 100%;
 }
 
 .feature-slide {
