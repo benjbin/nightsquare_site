@@ -1754,11 +1754,37 @@ main {
   letter-spacing: -0.01em;
 }
 
-.feature-slide-info p {
+.feature-description {
   font-size: clamp(1rem, 1.2vw, 1.1rem);
   color: var(--text-muted);
   line-height: 1.7;
   margin: 0;
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.feature-list li {
+  font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+  color: var(--text-muted);
+  line-height: 1.6;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.feature-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 1rem;
 }
 
 .features-slider-controls {
@@ -1838,7 +1864,7 @@ main {
   
   .feature-slide-info {
     order: 2;
-    text-align: center;
+    text-align: left;
   }
   
   .feature-slide-image img {
@@ -1876,8 +1902,16 @@ main {
     font-size: 1.5rem;
   }
   
-  .feature-slide-info p {
+  .feature-description {
     font-size: 1rem;
+  }
+  
+  .feature-list {
+    gap: 0.6rem;
+  }
+  
+  .feature-list li {
+    font-size: 0.9rem;
   }
   
   .slider-btn {
