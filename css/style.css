@@ -3546,7 +3546,18 @@ main {
   }
   
   .final-cta-right {
-    min-height: 400px;
+    min-height: 350px;
+    padding: 2rem 0;
+  }
+  
+  .final-cta-phones-wrapper {
+    min-height: 300px;
+    position: relative;
+  }
+  
+  .final-phone-background {
+    max-width: 40px;
+    max-height: 40px;
   }
   
   .final-phone.back {
@@ -3554,9 +3565,16 @@ main {
   }
   
   .final-phone.front {
+    position: absolute;
+    left: 50%;
+    top: 50%;
     transform: translate(-50%, -50%);
-    width: clamp(200px, 60vw, 280px);
-    position: relative;
+    width: clamp(180px, 50vw, 240px);
+    z-index: 2;
+  }
+  
+  .final-phone img {
+    border-radius: 30px;
   }
 }
 
