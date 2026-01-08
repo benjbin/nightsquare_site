@@ -509,22 +509,22 @@ main {
 @keyframes slideInPhoneLeft {
   from {
     opacity: 0;
-    transform: translateX(calc(-50% - clamp(140px, 18vw, 280px))) translateY(-140px) perspective(1200px) rotateY(12deg) rotate(-15deg) scale(0.9);
+    transform: translateX(calc(-50% - clamp(180px, 22vw, 320px))) translateY(-140px) perspective(1200px) rotateY(12deg) rotate(-15deg) scale(0.9);
   }
   to {
     opacity: 0.95;
-    transform: translateX(calc(-50% - clamp(140px, 18vw, 280px))) translateY(-200px) perspective(1200px) rotateY(12deg) rotate(-15deg) scale(1.08);
+    transform: translateX(calc(-50% - clamp(180px, 22vw, 320px))) translateY(-200px) perspective(1200px) rotateY(12deg) rotate(-15deg) scale(1.08);
   }
 }
 
 @keyframes slideInPhoneRight {
   from {
     opacity: 0;
-    transform: translateX(calc(-50% + clamp(140px, 18vw, 280px))) translateY(-140px) perspective(1200px) rotateY(-12deg) rotate(15deg) scale(0.9);
+    transform: translateX(calc(-50% + clamp(180px, 22vw, 320px))) translateY(-140px) perspective(1200px) rotateY(-12deg) rotate(15deg) scale(0.9);
   }
   to {
     opacity: 0.95;
-    transform: translateX(calc(-50% + clamp(140px, 18vw, 280px))) translateY(-200px) perspective(1200px) rotateY(-12deg) rotate(15deg) scale(1.08);
+    transform: translateX(calc(-50% + clamp(180px, 22vw, 320px))) translateY(-200px) perspective(1200px) rotateY(-12deg) rotate(15deg) scale(1.08);
   }
 }
 
@@ -787,14 +787,14 @@ main {
 }
 
 .hero-phone.left {
-  transform: translateX(calc(-50% - clamp(140px, 18vw, 280px))) translateY(-200px) perspective(1200px) rotateY(12deg) rotate(-15deg) scale(1.08);
+  transform: translateX(calc(-50% - clamp(180px, 22vw, 320px))) translateY(-200px) perspective(1200px) rotateY(12deg) rotate(-15deg) scale(1.08);
   opacity: 0.95;
   z-index: 2;
   pointer-events: auto;
 }
 
 .hero-phone.right {
-  transform: translateX(calc(-50% + clamp(140px, 18vw, 280px))) translateY(-200px) perspective(1200px) rotateY(-12deg) rotate(15deg) scale(1.08);
+  transform: translateX(calc(-50% + clamp(180px, 22vw, 320px))) translateY(-200px) perspective(1200px) rotateY(-12deg) rotate(15deg) scale(1.08);
   opacity: 0.95;
   z-index: 2;
   pointer-events: auto;
