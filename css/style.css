@@ -435,6 +435,77 @@ main {
   padding: 8rem 0 4rem 0;
 }
 
+.hero-section .hero-stack {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.hero-card-mobile .hero-title {
+  animation: fadeInUp 0.8s ease-out 0.1s both;
+}
+
+.hero-card-mobile .hero-title-2 {
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.hero-card-mobile .hero-subtitle {
+  animation: fadeInUp 0.8s ease-out 0.3s both;
+}
+
+.hero-card-mobile .store-pill {
+  animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+.hero-phones {
+  animation: fadeIn 1s ease-out 0.5s both;
+}
+
+.hero-phone {
+  opacity: 0;
+}
+
+.hero-phone.center {
+  animation: slideInPhone 1s ease-out 0.6s forwards;
+}
+
+.hero-phone.left {
+  animation: slideInPhone 1s ease-out 0.7s forwards;
+}
+
+.hero-phone.right {
+  animation: slideInPhone 1s ease-out 0.8s forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInPhone {
+  from {
+    opacity: 0;
+    transform: translateY(50px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 .hero-content {
   display: grid;
   grid-template-columns: 1fr;
