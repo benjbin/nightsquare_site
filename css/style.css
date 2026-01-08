@@ -5340,11 +5340,11 @@ footer {
 .final-cta-section::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle at 50% 50%, rgba(178, 152, 107, 0.1) 0%, transparent 70%);
+  top: 20%;
+  left: 20%;
+  right: 20%;
+  bottom: 20%;
+  background: radial-gradient(circle at 50% 50%, rgba(178, 152, 107, 0.1) 0%, transparent 50%);
   pointer-events: none;
 }
 
