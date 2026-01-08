@@ -498,33 +498,33 @@ main {
 @keyframes slideInPhoneCenter {
   from {
     opacity: 0;
-    transform: translateX(-50%) translateY(-100px) scale(0.9);
+    transform: translateX(-50%) translateY(-80px) scale(0.9);
   }
   to {
     opacity: 1;
-    transform: translateX(-50%) translateY(-180px) scale(1.15);
+    transform: translateX(-50%) translateY(-140px) scale(1.15);
   }
 }
 
 @keyframes slideInPhoneLeft {
   from {
     opacity: 0;
-    transform: translateX(calc(-50% - clamp(140px, 18vw, 280px))) translateY(-240px) perspective(1200px) rotateY(12deg) rotate(-15deg) scale(0.9);
+    transform: translateX(calc(-50% - clamp(140px, 18vw, 280px))) translateY(-200px) perspective(1200px) rotateY(12deg) rotate(-15deg) scale(0.9);
   }
   to {
     opacity: 0.95;
-    transform: translateX(calc(-50% - clamp(140px, 18vw, 280px))) translateY(-320px) perspective(1200px) rotateY(12deg) rotate(-15deg) scale(1.08);
+    transform: translateX(calc(-50% - clamp(140px, 18vw, 280px))) translateY(-260px) perspective(1200px) rotateY(12deg) rotate(-15deg) scale(1.08);
   }
 }
 
 @keyframes slideInPhoneRight {
   from {
     opacity: 0;
-    transform: translateX(calc(-50% + clamp(140px, 18vw, 280px))) translateY(-240px) perspective(1200px) rotateY(-12deg) rotate(15deg) scale(0.9);
+    transform: translateX(calc(-50% + clamp(140px, 18vw, 280px))) translateY(-200px) perspective(1200px) rotateY(-12deg) rotate(15deg) scale(0.9);
   }
   to {
     opacity: 0.95;
-    transform: translateX(calc(-50% + clamp(140px, 18vw, 280px))) translateY(-320px) perspective(1200px) rotateY(-12deg) rotate(15deg) scale(1.08);
+    transform: translateX(calc(-50% + clamp(140px, 18vw, 280px))) translateY(-260px) perspective(1200px) rotateY(-12deg) rotate(15deg) scale(1.08);
   }
 }
 
@@ -780,21 +780,21 @@ main {
 }
 
 .hero-phone.center {
-  transform: translateX(-50%) translateY(-180px) scale(1.15);
+  transform: translateX(-50%) translateY(-140px) scale(1.15);
   z-index: 3;
   opacity: 1;
   pointer-events: auto;
 }
 
 .hero-phone.left {
-  transform: translateX(calc(-50% - clamp(140px, 18vw, 280px))) translateY(-320px) perspective(1200px) rotateY(12deg) rotate(-15deg) scale(1.08);
+  transform: translateX(calc(-50% - clamp(140px, 18vw, 280px))) translateY(-260px) perspective(1200px) rotateY(12deg) rotate(-15deg) scale(1.08);
   opacity: 0.95;
   z-index: 2;
   pointer-events: auto;
 }
 
 .hero-phone.right {
-  transform: translateX(calc(-50% + clamp(140px, 18vw, 280px))) translateY(-320px) perspective(1200px) rotateY(-12deg) rotate(15deg) scale(1.08);
+  transform: translateX(calc(-50% + clamp(140px, 18vw, 280px))) translateY(-260px) perspective(1200px) rotateY(-12deg) rotate(15deg) scale(1.08);
   opacity: 0.95;
   z-index: 2;
   pointer-events: auto;
