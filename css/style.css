@@ -1722,7 +1722,7 @@ main {
 .features-right {
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: 2rem;
   position: relative;
 }
 
@@ -1736,7 +1736,6 @@ main {
   padding: 2rem;
   transition: all 0.3s ease;
   position: sticky;
-  margin-bottom: -2rem;
   z-index: 1;
 }
 
@@ -1763,7 +1762,6 @@ main {
 .feature-card:nth-child(5) {
   top: 10rem;
   z-index: 1;
-  margin-bottom: 0;
 }
 
 .feature-card:hover {
