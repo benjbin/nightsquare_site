@@ -1732,7 +1732,7 @@ main {
   background: var(--surface);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 20px;
-  padding: 2.5rem;
+  padding: 2rem;
   transition: border-color 0.3s ease;
 }
 
@@ -1790,7 +1790,7 @@ main {
 
 .feature-card-phone {
   flex-shrink: 0;
-  width: 180px;
+  width: 140px;
   height: auto;
   display: flex;
   align-items: center;
@@ -1832,7 +1832,7 @@ main {
   }
   
   .feature-card-phone {
-    width: 200px;
+    width: 160px;
   }
   
   .feature-card-phone img {
@@ -1850,12 +1850,12 @@ main {
   }
   
   .feature-card {
-    padding: 2rem;
+    padding: 1.5rem;
     gap: 1.5rem;
   }
   
   .feature-card-phone {
-    width: 160px;
+    width: 120px;
   }
   
   .feature-card-list {
