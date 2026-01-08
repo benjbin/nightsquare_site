@@ -2051,31 +2051,25 @@ main {
 }
 
 .quick-reservation-features-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 2rem;
   margin-bottom: 6rem;
-  max-width: 1200px;
+  max-width: 1400px;
   margin-left: auto;
   margin-right: auto;
 }
 
-.quick-reservation-features-grid .quick-reservation-feature-card:nth-child(1),
-.quick-reservation-features-grid .quick-reservation-feature-card:nth-child(2),
-.quick-reservation-features-grid .quick-reservation-feature-card:nth-child(3) {
-  grid-row: 1;
+.quick-reservation-feature-card {
+  flex: 0 0 calc(33.333% - 1.34rem);
+  max-width: 320px;
 }
 
-.quick-reservation-features-grid .quick-reservation-feature-card:nth-child(4) {
-  grid-column: 1;
-  grid-row: 2;
-  justify-self: end;
-}
-
+.quick-reservation-features-grid .quick-reservation-feature-card:nth-child(4),
 .quick-reservation-features-grid .quick-reservation-feature-card:nth-child(5) {
-  grid-column: 2;
-  grid-row: 2;
-  justify-self: center;
+  flex: 0 0 calc(33.333% - 1.34rem);
+  max-width: 320px;
 }
 
 .quick-reservation-feature-card {
