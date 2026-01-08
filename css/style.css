@@ -1740,27 +1740,27 @@ main {
 }
 
 .feature-card:nth-child(1) {
-  top: 2rem;
+  top: 8rem;
   z-index: 5;
 }
 
 .feature-card:nth-child(2) {
-  top: 4rem;
+  top: 10rem;
   z-index: 4;
 }
 
 .feature-card:nth-child(3) {
-  top: 6rem;
+  top: 12rem;
   z-index: 3;
 }
 
 .feature-card:nth-child(4) {
-  top: 8rem;
+  top: 14rem;
   z-index: 2;
 }
 
 .feature-card:nth-child(5) {
-  top: 10rem;
+  top: 16rem;
   z-index: 1;
 }
 
