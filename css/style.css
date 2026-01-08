@@ -1698,7 +1698,7 @@ main {
 
 .features-store-buttons {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 1rem;
   margin-top: 1.5rem;
 }
