@@ -687,21 +687,21 @@ main {
 }
 
 .hero-phone.center {
-  transform: translateX(-50%) translateY(-120px) scale(1.15);
+  transform: translateX(-50%) translateY(-200px) scale(1.15);
   z-index: 3;
   opacity: 1;
   pointer-events: auto;
 }
 
 .hero-phone.left {
-  transform: translateX(calc(-50% - clamp(140px, 18vw, 280px))) translateY(-280px) perspective(1200px) rotateY(12deg) rotate(-15deg) scale(1.08);
+  transform: translateX(calc(-50% - clamp(140px, 18vw, 280px))) translateY(-360px) perspective(1200px) rotateY(12deg) rotate(-15deg) scale(1.08);
   opacity: 0.95;
   z-index: 2;
   pointer-events: auto;
 }
 
 .hero-phone.right {
-  transform: translateX(calc(-50% + clamp(140px, 18vw, 280px))) translateY(-280px) perspective(1200px) rotateY(-12deg) rotate(15deg) scale(1.08);
+  transform: translateX(calc(-50% + clamp(140px, 18vw, 280px))) translateY(-360px) perspective(1200px) rotateY(-12deg) rotate(15deg) scale(1.08);
   opacity: 0.95;
   z-index: 2;
   pointer-events: auto;
@@ -725,7 +725,7 @@ main {
   }
   
   .hero-phone.center {
-    transform: translateX(-50%) translateY(-80px) scale(1.1);
+    transform: translateX(-50%) translateY(-160px) scale(1.1);
     z-index: 3;
   }
   
