@@ -1549,15 +1549,15 @@ main {
   z-index: 1;
 }
 
-/* Les cartes sont empilées avec des écarts, la dernière carte a le z-index le plus élevé */
+/* Les cartes s'empilent : la carte 1 est en dessous, les suivantes au-dessus */
 .feature-card:nth-child(1) {
   top: 8rem;
-  z-index: 5;
+  z-index: 1; /* En dessous */
 }
 
 .feature-card:nth-child(2) {
   top: 10rem;
-  z-index: 4;
+  z-index: 2;
 }
 
 .feature-card:nth-child(3) {
@@ -1567,12 +1567,12 @@ main {
 
 .feature-card:nth-child(4) {
   top: 14rem;
-  z-index: 2;
+  z-index: 4;
 }
 
 .feature-card:nth-child(5) {
   top: 16rem;
-  z-index: 1;
+  z-index: 5; /* Au-dessus */
 }
 
 /* La carte active (celle qui atteint le top) passe devant toutes les autres */
