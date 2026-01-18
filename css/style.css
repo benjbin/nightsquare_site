@@ -5057,8 +5057,8 @@ footer {
 
 .upcoming-djs-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2.5rem;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
   max-width: 1400px;
   margin: 0 auto;
 }
@@ -5283,10 +5283,17 @@ footer {
   border-radius: 12px;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1400px) {
+  .upcoming-djs-list {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 968px) {
   .upcoming-djs-list {
     grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+    gap: 1.5rem;
   }
 }
 
