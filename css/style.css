@@ -641,7 +641,7 @@ main {
 }
 
 .hero-card-mobile {
-  display: none;
+  display: block;
 }
 
 .hero-badge {
@@ -969,6 +969,17 @@ main {
 
 /* Tablet Media Query */
 @media (min-width: 481px) and (max-width: 991px) {
+  .hero-card-mobile {
+    display: block;
+  }
+  
+  .hero-card-mobile .hero-title,
+  .hero-card-mobile .hero-title-2,
+  .hero-card-mobile .hero-subtitle,
+  .hero-card-mobile .store-pill {
+    display: block;
+  }
+  
   .hero-section {
     padding: 5rem 0 4rem;
     min-height: auto;
@@ -1026,6 +1037,17 @@ main {
 
 /* Mobile Media Query */
 @media (max-width: 991px) {
+  .hero-card-mobile {
+    display: block;
+  }
+  
+  .hero-card-mobile .hero-title,
+  .hero-card-mobile .hero-title-2,
+  .hero-card-mobile .hero-subtitle,
+  .hero-card-mobile .store-pill {
+    display: block;
+  }
+  
   .hero-phones {
     display: none;
   }
