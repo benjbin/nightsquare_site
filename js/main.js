@@ -2186,18 +2186,31 @@ document.addEventListener('DOMContentLoaded', function() {
     observer.observe(card);
   });
   
-  // Fallback: Check on scroll which card is at the top
+  // Check on scroll which card is stuck at the top
   function updateStuckCard() {
     const cards = Array.from(featureCards);
-    const viewportTop = window.scrollY + (window.innerHeight * 0.15); // Offset for sticky position
+    let stuckCard = null;
+    let minDistance = Infinity;
     
     cards.forEach((card, index) => {
       const rect = card.getBoundingClientRect();
-      const cardTop = rect.top + window.scrollY;
+      const stickyTop = parseInt(getComputedStyle(card).top) || 0;
       
-      // Check if card is stuck (within sticky threshold)
-      if (rect.top <= 120 && rect.top >= 60) {
-        cards.forEach(c => c.classList.remove('is-stuck'));
+      // Check if card is currently stuck at its sticky position
+      // A card is "stuck" when it's at its sticky position (within a small threshold)
+      const distanceFromStickyPosition = Math.abs(rect.top - stickyTop);
+      
+      // Card is stuck if it's very close to its sticky position
+      if (distanceFromStickyPosition < 10 && rect.top < minDistance) {
+        minDistance = rect.top;
+        stuckCard = card;
+      }
+    });
+    
+    // Update classes: only the stuck card gets is-stuck
+    cards.forEach(card => {
+      card.classList.remove('is-stuck');
+      if (card === stuckCard) {
         card.classList.add('is-stuck');
       }
     });
@@ -2215,7 +2228,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   
   // Initial check
-  updateStuckCard();
+  setTimeout(updateStuckCard, 100);
 });
 
 // Features Slider (if exists)

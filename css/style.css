@@ -1546,17 +1546,16 @@ main {
   padding: 2rem;
   transition: all 0.3s ease;
   position: sticky;
-  z-index: 1;
 }
 
-/* Z-index inversés : dernière carte devant, première derrière */
+/* Ordre inversé : la première carte en haut de la pile (derrière), la dernière en bas (devant) */
 .feature-card:nth-child(1) {
-  top: 8rem;
+  top: 16rem;
   z-index: 1;
 }
 
 .feature-card:nth-child(2) {
-  top: 10rem;
+  top: 14rem;
   z-index: 2;
 }
 
@@ -1566,12 +1565,12 @@ main {
 }
 
 .feature-card:nth-child(4) {
-  top: 14rem;
+  top: 10rem;
   z-index: 4;
 }
 
 .feature-card:nth-child(5) {
-  top: 16rem;
+  top: 8rem;
   z-index: 5;
 }
 
