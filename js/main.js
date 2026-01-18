@@ -2154,38 +2154,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 200);
   }
 
-  // Phone carousel in advantages section - Auto-rotate every 3 seconds
-  const phoneCarousel = document.querySelector('.phone-carousel');
-  if (phoneCarousel) {
-    const slides = phoneCarousel.querySelectorAll('.phone-slide');
-    let currentIndex = 0;
-    
-    function showNextSlide() {
-      // Remove active and prev classes
-      slides.forEach(slide => {
-        slide.classList.remove('active', 'prev');
-      });
-      
-      // Add prev to current slide
-      slides[currentIndex].classList.add('prev');
-      
-      // Move to next slide
-      currentIndex = (currentIndex + 1) % slides.length;
-      
-      // Add active to new slide
-      slides[currentIndex].classList.add('active');
-    }
-    
-    // Initialize: show first slide
-    if (slides.length > 0) {
-      slides[0].classList.add('active');
-      
-      // Start auto-rotation after initial animation completes
-      setTimeout(() => {
-        setInterval(showNextSlide, 3000);
-      }, 2000);
-    }
-  }
 });
 
 // Features Slider
