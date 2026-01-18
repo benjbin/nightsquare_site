@@ -400,20 +400,29 @@
                     </button>
                 </div>
                 
-                <!-- Upcoming DJs Section -->
-                <section class="upcoming-djs-wrapper" itemscope itemtype="https://schema.org/ItemList" aria-labelledby="upcoming-djs-heading">
-                    <div class="upcoming-djs-header">
-                        <h2 id="upcoming-djs-heading" class="upcoming-djs-title" itemprop="name">Les DJs à venir</h2>
-                        <meta itemprop="description" content="Découvrez les prochains DJs et producteurs qui animeront nos événements exclusifs Night Square. Accédez aux performances live des meilleurs artistes de la scène électronique.">
-                        <p class="upcoming-djs-subtitle" aria-label="Description de la section des DJs à venir">Découvrez les prochains DJs et producteurs qui animeront nos événements exclusifs.</p>
+            </div>
+        </section>
+
+        <!-- Upcoming DJs Section - Premium Standalone -->
+        <section id="upcoming-djs" class="upcoming-djs-section" itemscope itemtype="https://schema.org/ItemList" aria-labelledby="upcoming-djs-heading">
+            <div class="container">
+                <div class="upcoming-djs-header">
+                    <div class="upcoming-djs-badge">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="currentColor"/>
+                        </svg>
+                        <span>Artistes</span>
                     </div>
-                    <div class="upcoming-djs-list" role="list" aria-label="Liste des DJs à venir" itemprop="itemListElement">
-                        <!-- Les DJs seront chargés dynamiquement depuis l'API -->
-                        <div class="djs-loading" style="text-align: center; padding: 2rem; color: var(--text-secondary);" aria-live="polite" aria-atomic="true">
-                            <p>Chargement des DJs...</p>
-                        </div>
+                    <h2 id="upcoming-djs-heading" class="upcoming-djs-title" itemprop="name">Les DJs à venir</h2>
+                    <meta itemprop="description" content="Découvrez les prochains DJs et producteurs qui animeront nos événements exclusifs Night Square. Accédez aux performances live des meilleurs artistes de la scène électronique.">
+                    <p class="upcoming-djs-subtitle" aria-label="Description de la section des DJs à venir">Découvrez les talents qui vont faire vibrer vos soirées premium. Réservez vos tables pour vivre des performances exclusives.</p>
+                </div>
+                <div class="upcoming-djs-list" role="list" aria-label="Liste des DJs à venir" itemprop="itemListElement">
+                    <div class="djs-loading" style="text-align: center; padding: 3rem; color: var(--text-muted);" aria-live="polite" aria-atomic="true">
+                        <div class="loading-spinner"></div>
+                        <p>Chargement des DJs...</p>
                     </div>
-                </section>
+                </div>
             </div>
         </section>
 
