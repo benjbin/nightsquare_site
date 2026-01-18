@@ -5249,3 +5249,583 @@ footer {
   }
 }
 
+/* ============================================
+   RESPONSIVE COMPLET - TOUS LES ELEMENTS
+   ============================================ */
+
+/* Mobile Portrait - Extra Small (< 480px) */
+@media (max-width: 480px) {
+  /* Header */
+  header {
+    padding: 1rem 0;
+  }
+  
+  nav {
+    padding: 0 1rem;
+  }
+  
+  .logo-img {
+    height: 28px;
+  }
+  
+  /* Hero Section */
+  .hero-section {
+    padding: 4rem 0 2rem;
+    min-height: auto;
+  }
+  
+  .hero-title {
+    font-size: clamp(2.5rem, 12vw, 4rem);
+  }
+  
+  .hero-title-2 {
+    font-size: clamp(1.8rem, 8vw, 2.5rem);
+  }
+  
+  .hero-subtitle {
+    font-size: clamp(0.9rem, 4vw, 1.1rem);
+    padding: 0 1rem;
+  }
+  
+  .store-pill {
+    padding: 0.5rem 0.8rem;
+    gap: 0.5rem;
+  }
+  
+  .store-link {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .store-link img {
+    width: 18px;
+    height: 18px;
+  }
+  
+  /* Current Events */
+  .current-events-section {
+    padding: 2rem 0;
+  }
+  
+  .current-events-title {
+    font-size: clamp(2rem, 8vw, 2.5rem);
+    padding: 0 1rem;
+  }
+  
+  .current-events-subtitle {
+    font-size: clamp(1rem, 4vw, 1.15rem);
+    padding: 0 1rem;
+  }
+  
+  .filter-button {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+  }
+  
+  .current-events-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+  
+  /* Upcoming DJs */
+  .upcoming-djs-section {
+    padding: 3rem 0;
+  }
+  
+  .upcoming-djs-list {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+  
+  /* Features */
+  .features-key-section {
+    padding: 4rem 0;
+  }
+  
+  .features-main-title {
+    font-size: clamp(2rem, 8vw, 2.5rem);
+  }
+  
+  .features-subtitle {
+    font-size: clamp(0.9rem, 3.5vw, 1rem);
+  }
+  
+  .features-store-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .features-store-button {
+    width: 100%;
+    padding: 0.75rem 1rem;
+  }
+  
+  .feature-card {
+    padding: 1.25rem;
+    gap: 1rem;
+  }
+  
+  .feature-card-title {
+    font-size: clamp(1rem, 4vw, 1.1rem);
+  }
+  
+  .feature-card-phone {
+    width: 100px;
+  }
+  
+  /* Quick Reservation */
+  .quick-reservation-section {
+    padding: 4rem 0 6rem;
+  }
+  
+  .quick-reservation-features-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+  
+  /* Featured Artists */
+  .featured-artists-section {
+    padding: 4rem 0;
+  }
+  
+  .featured-artists-header {
+    padding: 0 1rem;
+    margin-bottom: 3rem;
+  }
+  
+  .artists-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+  
+  .artist-name {
+    font-size: clamp(1rem, 5vw, 1.3rem);
+    padding-right: 0;
+  }
+  
+  /* Trust Section */
+  .trust-section {
+    padding: 4rem 0;
+  }
+  
+  .trust-section p {
+    padding: 0 1rem;
+    font-size: clamp(0.9rem, 3.5vw, 1rem);
+  }
+  
+  /* Footer */
+  footer {
+    padding: 4rem 0 2rem;
+  }
+  
+  .footer-links {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .footer-social {
+    justify-content: center;
+  }
+  
+  .footer-legal-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+}
+
+/* Mobile Landscape & Small Tablets (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  /* Hero */
+  .hero-title {
+    font-size: clamp(3rem, 10vw, 4.5rem);
+  }
+  
+  /* Current Events */
+  .current-events-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  /* Upcoming DJs */
+  .upcoming-djs-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  /* Features */
+  .features-layout {
+    gap: 3rem;
+  }
+  
+  /* Featured Artists */
+  .artists-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+/* Tablets (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* Container */
+  .container {
+    padding: 0 clamp(2rem, 5vw, 3rem);
+  }
+  
+  /* Current Events */
+  .current-events-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  
+  /* Upcoming DJs */
+  .upcoming-djs-list {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  
+  /* Features */
+  .features-layout {
+    gap: 4rem;
+  }
+  
+  .feature-card {
+    padding: 1.75rem;
+  }
+  
+  /* Featured Artists */
+  .artists-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+/* Large Tablets & Small Desktop (1025px - 1400px) */
+@media (min-width: 1025px) and (max-width: 1400px) {
+  /* Container */
+  .container {
+    max-width: 1200px;
+  }
+  
+  /* Current Events */
+  .current-events-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  /* Upcoming DJs */
+  .upcoming-djs-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Landscape Orientation */
+@media (orientation: landscape) and (max-height: 600px) {
+  .hero-section {
+    min-height: auto;
+    padding: 3rem 0;
+  }
+  
+  .content-section {
+    padding: 4rem 0;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================
+   RESPONSIVE COMPLET - TOUS LES ELEMENTS
+   ============================================ */
+
+/* Mobile Portrait - Extra Small (< 480px) */
+@media (max-width: 480px) {
+  /* Header */
+  header {
+    padding: 1rem 0;
+  }
+  
+  nav {
+    padding: 0 1rem;
+  }
+  
+  .logo-img {
+    height: 28px;
+  }
+  
+  /* Hero Section */
+  .hero-section {
+    padding: 4rem 0 2rem;
+    min-height: auto;
+  }
+  
+  .hero-title {
+    font-size: clamp(2.5rem, 12vw, 4rem);
+  }
+  
+  .hero-title-2 {
+    font-size: clamp(1.8rem, 8vw, 2.5rem);
+  }
+  
+  .hero-subtitle {
+    font-size: clamp(0.9rem, 4vw, 1.1rem);
+    padding: 0 1rem;
+  }
+  
+  .store-pill {
+    padding: 0.5rem 0.8rem;
+    gap: 0.5rem;
+  }
+  
+  .store-link {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .store-link img {
+    width: 18px;
+    height: 18px;
+  }
+  
+  /* Current Events */
+  .current-events-section {
+    padding: 2rem 0;
+  }
+  
+  .current-events-title {
+    font-size: clamp(2rem, 8vw, 2.5rem);
+    padding: 0 1rem;
+  }
+  
+  .current-events-subtitle {
+    font-size: clamp(1rem, 4vw, 1.15rem);
+    padding: 0 1rem;
+  }
+  
+  .filter-button {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+  }
+  
+  .current-events-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+  
+  /* Upcoming DJs */
+  .upcoming-djs-section {
+    padding: 3rem 0;
+  }
+  
+  .upcoming-djs-list {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+  
+  /* Features */
+  .features-key-section {
+    padding: 4rem 0;
+  }
+  
+  .features-main-title {
+    font-size: clamp(2rem, 8vw, 2.5rem);
+  }
+  
+  .features-subtitle {
+    font-size: clamp(0.9rem, 3.5vw, 1rem);
+  }
+  
+  .features-store-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .features-store-button {
+    width: 100%;
+    padding: 0.75rem 1rem;
+  }
+  
+  .feature-card {
+    padding: 1.25rem;
+    gap: 1rem;
+  }
+  
+  .feature-card-title {
+    font-size: clamp(1rem, 4vw, 1.1rem);
+  }
+  
+  .feature-card-phone {
+    width: 100px;
+  }
+  
+  /* Quick Reservation */
+  .quick-reservation-section {
+    padding: 4rem 0 6rem;
+  }
+  
+  .quick-reservation-features-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+  
+  /* Featured Artists */
+  .featured-artists-section {
+    padding: 4rem 0;
+  }
+  
+  .featured-artists-header {
+    padding: 0 1rem;
+    margin-bottom: 3rem;
+  }
+  
+  .artists-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+  
+  .artist-name {
+    font-size: clamp(1rem, 5vw, 1.3rem);
+    padding-right: 0;
+  }
+  
+  /* Trust Section */
+  .trust-section {
+    padding: 4rem 0;
+  }
+  
+  .trust-section p {
+    padding: 0 1rem;
+    font-size: clamp(0.9rem, 3.5vw, 1rem);
+  }
+  
+  /* Footer */
+  footer {
+    padding: 4rem 0 2rem;
+  }
+  
+  .footer-links {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .footer-social {
+    justify-content: center;
+  }
+  
+  .footer-legal-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+}
+
+/* Mobile Landscape & Small Tablets (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .hero-title {
+    font-size: clamp(3rem, 10vw, 4.5rem);
+  }
+  
+  .current-events-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .upcoming-djs-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .features-layout {
+    gap: 3rem;
+  }
+  
+  .artists-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+/* Tablets (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    padding: 0 clamp(2rem, 5vw, 3rem);
+  }
+  
+  .current-events-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  
+  .upcoming-djs-list {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .features-layout {
+    gap: 4rem;
+  }
+  
+  .feature-card {
+    padding: 1.75rem;
+  }
+  
+  .artists-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+/* Large Tablets & Small Desktop (1025px - 1400px) */
+@media (min-width: 1025px) and (max-width: 1400px) {
+  .container {
+    max-width: 1200px;
+  }
+  
+  .current-events-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .upcoming-djs-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Landscape Orientation */
+@media (orientation: landscape) and (max-height: 600px) {
+  .hero-section {
+    min-height: auto;
+    padding: 3rem 0;
+  }
+  
+  .content-section {
+    padding: 4rem 0;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
