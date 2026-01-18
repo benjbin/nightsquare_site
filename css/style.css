@@ -447,19 +447,13 @@ nav {
 }
 
 .mobile-menu-toggle.active .burger-line:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
+  transform: rotate(45deg) translate(0, 0);
   background: var(--accent);
   box-shadow: 0 0 10px rgba(178, 152, 107, 0.5);
 }
 
 .mobile-menu-toggle.active .burger-line:nth-child(2) {
-  opacity: 0;
-  transform: scaleX(0) translateX(-10px);
-  width: 0;
-}
-
-.mobile-menu-toggle.active .burger-line:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
+  transform: rotate(-45deg) translate(0, 0);
   background: var(--accent);
   box-shadow: 0 0 10px rgba(178, 152, 107, 0.5);
 }
