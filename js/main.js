@@ -1065,11 +1065,11 @@ document.addEventListener('DOMContentLoaded', function() {
             const scale = 1.08 - scrollProgress * 0.08;
             phone.style.transform = `translateX(-50%) translateY(calc(-60px + ${translateY}px)) scale(${scale})`;
           } else if (phone.classList.contains('right')) {
-            const translateY = scrollProgress * 40;
-            const rotateY = -12 + scrollProgress * 3;
-            const rotate = 15 - scrollProgress * 2;
-            phone.style.transform = `translateX(calc(-50% + clamp(200px, 24vw, 380px))) translateY(calc(-220px + ${translateY}px)) perspective(1200px) rotateY(${rotateY}deg) rotate(${rotate}deg) scale(1.02)`;
-            phone.style.opacity = 0.95 + scrollProgress * 0.05;
+            const translateY = scrollProgress * 30;
+            const rotateY = -12 + scrollProgress * 2;
+            const rotate = 10 - scrollProgress * 2;
+            phone.style.transform = `translateX(calc(-50% + 250px)) translateY(calc(-130px + ${translateY}px)) perspective(1100px) rotateY(${rotateY}deg) rotate(${rotate}deg) scale(${1 + scrollProgress * 0.05})`;
+            phone.style.opacity = 0.9 + scrollProgress * 0.1;
           }
         });
       }

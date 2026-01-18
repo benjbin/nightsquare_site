@@ -498,33 +498,33 @@ main {
 @keyframes slideInPhoneCenter {
   from {
     opacity: 0;
-    transform: translateX(-50%) translateY(-80px) scale(0.9);
+    transform: translateX(-50%) translateY(-60px) scale(0.9);
   }
   to {
     opacity: 1;
-    transform: translateX(-50%) translateY(-140px) scale(1.15);
+    transform: translateX(-50%) translateY(-100px) scale(1.15);
   }
 }
 
 @keyframes slideInPhoneLeft {
   from {
     opacity: 0;
-    transform: translateX(calc(-50% - clamp(180px, 22vw, 320px))) translateY(-140px) perspective(1200px) rotateY(12deg) rotate(-15deg) scale(0.9);
+    transform: translateX(calc(-50% - 250px)) translateY(-100px) perspective(1100px) rotateY(12deg) rotate(-10deg) scale(0.9);
   }
   to {
-    opacity: 0.95;
-    transform: translateX(calc(-50% - clamp(180px, 22vw, 320px))) translateY(-200px) perspective(1200px) rotateY(12deg) rotate(-15deg) scale(1.08);
+    opacity: 0.9;
+    transform: translateX(calc(-50% - 250px)) translateY(-130px) perspective(1100px) rotateY(12deg) rotate(-10deg) scale(1);
   }
 }
 
 @keyframes slideInPhoneRight {
   from {
     opacity: 0;
-    transform: translateX(calc(-50% + clamp(180px, 22vw, 320px))) translateY(-140px) perspective(1200px) rotateY(-12deg) rotate(15deg) scale(0.9);
+    transform: translateX(calc(-50% + 250px)) translateY(-100px) perspective(1100px) rotateY(-12deg) rotate(10deg) scale(0.9);
   }
   to {
-    opacity: 0.95;
-    transform: translateX(calc(-50% + clamp(180px, 22vw, 320px))) translateY(-200px) perspective(1200px) rotateY(-12deg) rotate(15deg) scale(1.08);
+    opacity: 0.9;
+    transform: translateX(calc(-50% + 250px)) translateY(-130px) perspective(1100px) rotateY(-12deg) rotate(10deg) scale(1);
   }
 }
 
@@ -786,19 +786,19 @@ main {
 }
 
 .hero-phone.center {
-  transform: translateX(-50%) translateY(-80px) scale(1.1);
+  transform: translateX(-50%) translateY(-100px) scale(1.15);
   z-index: 3;
   opacity: 1;
 }
 
 .hero-phone.left {
-  transform: translateX(calc(-50% - 220px)) translateY(-100px) perspective(1000px) rotateY(12deg) rotate(-10deg) scale(0.95);
+  transform: translateX(calc(-50% - 250px)) translateY(-130px) perspective(1100px) rotateY(12deg) rotate(-10deg) scale(1);
   opacity: 0.9;
   z-index: 2;
 }
 
 .hero-phone.right {
-  transform: translateX(calc(-50% + 220px)) translateY(-100px) perspective(1000px) rotateY(-12deg) rotate(10deg) scale(0.95);
+  transform: translateX(calc(-50% + 250px)) translateY(-130px) perspective(1100px) rotateY(-12deg) rotate(10deg) scale(1);
   opacity: 0.9;
   z-index: 2;
 }
@@ -896,20 +896,6 @@ main {
   .hero-phone.left,
   .hero-phone.right {
     display: block !important;
-  }
-  
-  .hero-phone.center {
-    transform: translateX(-50%) translateY(-100px) scale(1.15);
-  }
-  
-  .hero-phone.left {
-    transform: translateX(calc(-50% - 250px)) translateY(-130px) perspective(1100px) rotateY(12deg) rotate(-10deg) scale(1);
-    opacity: 0.9;
-  }
-  
-  .hero-phone.right {
-    transform: translateX(calc(-50% + 250px)) translateY(-130px) perspective(1100px) rotateY(-12deg) rotate(10deg) scale(1);
-    opacity: 0.9;
   }
   
   .hero-phone img {
