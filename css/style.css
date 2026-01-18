@@ -472,19 +472,13 @@ main {
   }
 }
 
-/* Animations Hero Phones - Ultra Fluides */
+/* Animations Hero Phones - Expert Premium */
 @keyframes phoneFloat {
   0%, 100% {
     transform: translate(-50%, -50%) translateY(0);
   }
-  25% {
-    transform: translate(-50%, -50%) translateY(-8px);
-  }
   50% {
-    transform: translate(-50%, -50%) translateY(-12px);
-  }
-  75% {
-    transform: translate(-50%, -50%) translateY(-8px);
+    transform: translate(-50%, -50%) translateY(-4px);
   }
 }
 
@@ -496,26 +490,12 @@ main {
                scale(0.88) 
                translateY(0);
   }
-  25% {
-    transform: translate(calc(-50% - 240px), -50%) 
-               perspective(1200px) 
-               rotateY(22deg) 
-               scale(0.88) 
-               translateY(-6px);
-  }
   50% {
     transform: translate(calc(-50% - 240px), -50%) 
                perspective(1200px) 
                rotateY(22deg) 
                scale(0.88) 
-               translateY(-10px);
-  }
-  75% {
-    transform: translate(calc(-50% - 240px), -50%) 
-               perspective(1200px) 
-               rotateY(22deg) 
-               scale(0.88) 
-               translateY(-6px);
+               translateY(-3px);
   }
 }
 
@@ -527,60 +507,35 @@ main {
                scale(0.88) 
                translateY(0);
   }
-  25% {
-    transform: translate(calc(-50% + 240px), -50%) 
-               perspective(1200px) 
-               rotateY(-22deg) 
-               scale(0.88) 
-               translateY(-6px);
-  }
   50% {
     transform: translate(calc(-50% + 240px), -50%) 
                perspective(1200px) 
                rotateY(-22deg) 
                scale(0.88) 
-               translateY(-10px);
-  }
-  75% {
-    transform: translate(calc(-50% + 240px), -50%) 
-               perspective(1200px) 
-               rotateY(-22deg) 
-               scale(0.88) 
-               translateY(-6px);
+               translateY(-3px);
   }
 }
 
-@keyframes phoneSlideIn {
-  0% {
+@keyframes phoneFadeIn {
+  from {
     opacity: 0;
-    transform: translate(-50%, -50%) translateY(30px) scale(0.9);
+    transform: translate(-50%, -50%) scale(0.95);
   }
-  60% {
-    opacity: 0.8;
-    transform: translate(-50%, -50%) translateY(-5px) scale(1.02);
-  }
-  100% {
+  to {
     opacity: 1;
-    transform: translate(-50%, -50%) translateY(0) scale(1);
+    transform: translate(-50%, -50%) scale(1);
   }
 }
 
-@keyframes phoneSlideInLeft {
-  0% {
+@keyframes phoneFadeInLeft {
+  from {
     opacity: 0;
-    transform: translate(calc(-50% - 300px), -50%) 
+    transform: translate(calc(-50% - 280px), -50%) 
                perspective(1200px) 
-               rotateY(35deg) 
-               scale(0.7);
+               rotateY(28deg) 
+               scale(0.82);
   }
-  60% {
-    opacity: 0.7;
-    transform: translate(calc(-50% - 250px), -50%) 
-               perspective(1200px) 
-               rotateY(25deg) 
-               scale(0.85);
-  }
-  100% {
+  to {
     opacity: 0.85;
     transform: translate(calc(-50% - 240px), -50%) 
                perspective(1200px) 
@@ -589,22 +544,15 @@ main {
   }
 }
 
-@keyframes phoneSlideInRight {
-  0% {
+@keyframes phoneFadeInRight {
+  from {
     opacity: 0;
-    transform: translate(calc(-50% + 300px), -50%) 
+    transform: translate(calc(-50% + 280px), -50%) 
                perspective(1200px) 
-               rotateY(-35deg) 
-               scale(0.7);
+               rotateY(-28deg) 
+               scale(0.82);
   }
-  60% {
-    opacity: 0.7;
-    transform: translate(calc(-50% + 250px), -50%) 
-               perspective(1200px) 
-               rotateY(-25deg) 
-               scale(0.85);
-  }
-  100% {
+  to {
     opacity: 0.85;
     transform: translate(calc(-50% + 240px), -50%) 
                perspective(1200px) 
@@ -806,10 +754,9 @@ main {
   top: 50%;
   left: 50%;
   transform-origin: center center;
-  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  will-change: transform, opacity;
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
   backface-visibility: hidden;
-  -webkit-font-smoothing: antialiased;
 }
 
 .hero-phone img {
@@ -822,11 +769,11 @@ main {
   user-select: none;
   -webkit-user-drag: none;
   object-fit: contain;
-  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .hero-phone:hover img {
-  transform: scale(1.02);
+  transform: scale(1.01);
 }
 
 /* Téléphone central - au centre, devant, plus grand */
@@ -835,36 +782,36 @@ main {
   transform: translate(-50%, -50%);
   z-index: 10;
   opacity: 0;
-  animation: phoneSlideIn 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s forwards,
-             phoneFloat 5s cubic-bezier(0.4, 0, 0.6, 1) 1.3s infinite;
+  animation: phoneFadeIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards,
+             phoneFloat 8s ease-in-out 1s infinite;
 }
 
 /* Téléphone gauche - à gauche, derrière, plus petit */
 .hero-phone.left {
   width: clamp(200px, 22vw, 270px);
-  transform: translate(calc(-50% - 300px), -50%) 
+  transform: translate(calc(-50% - 280px), -50%) 
              perspective(1200px) 
-             rotateY(35deg) 
-             scale(0.7);
+             rotateY(28deg) 
+             scale(0.82);
   z-index: 2;
   opacity: 0;
   filter: blur(1px);
-  animation: phoneSlideInLeft 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s forwards,
-             phoneFloatLeft 5.5s cubic-bezier(0.4, 0, 0.6, 1) 1.6s infinite;
+  animation: phoneFadeInLeft 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards,
+             phoneFloatLeft 8.5s ease-in-out 1.3s infinite;
 }
 
 /* Téléphone droite - à droite, derrière, plus petit */
 .hero-phone.right {
   width: clamp(200px, 22vw, 270px);
-  transform: translate(calc(-50% + 300px), -50%) 
+  transform: translate(calc(-50% + 280px), -50%) 
              perspective(1200px) 
-             rotateY(-35deg) 
-             scale(0.7);
+             rotateY(-28deg) 
+             scale(0.82);
   z-index: 2;
   opacity: 0;
   filter: blur(1px);
-  animation: phoneSlideInRight 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s forwards,
-             phoneFloatRight 5.5s cubic-bezier(0.4, 0, 0.6, 1) 1.6s infinite;
+  animation: phoneFadeInRight 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards,
+             phoneFloatRight 8.5s ease-in-out 1.3s infinite;
 }
 
 /* Mobile Hero Phones */
@@ -953,154 +900,29 @@ main {
   /* Téléphone central - devant et plus grand */
   .hero-phone.center {
     width: clamp(240px, 26vw, 320px);
-    animation: phoneSlideIn 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s forwards,
-               phoneFloat 5s cubic-bezier(0.4, 0, 0.6, 1) 1.3s infinite;
-  }
-  
-  @keyframes phoneFloat {
-    0%, 100% {
-      transform: translate(-50%, -50%) translateY(0);
-    }
-    25% {
-      transform: translate(-50%, -50%) translateY(-10px);
-    }
-    50% {
-      transform: translate(-50%, -50%) translateY(-15px);
-    }
-    75% {
-      transform: translate(-50%, -50%) translateY(-10px);
-    }
+    animation: phoneFadeIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards,
+               phoneFloat 8s ease-in-out 1s infinite;
   }
   
   /* Téléphone gauche */
   .hero-phone.left {
     width: clamp(220px, 24vw, 290px);
-    animation: phoneSlideInLeft 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s forwards,
-               phoneFloatLeft 5.5s cubic-bezier(0.4, 0, 0.6, 1) 1.6s infinite;
-  }
-  
-  @keyframes phoneSlideInLeft {
-    0% {
-      opacity: 0;
-      transform: translate(calc(-50% - 320px), -50%) 
-                 perspective(1200px) 
-                 rotateY(35deg) 
-                 scale(0.7);
-    }
-    60% {
-      opacity: 0.7;
-      transform: translate(calc(-50% - 270px), -50%) 
-                 perspective(1200px) 
-                 rotateY(25deg) 
-                 scale(0.85);
-    }
-    100% {
-      opacity: 0.85;
-      transform: translate(calc(-50% - 260px), -50%) 
-                 perspective(1200px) 
-                 rotateY(22deg) 
-                 scale(0.88);
-    }
-  }
-  
-  @keyframes phoneFloatLeft {
-    0%, 100% {
-      transform: translate(calc(-50% - 260px), -50%) 
-                 perspective(1200px) 
-                 rotateY(22deg) 
-                 scale(0.88) 
-                 translateY(0);
-    }
-    25% {
-      transform: translate(calc(-50% - 260px), -50%) 
-                 perspective(1200px) 
-                 rotateY(22deg) 
-                 scale(0.88) 
-                 translateY(-8px);
-    }
-    50% {
-      transform: translate(calc(-50% - 260px), -50%) 
-                 perspective(1200px) 
-                 rotateY(22deg) 
-                 scale(0.88) 
-                 translateY(-12px);
-    }
-    75% {
-      transform: translate(calc(-50% - 260px), -50%) 
-                 perspective(1200px) 
-                 rotateY(22deg) 
-                 scale(0.88) 
-                 translateY(-8px);
-    }
+    animation: phoneFadeInLeft 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards,
+               phoneFloatLeft 8.5s ease-in-out 1.3s infinite;
   }
   
   /* Téléphone droite */
   .hero-phone.right {
     width: clamp(220px, 24vw, 290px);
-    animation: phoneSlideInRight 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s forwards,
-               phoneFloatRight 5.5s cubic-bezier(0.4, 0, 0.6, 1) 1.6s infinite;
+    animation: phoneFadeInRight 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards,
+               phoneFloatRight 8.5s ease-in-out 1.3s infinite;
   }
   
-  @keyframes phoneSlideInRight {
-    0% {
-      opacity: 0;
-      transform: translate(calc(-50% + 320px), -50%) 
-                 perspective(1200px) 
-                 rotateY(-35deg) 
-                 scale(0.7);
-    }
-    60% {
-      opacity: 0.7;
-      transform: translate(calc(-50% + 270px), -50%) 
-                 perspective(1200px) 
-                 rotateY(-25deg) 
-                 scale(0.85);
-    }
-    100% {
-      opacity: 0.85;
-      transform: translate(calc(-50% + 260px), -50%) 
-                 perspective(1200px) 
-                 rotateY(-22deg) 
-                 scale(0.88);
-    }
-  }
-  
-  @keyframes phoneFloatRight {
-    0%, 100% {
-      transform: translate(calc(-50% + 260px), -50%) 
-                 perspective(1200px) 
-                 rotateY(-22deg) 
-                 scale(0.88) 
-                 translateY(0);
-    }
-    25% {
-      transform: translate(calc(-50% + 260px), -50%) 
-                 perspective(1200px) 
-                 rotateY(-22deg) 
-                 scale(0.88) 
-                 translateY(-8px);
-    }
-    50% {
-      transform: translate(calc(-50% + 260px), -50%) 
-                 perspective(1200px) 
-                 rotateY(-22deg) 
-                 scale(0.88) 
-                 translateY(-12px);
-    }
-    75% {
-      transform: translate(calc(-50% + 260px), -50%) 
-                 perspective(1200px) 
-                 rotateY(-22deg) 
-                 scale(0.88) 
-                 translateY(-8px);
-    }
-  }
-  
-  /* Effet hover fluide */
+  /* Effet hover expert subtil */
   .hero-phones:hover .hero-phone.center {
     animation-play-state: paused;
-    transform: translate(-50%, -50%) scale(1.05) translateY(-5px) !important;
-    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: translate(-50%, -50%) scale(1.02) !important;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   }
   
   .hero-phones:hover .hero-phone.left {
@@ -1108,11 +930,10 @@ main {
     transform: translate(calc(-50% - 255px), -50%) 
                perspective(1200px) 
                rotateY(20deg) 
-               scale(0.92) 
-               translateY(-5px) !important;
+               scale(0.9) !important;
     opacity: 0.9;
     filter: blur(0.8px);
-    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.6s ease;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease;
   }
   
   .hero-phones:hover .hero-phone.right {
@@ -1120,11 +941,10 @@ main {
     transform: translate(calc(-50% + 255px), -50%) 
                perspective(1200px) 
                rotateY(-20deg) 
-               scale(0.92) 
-               translateY(-5px) !important;
+               scale(0.9) !important;
     opacity: 0.9;
     filter: blur(0.8px);
-    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.6s ease;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease;
   }
   
   .hero-section .container {
