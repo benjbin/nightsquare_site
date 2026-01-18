@@ -1549,14 +1549,15 @@ main {
   z-index: 1;
 }
 
+/* Z-index inversés : dernière carte devant, première derrière */
 .feature-card:nth-child(1) {
   top: 8rem;
-  z-index: 5;
+  z-index: 1;
 }
 
 .feature-card:nth-child(2) {
   top: 10rem;
-  z-index: 4;
+  z-index: 2;
 }
 
 .feature-card:nth-child(3) {
@@ -1566,18 +1567,23 @@ main {
 
 .feature-card:nth-child(4) {
   top: 14rem;
-  z-index: 2;
+  z-index: 4;
 }
 
 .feature-card:nth-child(5) {
   top: 16rem;
-  z-index: 1;
+  z-index: 5;
+}
+
+/* Quand une carte atteint sa position sticky, elle passe devant */
+.feature-card.is-stuck {
+  z-index: 10;
 }
 
 .feature-card:hover {
   border-color: rgba(197, 165, 114, 0.2);
   transform: scale(1.02);
-  z-index: 10;
+  z-index: 15;
 }
 
 .feature-card-content {

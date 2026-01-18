@@ -2156,7 +2156,69 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
-// Features Slider
+// Features Cards - Dynamic z-index based on scroll position
+document.addEventListener('DOMContentLoaded', function() {
+  const featureCards = document.querySelectorAll('.feature-card');
+  
+  if (featureCards.length === 0) return;
+  
+  // Observer to detect which card is stuck at the top
+  const observerOptions = {
+    root: null,
+    rootMargin: '-120px 0px -50% 0px', // Trigger when card reaches sticky position
+    threshold: [0, 0.1, 0.5, 1]
+  };
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+        // This card is stuck at the top, bring it to front
+        featureCards.forEach(card => {
+          card.classList.remove('is-stuck');
+        });
+        entry.target.classList.add('is-stuck');
+      }
+    });
+  }, observerOptions);
+  
+  // Observe all feature cards
+  featureCards.forEach((card, index) => {
+    observer.observe(card);
+  });
+  
+  // Fallback: Check on scroll which card is at the top
+  function updateStuckCard() {
+    const cards = Array.from(featureCards);
+    const viewportTop = window.scrollY + (window.innerHeight * 0.15); // Offset for sticky position
+    
+    cards.forEach((card, index) => {
+      const rect = card.getBoundingClientRect();
+      const cardTop = rect.top + window.scrollY;
+      
+      // Check if card is stuck (within sticky threshold)
+      if (rect.top <= 120 && rect.top >= 60) {
+        cards.forEach(c => c.classList.remove('is-stuck'));
+        card.classList.add('is-stuck');
+      }
+    });
+  }
+  
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        updateStuckCard();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+  
+  // Initial check
+  updateStuckCard();
+});
+
+// Features Slider (if exists)
 document.addEventListener('DOMContentLoaded', function() {
   const sliderTrack = document.querySelector('.features-slider-track');
   const slides = document.querySelectorAll('.feature-slide');
