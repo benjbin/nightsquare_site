@@ -378,42 +378,90 @@ nav {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 24px;
-  height: 24px;
-  background: none;
-  border: none;
+  width: 44px;
+  height: 44px;
+  background: rgba(28, 28, 28, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
   cursor: pointer;
   padding: 0;
-  gap: 4px;
-  transition: all 0.3s ease;
+  gap: 5px;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   z-index: 1001;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.mobile-menu-toggle::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(178, 152, 107, 0.1) 0%, rgba(178, 152, 107, 0.05) 100%);
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mobile-menu-toggle:hover {
+  background: rgba(28, 28, 28, 0.8);
+  border-color: rgba(178, 152, 107, 0.3);
+  transform: scale(1.05);
+}
+
+.mobile-menu-toggle:hover::before {
+  opacity: 1;
+}
+
+.mobile-menu-toggle:active {
+  transform: scale(0.95);
 }
 
 .burger-line {
   display: block;
-  width: 20px;
-  height: 1.5px;
+  width: 22px;
+  height: 2px;
   background: var(--text);
-  border-radius: 0;
-  transition: all 0.3s ease;
+  border-radius: 2px;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   transform-origin: center;
+  position: relative;
+  z-index: 1;
 }
 
 .mobile-menu-toggle:hover .burger-line {
   background: var(--accent);
+  box-shadow: 0 0 8px rgba(178, 152, 107, 0.4);
+}
+
+.mobile-menu-toggle.active {
+  background: rgba(28, 28, 28, 0.9);
+  border-color: rgba(178, 152, 107, 0.4);
+}
+
+.mobile-menu-toggle.active::before {
+  opacity: 1;
 }
 
 .mobile-menu-toggle.active .burger-line:nth-child(1) {
-  transform: translateY(6.5px) rotate(45deg);
+  transform: translateY(7px) rotate(45deg);
+  background: var(--accent);
+  box-shadow: 0 0 10px rgba(178, 152, 107, 0.5);
 }
 
 .mobile-menu-toggle.active .burger-line:nth-child(2) {
   opacity: 0;
-  transform: scaleX(0);
+  transform: scaleX(0) translateX(-10px);
+  width: 0;
 }
 
 .mobile-menu-toggle.active .burger-line:nth-child(3) {
-  transform: translateY(-6.5px) rotate(-45deg);
+  transform: translateY(-7px) rotate(-45deg);
+  background: var(--accent);
+  box-shadow: 0 0 10px rgba(178, 152, 107, 0.5);
 }
 
 /* Main */
