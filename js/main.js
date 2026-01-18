@@ -1035,7 +1035,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Hero Section Phone Scroll Animation
   const heroPhones = document.querySelector('.hero-phones');
-  if (heroPhones) {
+  if (heroPhones && window.innerWidth >= 992) {
     const phones = heroPhones.querySelectorAll('.hero-phone');
     
     // Parallax effect on scroll
@@ -1044,7 +1044,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateParallax() {
       const heroSection = document.querySelector('.hero-section');
       
-      if (heroSection && heroPhones) {
+      if (heroSection && heroPhones && phones.length > 0) {
         const rect = heroSection.getBoundingClientRect();
         const scrollY = window.scrollY;
         const windowHeight = window.innerHeight;
@@ -1055,21 +1055,24 @@ document.addEventListener('DOMContentLoaded', function() {
         
         phones.forEach((phone) => {
           if (phone.classList.contains('left')) {
-            const translateY = scrollProgress * 40;
-            const rotateY = 12 - scrollProgress * 3;
-            const rotate = -15 + scrollProgress * 2;
-            phone.style.transform = `translateX(calc(-50% - clamp(200px, 24vw, 380px))) translateY(calc(-220px + ${translateY}px)) perspective(1200px) rotateY(${rotateY}deg) rotate(${rotate}deg) scale(1.02)`;
-            phone.style.opacity = 0.95 + scrollProgress * 0.05;
+            // Base: translateX(calc(-50% - 320px)) translateY(-150px) perspective(1200px) rotateY(15deg) rotate(-12deg) scale(1.05)
+            const translateY = -150 + scrollProgress * 30;
+            const rotateY = 15 - scrollProgress * 3;
+            const rotate = -12 + scrollProgress * 2;
+            phone.style.transform = `translateX(calc(-50% - 320px)) translateY(${translateY}px) perspective(1200px) rotateY(${rotateY}deg) rotate(${rotate}deg) scale(1.05)`;
+            phone.style.opacity = 0.9 + scrollProgress * 0.05;
           } else if (phone.classList.contains('center')) {
-            const translateY = scrollProgress * 30;
-            const scale = 1.08 - scrollProgress * 0.08;
-            phone.style.transform = `translateX(-50%) translateY(calc(-60px + ${translateY}px)) scale(${scale})`;
+            // Base: translateX(-50%) translateY(-120px) scale(1.2)
+            const translateY = -120 + scrollProgress * 20;
+            const scale = 1.2 - scrollProgress * 0.05;
+            phone.style.transform = `translateX(-50%) translateY(${translateY}px) scale(${scale})`;
           } else if (phone.classList.contains('right')) {
-            const translateY = scrollProgress * 30;
-            const rotateY = -12 + scrollProgress * 2;
-            const rotate = 10 - scrollProgress * 2;
-            phone.style.transform = `translateX(calc(-50% + 250px)) translateY(calc(-130px + ${translateY}px)) perspective(1100px) rotateY(${rotateY}deg) rotate(${rotate}deg) scale(${1 + scrollProgress * 0.05})`;
-            phone.style.opacity = 0.9 + scrollProgress * 0.1;
+            // Base: translateX(calc(-50% + 320px)) translateY(-150px) perspective(1200px) rotateY(-15deg) rotate(12deg) scale(1.05)
+            const translateY = -150 + scrollProgress * 30;
+            const rotateY = -15 + scrollProgress * 3;
+            const rotate = 12 - scrollProgress * 2;
+            phone.style.transform = `translateX(calc(-50% + 320px)) translateY(${translateY}px) perspective(1200px) rotateY(${rotateY}deg) rotate(${rotate}deg) scale(1.05)`;
+            phone.style.opacity = 0.9 + scrollProgress * 0.05;
           }
         });
       }
