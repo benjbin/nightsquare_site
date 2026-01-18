@@ -1055,26 +1055,26 @@ document.addEventListener('DOMContentLoaded', function() {
         
         phones.forEach((phone) => {
           if (phone.classList.contains('left')) {
-            // Base: translate(calc(-50% - 320px), calc(50% + 50px)) perspective(1000px) rotateY(30deg) rotate(-10deg) scale(0.85)
-            const translateY = 50 + scrollProgress * -15;
-            const rotateY = 30 - scrollProgress * 5;
-            const rotate = -10 + scrollProgress * 2;
-            const scale = 0.85 + scrollProgress * 0.05;
-            phone.style.transform = `translate(calc(-50% - 320px), calc(50% + ${translateY}px)) perspective(1000px) rotateY(${rotateY}deg) rotate(${rotate}deg) scale(${scale})`;
-            phone.style.opacity = 0.75 + scrollProgress * 0.1;
+            // Base: translate(calc(-50% - 400px), -50%) perspective(1200px) rotateY(40deg) rotate(-15deg) scale(0.8)
+            const translateY = scrollProgress * -10;
+            const rotateY = 40 - scrollProgress * 8;
+            const rotate = -15 + scrollProgress * 3;
+            const scale = 0.8 + scrollProgress * 0.1;
+            phone.style.transform = `translate(calc(-50% - 400px), calc(-50% + ${translateY}px)) perspective(1200px) rotateY(${rotateY}deg) rotate(${rotate}deg) scale(${scale})`;
+            phone.style.opacity = 0.8 + scrollProgress * 0.15;
           } else if (phone.classList.contains('center')) {
-            // Base: translate(-50%, 50%) scale(1.15)
-            const translateY = 50 + scrollProgress * -20;
-            const scale = 1.15 - scrollProgress * 0.1;
-            phone.style.transform = `translate(-50%, calc(50% + ${translateY}px)) scale(${scale})`;
+            // Base: translate(-50%, -50%) scale(1.25)
+            const translateY = scrollProgress * -15;
+            const scale = 1.25 - scrollProgress * 0.15;
+            phone.style.transform = `translate(-50%, calc(-50% + ${translateY}px)) scale(${scale})`;
           } else if (phone.classList.contains('right')) {
-            // Base: translate(calc(-50% + 320px), calc(50% + 50px)) perspective(1000px) rotateY(-30deg) rotate(10deg) scale(0.85)
-            const translateY = 50 + scrollProgress * -15;
-            const rotateY = -30 + scrollProgress * 5;
-            const rotate = 10 - scrollProgress * 2;
-            const scale = 0.85 + scrollProgress * 0.05;
-            phone.style.transform = `translate(calc(-50% + 320px), calc(50% + ${translateY}px)) perspective(1000px) rotateY(${rotateY}deg) rotate(${rotate}deg) scale(${scale})`;
-            phone.style.opacity = 0.75 + scrollProgress * 0.1;
+            // Base: translate(calc(-50% + 400px), -50%) perspective(1200px) rotateY(-40deg) rotate(15deg) scale(0.8)
+            const translateY = scrollProgress * -10;
+            const rotateY = -40 + scrollProgress * 8;
+            const rotate = 15 - scrollProgress * 3;
+            const scale = 0.8 + scrollProgress * 0.1;
+            phone.style.transform = `translate(calc(-50% + 400px), calc(-50% + ${translateY}px)) perspective(1200px) rotateY(${rotateY}deg) rotate(${rotate}deg) scale(${scale})`;
+            phone.style.opacity = 0.8 + scrollProgress * 0.15;
           }
         });
       }
