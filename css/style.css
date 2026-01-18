@@ -459,22 +459,6 @@ main {
   animation: fadeIn 1s ease-out 0.5s both;
 }
 
-.hero-phone {
-  opacity: 0;
-}
-
-.hero-phone.center {
-  animation: slideInPhoneCenter 1s ease-out 0.6s forwards;
-}
-
-.hero-phone.left {
-  animation: slideInPhoneLeft 1s ease-out 0.7s forwards;
-}
-
-.hero-phone.right {
-  animation: slideInPhoneRight 1s ease-out 0.8s forwards;
-}
-
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -495,38 +479,6 @@ main {
   }
 }
 
-@keyframes slideInPhoneCenter {
-  from {
-    opacity: 0;
-    transform: translateX(-50%) translateY(-60px) scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(-50%) translateY(-100px) scale(1.15);
-  }
-}
-
-@keyframes slideInPhoneLeft {
-  from {
-    opacity: 0;
-    transform: translateX(calc(-50% - 250px)) translateY(-100px) perspective(1100px) rotateY(12deg) rotate(-10deg) scale(0.9);
-  }
-  to {
-    opacity: 0.9;
-    transform: translateX(calc(-50% - 250px)) translateY(-130px) perspective(1100px) rotateY(12deg) rotate(-10deg) scale(1);
-  }
-}
-
-@keyframes slideInPhoneRight {
-  from {
-    opacity: 0;
-    transform: translateX(calc(-50% + 250px)) translateY(-100px) perspective(1100px) rotateY(-12deg) rotate(10deg) scale(0.9);
-  }
-  to {
-    opacity: 0.9;
-    transform: translateX(calc(-50% + 250px)) translateY(-130px) perspective(1100px) rotateY(-12deg) rotate(10deg) scale(1);
-  }
-}
 
 .hero-content {
   display: grid;
@@ -766,13 +718,15 @@ main {
   transform-origin: bottom center;
   transition: transform 0.3s ease-out, opacity 0.3s ease-out;
   will-change: transform, opacity;
+  opacity: 1;
+  animation: fadeIn 0.8s ease-out 0.6s both;
 }
 
 .hero-phone img {
-  width: clamp(200px, 20vw, 280px);
+  width: clamp(220px, 22vw, 320px);
   height: auto;
   display: block;
-  border-radius: 20px;
+  border-radius: 24px;
   max-width: 100%;
 }
 
@@ -780,27 +734,30 @@ main {
   content: "";
   position: absolute;
   inset: 0;
-  border-radius: 20px;
-  background: linear-gradient(to top, rgba(28, 28, 28, 0.7) 0%, rgba(28, 28, 28, 0.0) 50%);
+  border-radius: 24px;
+  background: linear-gradient(to top, rgba(28, 28, 28, 0.6) 0%, rgba(28, 28, 28, 0.0) 50%);
   pointer-events: none;
 }
 
 .hero-phone.center {
-  transform: translateX(-50%) translateY(-100px) scale(1.15);
+  transform: translateX(-50%) translateY(-120px) scale(1.2);
   z-index: 3;
-  opacity: 1;
+  opacity: 1 !important;
+  animation: fadeIn 0.8s ease-out 0.6s both;
 }
 
 .hero-phone.left {
-  transform: translateX(calc(-50% - 250px)) translateY(-130px) perspective(1100px) rotateY(12deg) rotate(-10deg) scale(1);
-  opacity: 0.9;
+  transform: translateX(calc(-50% - 280px)) translateY(-150px) perspective(1200px) rotateY(15deg) rotate(-12deg) scale(1.05);
+  opacity: 0.85 !important;
   z-index: 2;
+  animation: fadeIn 0.8s ease-out 0.7s both;
 }
 
 .hero-phone.right {
-  transform: translateX(calc(-50% + 250px)) translateY(-130px) perspective(1100px) rotateY(-12deg) rotate(10deg) scale(1);
-  opacity: 0.9;
+  transform: translateX(calc(-50% + 280px)) translateY(-150px) perspective(1200px) rotateY(-15deg) rotate(12deg) scale(1.05);
+  opacity: 0.85 !important;
   z-index: 2;
+  animation: fadeIn 0.8s ease-out 0.8s both;
 }
 
 .hero-phone.hidden {
@@ -888,9 +845,9 @@ main {
     display: flex !important;
     margin-top: 3rem;
     width: 100%;
-    height: clamp(550px, 60vh, 700px);
+    height: clamp(600px, 65vh, 750px);
     position: relative;
-    padding: 0 3rem;
+    padding: 0 4rem;
   }
   
   .hero-phone.left,
@@ -898,8 +855,22 @@ main {
     display: block !important;
   }
   
+  .hero-phone.center {
+    transform: translateX(-50%) translateY(-140px) scale(1.25) !important;
+  }
+  
+  .hero-phone.left {
+    transform: translateX(calc(-50% - 320px)) translateY(-180px) perspective(1200px) rotateY(15deg) rotate(-12deg) scale(1.08) !important;
+    opacity: 0.9 !important;
+  }
+  
+  .hero-phone.right {
+    transform: translateX(calc(-50% + 320px)) translateY(-180px) perspective(1200px) rotateY(-15deg) rotate(12deg) scale(1.08) !important;
+    opacity: 0.9 !important;
+  }
+  
   .hero-phone img {
-    width: clamp(220px, 22vw, 300px);
+    width: clamp(240px, 24vw, 340px);
   }
 }
 
