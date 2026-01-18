@@ -94,7 +94,7 @@ nav {
 }
 
 .logo-img {
-  height: 32px;
+  height: 42px;
   width: auto;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   object-fit: contain;
@@ -5542,7 +5542,7 @@ footer {
   }
   
   .logo-img {
-    height: 28px;
+    height: 36px;
   }
   
   /* Hero Section */
@@ -5839,7 +5839,7 @@ footer {
   }
   
   .logo-img {
-    height: 28px;
+    height: 36px;
   }
   
   /* Hero Section */
