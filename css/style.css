@@ -639,17 +639,15 @@ main {
   height: 20px;
 }
 
-/* Desktop Hero Phones - Premium Design */
+/* Desktop Hero Phones - Clean & Professional */
 .hero-phones {
   display: none;
   position: relative;
   width: 100%;
-  max-width: 1600px;
-  height: 750px;
+  max-width: 1400px;
+  height: 600px;
   margin: 4rem auto 0;
   overflow: visible;
-  perspective: 1500px;
-  perspective-origin: center center;
 }
 
 .hero-phone {
@@ -657,93 +655,40 @@ main {
   top: 50%;
   left: 50%;
   transform-origin: center center;
-  will-change: transform;
-  filter: drop-shadow(0 30px 80px rgba(0, 0, 0, 0.6));
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .hero-phone img {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 36px;
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
   max-width: 100%;
   user-select: none;
   -webkit-user-drag: none;
 }
 
-/* Téléphone central - devant, plus grand */
+/* Téléphone central - devant */
 .hero-phone.center {
-  width: clamp(300px, 32vw, 420px);
-  transform: translate(-50%, -50%) scale(1.2);
-  z-index: 5;
-  filter: drop-shadow(0 40px 100px rgba(0, 0, 0, 0.7));
-  animation: phoneFloat 6s ease-in-out infinite;
+  width: clamp(280px, 28vw, 340px);
+  transform: translate(-50%, -50%) scale(1.1);
+  z-index: 3;
 }
 
 /* Téléphone gauche - derrière à gauche */
 .hero-phone.left {
-  width: clamp(260px, 28vw, 360px);
-  transform: translate(calc(-50% - 380px), -50%) perspective(1200px) rotateY(35deg) rotate(-12deg) scale(0.85);
-  z-index: 2;
-  opacity: 0.85;
-  filter: drop-shadow(0 25px 60px rgba(0, 0, 0, 0.5)) blur(0.5px);
-  animation: phoneFloatLeft 7s ease-in-out infinite;
-  animation-delay: -1s;
+  width: clamp(240px, 24vw, 300px);
+  transform: translate(calc(-50% - 300px), -50%) rotateY(20deg) scale(0.9);
+  z-index: 1;
+  opacity: 0.9;
 }
 
 /* Téléphone droite - derrière à droite */
 .hero-phone.right {
-  width: clamp(260px, 28vw, 360px);
-  transform: translate(calc(-50% + 380px), -50%) perspective(1200px) rotateY(-35deg) rotate(12deg) scale(0.85);
-  z-index: 2;
-  opacity: 0.85;
-  filter: drop-shadow(0 25px 60px rgba(0, 0, 0, 0.5)) blur(0.5px);
-  animation: phoneFloatRight 7s ease-in-out infinite;
-  animation-delay: -2s;
-}
-
-/* Animations flottantes premium */
-@keyframes phoneFloat {
-  0%, 100% {
-    transform: translate(-50%, -50%) scale(1.2) translateY(0);
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(1.2) translateY(-15px);
-  }
-}
-
-@keyframes phoneFloatLeft {
-  0%, 100% {
-    transform: translate(calc(-50% - 380px), -50%) perspective(1200px) rotateY(35deg) rotate(-12deg) scale(0.85) translateY(0);
-  }
-  50% {
-    transform: translate(calc(-50% - 380px), -50%) perspective(1200px) rotateY(35deg) rotate(-12deg) scale(0.85) translateY(-12px);
-  }
-}
-
-@keyframes phoneFloatRight {
-  0%, 100% {
-    transform: translate(calc(-50% + 380px), -50%) perspective(1200px) rotateY(-35deg) rotate(12deg) scale(0.85) translateY(0);
-  }
-  50% {
-    transform: translate(calc(-50% + 380px), -50%) perspective(1200px) rotateY(-35deg) rotate(12deg) scale(0.85) translateY(-12px);
-  }
-}
-
-/* Effet hover sur container */
-.hero-phones:hover .hero-phone.center {
-  transform: translate(-50%, -50%) scale(1.25);
-  filter: drop-shadow(0 50px 120px rgba(178, 152, 107, 0.3));
-}
-
-.hero-phones:hover .hero-phone.left {
-  transform: translate(calc(-50% - 360px), -50%) perspective(1200px) rotateY(30deg) rotate(-10deg) scale(0.9);
-  opacity: 0.9;
-}
-
-.hero-phones:hover .hero-phone.right {
-  transform: translate(calc(-50% + 360px), -50%) perspective(1200px) rotateY(-30deg) rotate(10deg) scale(0.9);
+  width: clamp(240px, 24vw, 300px);
+  transform: translate(calc(-50% + 300px), -50%) rotateY(-20deg) scale(0.9);
+  z-index: 1;
   opacity: 0.9;
 }
 
@@ -816,45 +761,50 @@ main {
   
   .hero-phones {
     display: flex !important;
-    height: clamp(700px, 75vh, 850px);
-    padding: 0 4rem;
-    margin: 5rem auto 0;
+    height: clamp(600px, 65vh, 700px);
+    padding: 0 3rem;
+    margin: 4rem auto 0;
+  }
+  
+  .hero-phone img {
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5);
   }
   
   /* Téléphone central - devant et plus grand */
   .hero-phone.center {
-    width: clamp(320px, 34vw, 450px);
-    transform: translate(-50%, -50%) scale(1.25);
-    z-index: 5;
+    width: clamp(300px, 30vw, 360px);
+    transform: translate(-50%, -50%) scale(1.15);
+    z-index: 3;
   }
   
   /* Téléphone gauche */
   .hero-phone.left {
-    width: clamp(280px, 30vw, 380px);
-    transform: translate(calc(-50% - 400px), -50%) perspective(1200px) rotateY(40deg) rotate(-15deg) scale(0.8);
-    z-index: 2;
-    opacity: 0.8;
+    width: clamp(260px, 26vw, 320px);
+    transform: translate(calc(-50% - 320px), -50%) rotateY(25deg) scale(0.85);
+    z-index: 1;
+    opacity: 0.85;
   }
   
   /* Téléphone droite */
   .hero-phone.right {
-    width: clamp(280px, 30vw, 380px);
-    transform: translate(calc(-50% + 400px), -50%) perspective(1200px) rotateY(-40deg) rotate(15deg) scale(0.8);
-    z-index: 2;
-    opacity: 0.8;
+    width: clamp(260px, 26vw, 320px);
+    transform: translate(calc(-50% + 320px), -50%) rotateY(-25deg) scale(0.85);
+    z-index: 1;
+    opacity: 0.85;
   }
   
+  /* Effet hover subtil */
   .hero-phones:hover .hero-phone.center {
-    transform: translate(-50%, -50%) scale(1.3);
+    transform: translate(-50%, -50%) scale(1.2);
   }
   
   .hero-phones:hover .hero-phone.left {
-    transform: translate(calc(-50% - 380px), -50%) perspective(1200px) rotateY(35deg) rotate(-12deg) scale(0.85);
+    transform: translate(calc(-50% - 310px), -50%) rotateY(22deg) scale(0.9);
     opacity: 0.9;
   }
   
   .hero-phones:hover .hero-phone.right {
-    transform: translate(calc(-50% + 380px), -50%) perspective(1200px) rotateY(-35deg) rotate(12deg) scale(0.85);
+    transform: translate(calc(-50% + 310px), -50%) rotateY(-22deg) scale(0.9);
     opacity: 0.9;
   }
   
