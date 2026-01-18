@@ -11,8 +11,79 @@ function updateTranslations() {
   });
 }
 
+// Scroll Reveal Animations - Premium
+function initScrollReveal() {
+  const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+  
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.15,
+    rootMargin: '0px 0px -50px 0px'
+  });
+  
+  reveals.forEach(reveal => {
+    revealObserver.observe(reveal);
+  });
+}
+
+// Navigation Active Section Indicator
+function initActiveNavigation() {
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+  
+  function updateActiveNav() {
+    const scrollY = window.pageYOffset;
+    
+    sections.forEach(section => {
+      const sectionHeight = section.offsetHeight;
+      const sectionTop = section.offsetTop - 150;
+      const sectionId = section.getAttribute('id');
+      
+      if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${sectionId}`) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  }
+  
+  window.addEventListener('scroll', updateActiveNav);
+  updateActiveNav();
+}
+
+// Header Scroll Effect
+function initHeaderScroll() {
+  const header = document.querySelector('header');
+  let lastScroll = 0;
+  
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    
+    if (currentScroll > 100) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+    
+    lastScroll = currentScroll;
+  });
+}
+
 // Mobile menu toggle
 document.addEventListener('DOMContentLoaded', function() {
+  // Initialize premium features
+  initScrollReveal();
+  initActiveNavigation();
+  initHeaderScroll();
   const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
   const navLinks = document.querySelector('.nav-links');
   
@@ -203,9 +274,8 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
       }
       
-      // Filter events by end date - only keep events with end date >= today
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
+      // Filter events by end date - only keep events with end date >= now
+      const now = new Date();
       
       const activeEvents = data.filter(event => {
         const eventEndDate = event.event_endDate || event.event_date || event.date;
@@ -213,9 +283,18 @@ document.addEventListener('DOMContentLoaded', function() {
         
         try {
           const endDate = new Date(eventEndDate);
-          endDate.setHours(0, 0, 0, 0);
-          return endDate >= today;
+          // Si la date de fin contient une heure, on la compare directement
+          // Sinon, on considère que l'événement se termine à la fin de la journée (23:59:59)
+          if (eventEndDate.includes('T') || eventEndDate.includes(' ')) {
+            // La date contient une heure, comparer directement
+            return endDate >= now;
+          } else {
+            // Pas d'heure, considérer que l'événement se termine à la fin de la journée
+            endDate.setHours(23, 59, 59, 999);
+            return endDate >= now;
+          }
         } catch (e) {
+          console.warn('Invalid date format for event:', eventEndDate, e);
           return true; // Keep events with invalid dates
         }
       });
@@ -1250,8 +1329,7 @@ document.addEventListener('DOMContentLoaded', function() {
     eventsGrid.innerHTML = '';
     
     // Filter out past events (only show events that haven't ended)
-    const today = new Date();
-    today.setHours(0, 0, 0, 0); // Reset time to start of day for comparison
+    const now = new Date();
     
     let filteredEvents = events.filter(event => {
       const eventEndDate = event.event_endDate || event.event_date || event.date;
@@ -1259,10 +1337,18 @@ document.addEventListener('DOMContentLoaded', function() {
       
       try {
         const endDate = new Date(eventEndDate);
-        endDate.setHours(0, 0, 0, 0); // Reset time to start of day
-        return endDate >= today; // Only keep events that end today or later
+        // Si la date de fin contient une heure, on la compare directement
+        // Sinon, on considère que l'événement se termine à la fin de la journée (23:59:59)
+        if (eventEndDate.includes('T') || eventEndDate.includes(' ')) {
+          // La date contient une heure, comparer directement
+          return endDate >= now;
+        } else {
+          // Pas d'heure, considérer que l'événement se termine à la fin de la journée
+          endDate.setHours(23, 59, 59, 999);
+          return endDate >= now;
+        }
       } catch (e) {
-        console.warn('Invalid date format for event:', eventEndDate);
+        console.warn('Invalid date format for event:', eventEndDate, e);
         return true; // Keep events with invalid dates (assume they're valid)
       }
     });
@@ -1464,8 +1550,7 @@ document.addEventListener('DOMContentLoaded', function() {
       
       if (data && Array.isArray(data) && data.length > 0) {
         // Filter out past events before storing
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
+        const now = new Date();
         
         const activeEvents = data.filter(event => {
           const eventEndDate = event.event_endDate || event.event_date || event.date;
@@ -1473,9 +1558,18 @@ document.addEventListener('DOMContentLoaded', function() {
           
           try {
             const endDate = new Date(eventEndDate);
-            endDate.setHours(0, 0, 0, 0);
-            return endDate >= today;
+            // Si la date de fin contient une heure, on la compare directement
+            // Sinon, on considère que l'événement se termine à la fin de la journée (23:59:59)
+            if (eventEndDate.includes('T') || eventEndDate.includes(' ')) {
+              // La date contient une heure, comparer directement
+              return endDate >= now;
+            } else {
+              // Pas d'heure, considérer que l'événement se termine à la fin de la journée
+              endDate.setHours(23, 59, 59, 999);
+              return endDate >= now;
+            }
           } catch (e) {
+            console.warn('Invalid date format for event:', eventEndDate, e);
             return true; // Keep events with invalid dates
           }
         });
@@ -1534,8 +1628,7 @@ document.addEventListener('DOMContentLoaded', function() {
           
           if (data && Array.isArray(data) && data.length > 0) {
             // Filter out past events before storing
-            const today = new Date();
-            today.setHours(0, 0, 0, 0);
+            const now = new Date();
             
             const activeEvents = data.filter(event => {
               const eventEndDate = event.event_endDate || event.event_date || event.date;
@@ -1543,9 +1636,18 @@ document.addEventListener('DOMContentLoaded', function() {
               
               try {
                 const endDate = new Date(eventEndDate);
-                endDate.setHours(0, 0, 0, 0);
-                return endDate >= today;
+                // Si la date de fin contient une heure, on la compare directement
+                // Sinon, on considère que l'événement se termine à la fin de la journée (23:59:59)
+                if (eventEndDate.includes('T') || eventEndDate.includes(' ')) {
+                  // La date contient une heure, comparer directement
+                  return endDate >= now;
+                } else {
+                  // Pas d'heure, considérer que l'événement se termine à la fin de la journée
+                  endDate.setHours(23, 59, 59, 999);
+                  return endDate >= now;
+                }
               } catch (e) {
+                console.warn('Invalid date format for event:', eventEndDate, e);
                 return true; // Keep events with invalid dates
               }
             });
