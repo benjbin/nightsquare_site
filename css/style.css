@@ -674,8 +674,7 @@ main {
   height: auto;
   display: block;
   border-radius: 32px;
-  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.45),
-              0 0 0 1px rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   max-width: 100%;
   user-select: none;
   -webkit-user-drag: none;
@@ -688,7 +687,6 @@ main {
   transform: translate(-50%, -50%);
   z-index: 10;
   opacity: 1;
-  filter: drop-shadow(0 35px 80px rgba(0, 0, 0, 0.5));
 }
 
 /* Téléphone gauche - à gauche, derrière, plus petit */
@@ -700,8 +698,7 @@ main {
              scale(0.88);
   z-index: 2;
   opacity: 0.85;
-  filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.35)) 
-          blur(1px);
+  filter: blur(1px);
 }
 
 /* Téléphone droite - à droite, derrière, plus petit */
@@ -713,8 +710,7 @@ main {
              scale(0.88);
   z-index: 2;
   opacity: 0.85;
-  filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.35)) 
-          blur(1px);
+  filter: blur(1px);
 }
 
 /* Mobile Hero Phones */
@@ -797,8 +793,7 @@ main {
   }
   
   .hero-phone img {
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5),
-                0 0 0 1px rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   }
   
   /* Téléphone central - devant et plus grand */
@@ -806,7 +801,6 @@ main {
     width: clamp(240px, 26vw, 320px);
     transform: translate(-50%, -50%);
     z-index: 10;
-    filter: drop-shadow(0 40px 90px rgba(0, 0, 0, 0.55));
   }
   
   /* Téléphone gauche */
@@ -818,8 +812,7 @@ main {
                scale(0.88);
     z-index: 2;
     opacity: 0.85;
-    filter: drop-shadow(0 22px 55px rgba(0, 0, 0, 0.4)) 
-            blur(1px);
+    filter: blur(1px);
   }
   
   /* Téléphone droite */
@@ -831,14 +824,12 @@ main {
                scale(0.88);
     z-index: 2;
     opacity: 0.85;
-    filter: drop-shadow(0 22px 55px rgba(0, 0, 0, 0.4)) 
-            blur(1px);
+    filter: blur(1px);
   }
   
-  /* Effet hover premium */
+  /* Effet hover subtil */
   .hero-phones:hover .hero-phone.center {
     transform: translate(-50%, -50%) scale(1.02);
-    filter: drop-shadow(0 45px 100px rgba(0, 0, 0, 0.6));
   }
   
   .hero-phones:hover .hero-phone.left {
@@ -847,8 +838,7 @@ main {
                rotateY(20deg) 
                scale(0.9);
     opacity: 0.88;
-    filter: drop-shadow(0 25px 60px rgba(0, 0, 0, 0.45)) 
-            blur(0.8px);
+    filter: blur(0.8px);
   }
   
   .hero-phones:hover .hero-phone.right {
@@ -857,8 +847,7 @@ main {
                rotateY(-20deg) 
                scale(0.9);
     opacity: 0.88;
-    filter: drop-shadow(0 25px 60px rgba(0, 0, 0, 0.45)) 
-            blur(0.8px);
+    filter: blur(0.8px);
   }
   
   .hero-section .container {
