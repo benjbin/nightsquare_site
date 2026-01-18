@@ -385,11 +385,11 @@ nav {
   border-radius: 12px;
   cursor: pointer;
   padding: 0;
-  gap: 5px;
+  gap: 6px;
   transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   z-index: 1001;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
@@ -427,9 +427,10 @@ nav {
   background: var(--text);
   border-radius: 2px;
   transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-  transform-origin: center;
+  transform-origin: center center;
   position: relative;
   z-index: 1;
+  margin: 0 auto;
 }
 
 .mobile-menu-toggle:hover .burger-line {
@@ -446,14 +447,18 @@ nav {
   opacity: 1;
 }
 
+.mobile-menu-toggle.active {
+  gap: 0;
+}
+
 .mobile-menu-toggle.active .burger-line:nth-child(1) {
-  transform: rotate(45deg) translate(0, 0);
+  transform: translateY(3px) rotate(45deg);
   background: var(--accent);
   box-shadow: 0 0 10px rgba(178, 152, 107, 0.5);
 }
 
 .mobile-menu-toggle.active .burger-line:nth-child(2) {
-  transform: rotate(-45deg) translate(0, 0);
+  transform: translateY(-3px) rotate(-45deg);
   background: var(--accent);
   box-shadow: 0 0 10px rgba(178, 152, 107, 0.5);
 }
