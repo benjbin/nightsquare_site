@@ -1102,7 +1102,26 @@ document.addEventListener('DOMContentLoaded', function() {
   let currentFilteredEvents = [];
 
   if (eventsGrid) {
+    // Load events initially
     loadEvents();
+    
+    // Auto-refresh events every 2 minutes (120000ms) to show new events quickly
+    const REFRESH_INTERVAL = 2 * 60 * 1000; // 2 minutes
+    let refreshIntervalId = setInterval(() => {
+      console.log('[Events Refresh] Auto-refreshing events from API...');
+      loadEvents();
+    }, REFRESH_INTERVAL);
+    
+    // Also refresh when the page becomes visible again (user returns to tab)
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) {
+        console.log('[Events Refresh] Page visible again, refreshing events...');
+        loadEvents();
+      }
+    });
+    
+    // Store interval ID globally to allow cleanup if needed
+    window.eventsRefreshInterval = refreshIntervalId;
   }
 
   // City filter flags mapping - Complete list of countries
@@ -1588,11 +1607,30 @@ document.addEventListener('DOMContentLoaded', function() {
         // Ensure "Tous" filter is active initially
         currentCityFilter = 'all';
         
-        // Display all events initially
+        // Check if this is an initial load or a refresh
+        const isInitialLoad = !window.previousEventsCount;
+        const previousCount = window.previousEventsCount || 0;
+        const eventsCountChanged = previousCount !== activeEvents.length;
+        window.previousEventsCount = activeEvents.length;
+        
+        // Only reload DJs on initial load (not on auto-refresh to save API calls)
+        // DJs will be refreshed when events count changes significantly
+        if (isInitialLoad) {
+          // Load DJs from API after events are loaded
+          loadDJsFromAPI();
+        } else if (eventsCountChanged) {
+          // Reload DJs only if event count changed (new event added)
+          console.log(`[Events Refresh] Event count changed (${previousCount} -> ${activeEvents.length}), reloading DJs...`);
+          loadDJsFromAPI();
+        }
+        
+        // Display all events (will update display if events changed)
         displayEvents(allEvents);
         
-        // Load DJs from API after events are loaded
-        loadDJsFromAPI();
+        // Log refresh status
+        if (!isInitialLoad) {
+          console.log(`[Events Refresh] Auto-refresh completed: ${activeEvents.length} active events found`);
+        }
       } else {
         // No active events found
         eventsGrid.innerHTML = '<div class="events-empty"><p>Aucun événement à venir disponible pour le moment</p></div>';
