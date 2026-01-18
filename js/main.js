@@ -2156,59 +2156,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
-// Features Cards - La carte au top passe devant
-document.addEventListener('DOMContentLoaded', function() {
-  const featureCards = document.querySelectorAll('.feature-card');
-  
-  if (featureCards.length === 0) return;
-  
-  function updateActiveCard() {
-    const cards = Array.from(featureCards);
-    let activeCard = null;
-    let closestToTop = Infinity;
-    
-    // Cherche la carte qui est la plus proche du top (position sticky)
-    cards.forEach((card) => {
-      const rect = card.getBoundingClientRect();
-      const topValue = parseInt(getComputedStyle(card).top) || 0;
-      
-      // Vérifie si la carte est "stuck" (collée au top)
-      // Une carte est active si elle est proche de sa position sticky
-      if (rect.top <= topValue + 20 && rect.top >= topValue - 20) {
-        const distance = Math.abs(rect.top - topValue);
-        if (distance < closestToTop) {
-          closestToTop = distance;
-          activeCard = card;
-        }
-      }
-    });
-    
-    // Retire la classe active de toutes les cartes
-    cards.forEach(card => {
-      card.classList.remove('active');
-    });
-    
-    // Ajoute la classe active à la carte qui est au top
-    if (activeCard) {
-      activeCard.classList.add('active');
-    }
-  }
-  
-  // Mise à jour au scroll
-  let ticking = false;
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        updateActiveCard();
-        ticking = false;
-      });
-      ticking = true;
-    }
-  });
-  
-  // Initial check
-  updateActiveCard();
-});
+// Features Cards - Empilement simple avec z-index fixe
+// Les cartes s'empilent naturellement : carte 1 en dessous (z-index: 1), carte 5 au-dessus (z-index: 5)
 
 // Features Slider (if exists)
 document.addEventListener('DOMContentLoaded', function() {
