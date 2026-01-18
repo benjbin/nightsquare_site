@@ -750,12 +750,13 @@ main {
   position: relative;
   z-index: 1;
   width: 100%;
-  height: clamp(550px, 60vh, 750px);
-  margin-top: 4rem;
+  height: clamp(500px, 55vh, 650px);
+  margin-top: 3rem;
   display: flex;
   align-items: flex-end;
   justify-content: center;
   overflow: visible;
+  padding: 0 2rem;
 }
 
 .hero-phone {
@@ -768,38 +769,37 @@ main {
 }
 
 .hero-phone img {
-  width: clamp(220px, 22vw, 320px);
+  width: clamp(200px, 20vw, 280px);
   height: auto;
   display: block;
-  border-radius: 24px;
+  border-radius: 20px;
   max-width: 100%;
-  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.5));
 }
 
 .hero-phone::before {
   content: "";
   position: absolute;
   inset: 0;
-  border-radius: 24px;
-  background: linear-gradient(to top, rgba(28, 28, 28, 0.8) 0%, rgba(28, 28, 28, 0.0) 60%);
+  border-radius: 20px;
+  background: linear-gradient(to top, rgba(28, 28, 28, 0.7) 0%, rgba(28, 28, 28, 0.0) 50%);
   pointer-events: none;
 }
 
 .hero-phone.center {
-  transform: translateX(-50%) translateY(-100px) scale(1.2);
+  transform: translateX(-50%) translateY(-80px) scale(1.1);
   z-index: 3;
   opacity: 1;
 }
 
 .hero-phone.left {
-  transform: translateX(calc(-50% - 280px)) translateY(-150px) perspective(1200px) rotateY(15deg) rotate(-12deg) scale(1.05);
-  opacity: 0.85;
+  transform: translateX(calc(-50% - 220px)) translateY(-100px) perspective(1000px) rotateY(12deg) rotate(-10deg) scale(0.95);
+  opacity: 0.9;
   z-index: 2;
 }
 
 .hero-phone.right {
-  transform: translateX(calc(-50% + 280px)) translateY(-150px) perspective(1200px) rotateY(-15deg) rotate(12deg) scale(1.05);
-  opacity: 0.85;
+  transform: translateX(calc(-50% + 220px)) translateY(-100px) perspective(1000px) rotateY(-12deg) rotate(10deg) scale(0.95);
+  opacity: 0.9;
   z-index: 2;
 }
 
@@ -886,10 +886,11 @@ main {
   
   .hero-phones {
     display: flex !important;
-    margin-top: 4rem;
+    margin-top: 3rem;
     width: 100%;
-    height: clamp(600px, 70vh, 850px);
+    height: clamp(550px, 60vh, 700px);
     position: relative;
+    padding: 0 3rem;
   }
   
   .hero-phone.left,
@@ -898,21 +899,21 @@ main {
   }
   
   .hero-phone.center {
-    transform: translateX(-50%) translateY(-120px) scale(1.25);
+    transform: translateX(-50%) translateY(-100px) scale(1.15);
   }
   
   .hero-phone.left {
-    transform: translateX(calc(-50% - 300px)) translateY(-180px) perspective(1200px) rotateY(15deg) rotate(-12deg) scale(1.08);
+    transform: translateX(calc(-50% - 250px)) translateY(-130px) perspective(1100px) rotateY(12deg) rotate(-10deg) scale(1);
     opacity: 0.9;
   }
   
   .hero-phone.right {
-    transform: translateX(calc(-50% + 300px)) translateY(-180px) perspective(1200px) rotateY(-15deg) rotate(12deg) scale(1.08);
+    transform: translateX(calc(-50% + 250px)) translateY(-130px) perspective(1100px) rotateY(-12deg) rotate(10deg) scale(1);
     opacity: 0.9;
   }
   
   .hero-phone img {
-    width: clamp(240px, 24vw, 340px);
+    width: clamp(220px, 22vw, 300px);
   }
 }
 
