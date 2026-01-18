@@ -2156,71 +2156,50 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
-// Features Cards - Dynamic z-index based on scroll position
+// Features Cards - La carte au top passe devant
 document.addEventListener('DOMContentLoaded', function() {
   const featureCards = document.querySelectorAll('.feature-card');
   
   if (featureCards.length === 0) return;
   
-  // Observer to detect which card is stuck at the top
-  const observerOptions = {
-    root: null,
-    rootMargin: '-120px 0px -50% 0px', // Trigger when card reaches sticky position
-    threshold: [0, 0.1, 0.5, 1]
-  };
-  
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
-        // This card is stuck at the top, bring it to front
-        featureCards.forEach(card => {
-          card.classList.remove('is-stuck');
-        });
-        entry.target.classList.add('is-stuck');
-      }
-    });
-  }, observerOptions);
-  
-  // Observe all feature cards
-  featureCards.forEach((card, index) => {
-    observer.observe(card);
-  });
-  
-  // Check on scroll which card is stuck at the top
-  function updateStuckCard() {
+  function updateActiveCard() {
     const cards = Array.from(featureCards);
-    let stuckCard = null;
-    let minDistance = Infinity;
+    let activeCard = null;
+    let closestToTop = Infinity;
     
-    cards.forEach((card, index) => {
+    // Cherche la carte qui est la plus proche du top (position sticky)
+    cards.forEach((card) => {
       const rect = card.getBoundingClientRect();
-      const stickyTop = parseInt(getComputedStyle(card).top) || 0;
+      const topValue = parseInt(getComputedStyle(card).top) || 0;
       
-      // Check if card is currently stuck at its sticky position
-      // A card is "stuck" when it's at its sticky position (within a small threshold)
-      const distanceFromStickyPosition = Math.abs(rect.top - stickyTop);
-      
-      // Card is stuck if it's very close to its sticky position
-      if (distanceFromStickyPosition < 10 && rect.top < minDistance) {
-        minDistance = rect.top;
-        stuckCard = card;
+      // Vérifie si la carte est "stuck" (collée au top)
+      // Une carte est active si elle est proche de sa position sticky
+      if (rect.top <= topValue + 20 && rect.top >= topValue - 20) {
+        const distance = Math.abs(rect.top - topValue);
+        if (distance < closestToTop) {
+          closestToTop = distance;
+          activeCard = card;
+        }
       }
     });
     
-    // Update classes: only the stuck card gets is-stuck
+    // Retire la classe active de toutes les cartes
     cards.forEach(card => {
-      card.classList.remove('is-stuck');
-      if (card === stuckCard) {
-        card.classList.add('is-stuck');
-      }
+      card.classList.remove('active');
     });
+    
+    // Ajoute la classe active à la carte qui est au top
+    if (activeCard) {
+      activeCard.classList.add('active');
+    }
   }
   
+  // Mise à jour au scroll
   let ticking = false;
   window.addEventListener('scroll', () => {
     if (!ticking) {
       window.requestAnimationFrame(() => {
-        updateStuckCard();
+        updateActiveCard();
         ticking = false;
       });
       ticking = true;
@@ -2228,7 +2207,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   
   // Initial check
-  setTimeout(updateStuckCard, 100);
+  updateActiveCard();
 });
 
 // Features Slider (if exists)
