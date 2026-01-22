@@ -311,20 +311,20 @@ nav {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 44px;
-  height: 44px;
-  background: rgba(28, 28, 28, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
+  width: 40px;
+  height: 40px;
+  background: rgba(28, 28, 28, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
   cursor: pointer;
   padding: 0;
-  gap: 6px;
-  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  gap: 5px;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1001;
   position: relative;
   overflow: visible;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .mobile-menu-toggle::before {
@@ -340,9 +340,9 @@ nav {
 }
 
 .mobile-menu-toggle:hover {
-  background: rgba(28, 28, 28, 0.8);
-  border-color: rgba(178, 152, 107, 0.3);
-  transform: scale(1.05);
+  background: rgba(28, 28, 28, 0.85);
+  border-color: rgba(178, 152, 107, 0.25);
+  transform: scale(1.03);
 }
 
 .mobile-menu-toggle:hover::before {
@@ -350,50 +350,37 @@ nav {
 }
 
 .mobile-menu-toggle:active {
-  transform: scale(0.95);
-}
-
-.burger-line {
-  display: block;
-  width: 22px;
-  height: 2px;
-  background: var(--text);
-  border-radius: 2px;
-  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-  transform-origin: center center;
-  position: relative;
-  z-index: 1;
-  margin: 0 auto;
+  transform: scale(0.97);
 }
 
 .mobile-menu-toggle:hover .burger-line {
   background: var(--accent);
-  box-shadow: 0 0 8px rgba(178, 152, 107, 0.4);
+  opacity: 1;
+  box-shadow: 0 0 6px rgba(178, 152, 107, 0.3);
 }
 
 .mobile-menu-toggle.active {
   background: rgba(28, 28, 28, 0.9);
-  border-color: rgba(178, 152, 107, 0.4);
+  border-color: rgba(178, 152, 107, 0.35);
+  gap: 0;
 }
 
 .mobile-menu-toggle.active::before {
   opacity: 1;
 }
 
-.mobile-menu-toggle.active {
-  gap: 0;
-}
-
 .mobile-menu-toggle.active .burger-line:nth-child(1) {
-  transform: translateY(3px) rotate(45deg);
+  transform: translateY(2.5px) rotate(45deg);
   background: var(--accent);
-  box-shadow: 0 0 10px rgba(178, 152, 107, 0.5);
+  opacity: 1;
+  box-shadow: 0 0 8px rgba(178, 152, 107, 0.4);
 }
 
 .mobile-menu-toggle.active .burger-line:nth-child(2) {
-  transform: translateY(-3px) rotate(-45deg);
+  transform: translateY(-2.5px) rotate(-45deg);
   background: var(--accent);
-  box-shadow: 0 0 10px rgba(178, 152, 107, 0.5);
+  opacity: 1;
+  box-shadow: 0 0 8px rgba(178, 152, 107, 0.4);
 }
 
 /* Main */
