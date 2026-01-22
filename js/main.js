@@ -1096,10 +1096,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const filterContainer = document.querySelector('.current-events-filter');
   const loadMoreContainer = document.getElementById('current-events-load-more');
   const loadMoreButton = document.getElementById('load-more-events-btn');
-  const searchInput = document.getElementById('event-search-input');
   let allEvents = [];
   let currentCityFilter = 'all';
-  let currentSearchQuery = '';
   let displayedEventsCount = 6;
   let currentFilteredEvents = [];
 
@@ -1384,30 +1382,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     // If currentCityFilter is 'all' or empty, don't filter by city - show all events
     
-    // Apply search filter if needed
-    if (currentSearchQuery.trim() !== '') {
-      const searchLower = currentSearchQuery.toLowerCase().trim();
-      filteredEvents = filteredEvents.filter(event => {
-        const eventName = (event.event_name || event.title || event.name || '').toLowerCase();
-        const eventLieux = (event.event_lieux || '').toLowerCase();
-        const eventCity = (event.event_city || '').toLowerCase();
-        const venueDisplay = eventLieux && eventCity ? `${eventLieux} ${eventCity}` : (eventLieux || eventCity);
-        
-        return eventName.includes(searchLower) || 
-               venueDisplay.includes(searchLower) ||
-               (eventLieux && eventLieux.includes(searchLower)) ||
-               (eventCity && eventCity.includes(searchLower));
-      });
-    }
-    
     // Store filtered events for load more functionality
     currentFilteredEvents = filteredEvents;
     
     if (filteredEvents.length === 0) {
       let message = 'Aucun événement à venir disponible pour le moment';
-      if (currentSearchQuery.trim() !== '') {
-        message = `Aucun événement trouvé pour "${currentSearchQuery}"`;
-      } else if (currentCityFilter !== 'all') {
+      if (currentCityFilter !== 'all') {
         message = 'Aucun événement disponible pour cette ville';
       }
       eventsGrid.innerHTML = `<div class="events-empty"><p>${message}</p></div>`;
@@ -1502,29 +1482,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Search functionality
-  if (searchInput) {
-    let searchTimeout;
-    
-    searchInput.addEventListener('input', (e) => {
-      currentSearchQuery = e.target.value;
-      displayedEventsCount = 6; // Reset to 6 when searching
-      
-      // Debounce search for better performance
-      clearTimeout(searchTimeout);
-      searchTimeout = setTimeout(() => {
-        displayEvents(allEvents);
-      }, 300);
-    });
-    
-    searchInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        clearTimeout(searchTimeout);
-        displayEvents(allEvents);
-      }
-    });
-  }
 
   async function loadEvents() {
     try {
