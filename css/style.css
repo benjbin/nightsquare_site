@@ -318,7 +318,7 @@ nav {
   border-radius: 10px;
   cursor: pointer;
   padding: 0;
-  gap: 5px;
+  gap: 6px;
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1001;
   position: relative;
@@ -354,17 +354,18 @@ nav {
 }
 
 .burger-line {
-  display: block;
+  display: block !important;
   width: 20px;
   height: 1.5px;
-  background: var(--text);
+  background: var(--text) !important;
   border-radius: 1px;
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   transform-origin: center center;
   position: relative;
   z-index: 1;
   margin: 0 auto;
-  opacity: 0.9;
+  opacity: 0.9 !important;
+  flex-shrink: 0;
 }
 
 .mobile-menu-toggle:hover .burger-line {
