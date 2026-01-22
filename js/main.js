@@ -1421,6 +1421,110 @@ document.addEventListener('DOMContentLoaded', function() {
     injectEventStructuredData(eventsToShow);
   }
   
+  // Update SEO meta tags with real event and DJ names from API
+  function updateSEOMetaTags(events) {
+    if (!events || events.length === 0) return;
+    
+    // Extract real event names
+    const eventNames = events
+      .map(event => event.event_name || event.name || event.title)
+      .filter(name => name && name.trim())
+      .slice(0, 10); // Limit to first 10 for meta tags
+    
+    // Extract real DJ names from tdjevent
+    const djNames = new Set();
+    events.forEach(event => {
+      const tdjevent = event.tdjevent;
+      if (tdjevent) {
+        if (Array.isArray(tdjevent)) {
+          tdjevent.forEach(dj => {
+            if (dj) {
+              const djName = typeof dj === 'object' 
+                ? (dj.name || dj.nom || dj.dj_name || dj.artist_name || '')
+                : (typeof dj === 'string' ? dj : '');
+              if (djName && djName.trim()) {
+                djNames.add(djName.trim());
+              }
+            }
+          });
+        } else if (typeof tdjevent === 'string') {
+          tdjevent.split(/[,\n]/).forEach(name => {
+            const trimmed = name.trim();
+            if (trimmed) djNames.add(trimmed);
+          });
+        }
+      }
+    });
+    
+    // Extract real cities
+    const cities = new Set();
+    events.forEach(event => {
+      const city = event.event_city || event.event_lieux;
+      if (city && city.trim()) {
+        cities.add(city.trim());
+      }
+    });
+    
+    // Create keywords based ONLY on real data
+    const keywords = [
+      ...eventNames,
+      ...Array.from(djNames),
+      ...Array.from(cities).map(city => `${city} événement`),
+      ...Array.from(djNames).map(dj => `${dj} événement`),
+      ...Array.from(djNames).map(dj => `${dj} ${Array.from(cities)[0] || ''}`).filter(k => k.trim()),
+      'Night Square',
+      'réservation table VIP'
+    ].filter(k => k && k.trim()).join(', ');
+    
+    // Update meta description with real event names and DJs
+    const topEvents = eventNames.slice(0, 3).join(', ');
+    const topDJs = Array.from(djNames).slice(0, 3).join(', ');
+    const description = `Night Square - ${topEvents}${topDJs ? ' avec ' + topDJs : ''}. Réservez vos tables VIP pour les événements exclusifs. ${Array.from(cities).slice(0, 2).join(', ')}.`;
+    
+    // Update meta tags
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', description);
+    }
+    
+    const metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (metaKeywords) {
+      metaKeywords.setAttribute('content', keywords);
+    }
+    
+    // Update title with first event name if available
+    if (eventNames.length > 0) {
+      const title = document.querySelector('title');
+      if (title) {
+        const firstEvent = eventNames[0];
+        const firstDJ = Array.from(djNames)[0] || '';
+        title.textContent = `${firstEvent}${firstDJ ? ' - ' + firstDJ : ''} | Night Square - Tables VIP`;
+      }
+    }
+    
+    // Update Open Graph
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle && eventNames.length > 0) {
+      ogTitle.setAttribute('content', `${eventNames[0]} | Night Square`);
+    }
+    
+    const ogDescription = document.querySelector('meta[property="og:description"]');
+    if (ogDescription) {
+      ogDescription.setAttribute('content', description);
+    }
+    
+    // Update Twitter
+    const twitterTitle = document.querySelector('meta[name="twitter:title"]');
+    if (twitterTitle && eventNames.length > 0) {
+      twitterTitle.setAttribute('content', `${eventNames[0]} | Night Square`);
+    }
+    
+    const twitterDescription = document.querySelector('meta[name="twitter:description"]');
+    if (twitterDescription) {
+      twitterDescription.setAttribute('content', description);
+    }
+  }
+  
   function injectEventStructuredData(events) {
     // Remove existing event schemas
     const existingSchemas = document.querySelectorAll('script[type="application/ld+json"][data-event-schema]');
@@ -1452,8 +1556,8 @@ document.addEventListener('DOMContentLoaded', function() {
       const eventListSchema = {
         "@context": "https://schema.org",
         "@type": "ItemList",
-        "name": "Événements DJ Exclusifs - Soirées Électroniques Premium Night Square",
-        "description": "Découvrez les meilleurs événements DJ et soirées électroniques exclusives. Réservez vos tables VIP pour vivre des performances live des plus grands DJs à Paris, Lausanne, Monaco et dans toute l'Europe. Événements nightlife premium, concerts électroniques, soirées techno et house music.",
+        "name": "Événements Night Square",
+        "description": events.length > 0 ? `Découvrez ${events.map(e => e.event_name || e.name).filter(Boolean).slice(0, 5).join(', ')}. Réservez vos tables VIP via Night Square.` : "Découvrez les événements exclusifs. Réservez vos tables VIP via Night Square.",
         "numberOfItems": eventSchemas.length,
         "itemListElement": eventSchemas.map((eventSchema, index) => ({
           "@type": "ListItem",
@@ -1554,6 +1658,9 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Store only active (non-ended) events
         allEvents = activeEvents;
+        
+        // Update SEO meta tags with real event and DJ names
+        updateSEOMetaTags(activeEvents);
         
         // Extract unique cities from active events only
         const cities = [...new Set(activeEvents.map(event => {
@@ -1806,7 +1913,7 @@ document.addEventListener('DOMContentLoaded', function() {
       "@type": "Person",
       "name": djName,
       "jobTitle": "DJ",
-      "description": `${djName} - DJ électronique se produisant lors d'événements exclusifs Night Square`
+      "description": `${djName} - DJ se produisant lors d'événements Night Square`
     }));
     
     // Create structured data for this event - Use MusicEvent for better SEO
@@ -1814,7 +1921,7 @@ document.addEventListener('DOMContentLoaded', function() {
       "@context": "https://schema.org",
       "@type": "MusicEvent",
       "name": eventName,
-      "description": `${eventName} - Événement DJ exclusif nightlife à ${venueDisplay}. ${djNames.length > 0 ? 'Avec ' + djNames.join(', ') + '. ' : ''}Réservez votre table premium via Night Square. Soirée électronique premium, performances live, événement nightlife exclusif.`,
+      "description": `${eventName}${djNames.length > 0 ? ' avec ' + djNames.join(', ') : ''} à ${venueDisplay}. Réservez votre table VIP via Night Square.`,
       "startDate": isoDate,
       "endDate": isoEndDate || isoDate,
       "eventStatus": "https://schema.org/EventScheduled",
@@ -1850,7 +1957,7 @@ document.addEventListener('DOMContentLoaded', function() {
         "priceCurrency": "EUR",
         "validFrom": new Date().toISOString()
       },
-      "keywords": `événement DJ, ${eventCity ? 'événement DJ ' + eventCity + ',' : ''} soirée électronique, nightlife premium, ${djNames.join(', ')}`,
+      "keywords": `${eventName}, ${djNames.join(', ')}, ${venueDisplay}, ${eventCity || ''}, Night Square, réservation table VIP`,
       "genre": "Electronic Music",
       "musicEventType": "DJ Set"
     };
@@ -1858,8 +1965,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add schema as data attribute for later JSON-LD injection
     card.setAttribute('data-schema', JSON.stringify(eventSchema));
     
-    // Enhanced alt text for SEO
-    const altText = `${eventName} - Événement DJ exclusif à ${venueDisplay}${djNames.length > 0 ? ' avec ' + djNames.join(', ') : ''}. Soirée électronique premium, performance live, événement nightlife. Réservez votre table VIP via Night Square.`;
+    // Enhanced alt text for SEO - ONLY real data
+    const altText = `${eventName}${djNames.length > 0 ? ' avec ' + djNames.join(', ') : ''} à ${venueDisplay}. Réservez votre table VIP via Night Square.`;
     
     card.innerHTML = `
       <div class="current-event-main">
