@@ -7,6 +7,9 @@ package-lock.json
 .env.local
 .env.*.local
 
+# SFTP Configuration (sensitive data)
+sftp-config.json
+
 # Logs
 *.log
 npm-debug.log*
