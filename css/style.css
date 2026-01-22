@@ -353,6 +353,20 @@ nav {
   transform: scale(0.97);
 }
 
+.burger-line {
+  display: block;
+  width: 20px;
+  height: 1.5px;
+  background: var(--text);
+  border-radius: 1px;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center center;
+  position: relative;
+  z-index: 1;
+  margin: 0 auto;
+  opacity: 0.9;
+}
+
 .mobile-menu-toggle:hover .burger-line {
   background: var(--accent);
   opacity: 1;
