@@ -2146,7 +2146,6 @@ main {
   width: clamp(280px, 25vw, 350px);
   height: auto;
   border-radius: 40px;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
   position: relative;
   z-index: 1;
 }
