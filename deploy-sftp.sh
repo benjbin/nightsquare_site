@@ -31,7 +31,7 @@ echo "👤 Utilisateur: $USERNAME"
 echo "📁 Chemin distant: $REMOTE_PATH"
 echo ""
 
-# Fichiers à déployer
+# Fichiers à déployer (ajoutez d'autres fichiers si nécessaire)
 FILES=(
     "index.html"
     "css/style.css"
@@ -47,6 +47,7 @@ FILES=(
     "js/organizers.js"
     "robots.txt"
     "sitemap.xml"
+    "vercel.json"
 )
 
 # Créer le script expect
@@ -63,16 +64,18 @@ expect {
         # Upload des fichiers
 EOF
 
-# Créer les dossiers nécessaires d'abord
+# Créer les dossiers nécessaires d'abord (ignorer les erreurs si existent déjà)
 echo "        send \"mkdir css\r\"" >> "$EXPECT_SCRIPT"
 echo "        expect {" >> "$EXPECT_SCRIPT"
 echo "            \"sftp>\" { }" >> "$EXPECT_SCRIPT"
 echo "            \"File exists\" { }" >> "$EXPECT_SCRIPT"
+echo "            \"Cannot create\" { }" >> "$EXPECT_SCRIPT"
 echo "        }" >> "$EXPECT_SCRIPT"
 echo "        send \"mkdir js\r\"" >> "$EXPECT_SCRIPT"
 echo "        expect {" >> "$EXPECT_SCRIPT"
 echo "            \"sftp>\" { }" >> "$EXPECT_SCRIPT"
 echo "            \"File exists\" { }" >> "$EXPECT_SCRIPT"
+echo "            \"Cannot create\" { }" >> "$EXPECT_SCRIPT"
 echo "        }" >> "$EXPECT_SCRIPT"
 
 for file in "${FILES[@]}"; do
