@@ -1452,8 +1452,8 @@ document.addEventListener('DOMContentLoaded', function() {
       const eventListSchema = {
         "@context": "https://schema.org",
         "@type": "ItemList",
-        "name": "Nos événements du moment",
-        "description": "Découvrez les soirées exclusives qui vous attendent.",
+        "name": "Événements DJ Exclusifs - Soirées Électroniques Premium Night Square",
+        "description": "Découvrez les meilleurs événements DJ et soirées électroniques exclusives. Réservez vos tables VIP pour vivre des performances live des plus grands DJs à Paris, Lausanne, Monaco et dans toute l'Europe. Événements nightlife premium, concerts électroniques, soirées techno et house music.",
         "numberOfItems": eventSchemas.length,
         "itemListElement": eventSchemas.map((eventSchema, index) => ({
           "@type": "ListItem",
@@ -1800,49 +1800,76 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
     
-    // Create structured data for this event
+    // Extract DJ names from event name for performers
+    const djNames = mainArtists.filter(a => a && a.length > 0);
+    const performers = djNames.map(djName => ({
+      "@type": "Person",
+      "name": djName,
+      "jobTitle": "DJ",
+      "description": `${djName} - DJ électronique se produisant lors d'événements exclusifs Night Square`
+    }));
+    
+    // Create structured data for this event - Use MusicEvent for better SEO
     const eventSchema = {
       "@context": "https://schema.org",
-      "@type": "Event",
+      "@type": "MusicEvent",
       "name": eventName,
-      "description": `${eventName} - Événement exclusif nightlife à ${venueDisplay}. Réservez votre table premium via Night Square.`,
+      "description": `${eventName} - Événement DJ exclusif nightlife à ${venueDisplay}. ${djNames.length > 0 ? 'Avec ' + djNames.join(', ') + '. ' : ''}Réservez votre table premium via Night Square. Soirée électronique premium, performances live, événement nightlife exclusif.`,
       "startDate": isoDate,
       "endDate": isoEndDate || isoDate,
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
       "location": {
         "@type": "Place",
         "name": eventLieux || eventCity || venueDisplay,
         "address": {
           "@type": "PostalAddress",
+          "streetAddress": eventLieux || "",
           "addressLocality": eventCity || "",
-          "addressCountry": "FR"
+          "addressCountry": eventCity === "Lausanne" ? "CH" : "FR",
+          "addressRegion": eventCity === "Paris" ? "Île-de-France" : (eventCity === "Lausanne" ? "Vaud" : "")
         }
       },
       "image": imageUrl || "https://nightsquare.com/src/IMG_9247.PNG",
       "organizer": {
         "@type": "Organization",
         "name": "Night Square",
-        "url": "https://nightsquare.com"
+        "url": "https://nightsquare.com",
+        "logo": "https://nightsquare.com/src/img/logo.png"
       },
+      "performer": performers.length > 0 ? performers : [{
+        "@type": "Person",
+        "name": "DJ Night Square",
+        "jobTitle": "DJ"
+      }],
       "offers": {
         "@type": "Offer",
         "availability": "https://schema.org/InStock",
         "url": "https://nightsquare.com/events.html",
         "price": "0",
-        "priceCurrency": "EUR"
-      }
+        "priceCurrency": "EUR",
+        "validFrom": new Date().toISOString()
+      },
+      "keywords": `événement DJ, ${eventCity ? 'événement DJ ' + eventCity + ',' : ''} soirée électronique, nightlife premium, ${djNames.join(', ')}`,
+      "genre": "Electronic Music",
+      "musicEventType": "DJ Set"
     };
     
     // Add schema as data attribute for later JSON-LD injection
     card.setAttribute('data-schema', JSON.stringify(eventSchema));
     
+    // Enhanced alt text for SEO
+    const altText = `${eventName} - Événement DJ exclusif à ${venueDisplay}${djNames.length > 0 ? ' avec ' + djNames.join(', ') : ''}. Soirée électronique premium, performance live, événement nightlife. Réservez votre table VIP via Night Square.`;
+    
     card.innerHTML = `
       <div class="current-event-main">
         <div class="current-event-image">
-          ${imageUrl ? `<img src="${imageUrl}" alt="${eventName} - Événement exclusif à ${venueDisplay}" itemprop="image" loading="lazy" width="400" height="267">` : `<div style="position: absolute; inset: 0; background: ${gradient}; display: flex; align-items: center; justify-content: center; font-size: 4rem; opacity: 0.3;">${emoji}</div>`}
+          ${imageUrl ? `<img src="${imageUrl}" alt="${altText}" itemprop="image" loading="lazy" width="400" height="267">` : `<div style="position: absolute; inset: 0; background: ${gradient}; display: flex; align-items: center; justify-content: center; font-size: 4rem; opacity: 0.3;">${emoji}</div>`}
         </div>
         
         <div class="current-event-info">
           <h3 class="current-event-info-title" itemprop="name">${eventName}</h3>
+          ${djNames.length > 0 ? `<meta itemprop="performer" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="${djNames.join(', ')}">` : ''}
           <address class="current-event-info-venue" itemprop="location" itemscope itemtype="https://schema.org/Place">
             <span itemprop="name">${eventLieux || ''}</span>
             ${eventCity ? `<span itemprop="address" itemscope itemtype="https://schema.org/PostalAddress"><span itemprop="addressLocality">${eventCity}</span></span>` : ''}

@@ -65,13 +65,21 @@ expect {
 EOF
 
 # Créer les dossiers nécessaires d'abord (ignorer les erreurs si existent déjà)
-echo "        send \"mkdir css\r\"" >> "$EXPECT_SCRIPT"
+if [ -n "$REMOTE_PATH" ] && [ "${REMOTE_PATH: -1}" != "/" ]; then
+    CSS_DIR="$REMOTE_PATH/css"
+    JS_DIR="$REMOTE_PATH/js"
+else
+    CSS_DIR="${REMOTE_PATH}css"
+    JS_DIR="${REMOTE_PATH}js"
+fi
+
+echo "        send \"mkdir $CSS_DIR\r\"" >> "$EXPECT_SCRIPT"
 echo "        expect {" >> "$EXPECT_SCRIPT"
 echo "            \"sftp>\" { }" >> "$EXPECT_SCRIPT"
 echo "            \"File exists\" { }" >> "$EXPECT_SCRIPT"
 echo "            \"Cannot create\" { }" >> "$EXPECT_SCRIPT"
 echo "        }" >> "$EXPECT_SCRIPT"
-echo "        send \"mkdir js\r\"" >> "$EXPECT_SCRIPT"
+echo "        send \"mkdir $JS_DIR\r\"" >> "$EXPECT_SCRIPT"
 echo "        expect {" >> "$EXPECT_SCRIPT"
 echo "            \"sftp>\" { }" >> "$EXPECT_SCRIPT"
 echo "            \"File exists\" { }" >> "$EXPECT_SCRIPT"
@@ -80,7 +88,13 @@ echo "        }" >> "$EXPECT_SCRIPT"
 
 for file in "${FILES[@]}"; do
     if [ -f "$file" ]; then
-        echo "        send \"put $file $REMOTE_PATH$file\r\"" >> "$EXPECT_SCRIPT"
+        # Ajouter un slash si remotePath ne se termine pas par un slash
+        if [ "${REMOTE_PATH: -1}" != "/" ] && [ -n "$REMOTE_PATH" ]; then
+            REMOTE_FILE="$REMOTE_PATH/$file"
+        else
+            REMOTE_FILE="$REMOTE_PATH$file"
+        fi
+        echo "        send \"put $file $REMOTE_FILE\r\"" >> "$EXPECT_SCRIPT"
         echo "        expect \"sftp>\"" >> "$EXPECT_SCRIPT"
     fi
 done
