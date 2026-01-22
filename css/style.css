@@ -2009,7 +2009,7 @@ main {
 .quick-reservation-section::before {
   content: "LET'S GO !";
   position: absolute;
-  top: 50%;
+  top: 65%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: clamp(8rem, 20vw, 15rem);
@@ -2139,6 +2139,7 @@ main {
   align-items: center;
   margin-top: 4rem;
   position: relative;
+  z-index: 2;
 }
 
 .quick-reservation-phone-img {
@@ -2147,7 +2148,7 @@ main {
   border-radius: 40px;
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
   position: relative;
-  z-index: 2;
+  z-index: 1;
 }
 
 .quick-reservation-buttons {
