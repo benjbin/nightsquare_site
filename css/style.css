@@ -364,8 +364,16 @@ nav {
   position: relative;
   z-index: 1;
   margin: 0 auto;
-  opacity: 0.9 !important;
+  opacity: 1 !important;
   flex-shrink: 0;
+  visibility: visible !important;
+}
+
+.burger-line:nth-child(1),
+.burger-line:nth-child(2) {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 .mobile-menu-toggle:hover .burger-line {
