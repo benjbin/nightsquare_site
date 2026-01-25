@@ -709,15 +709,16 @@ document.addEventListener('DOMContentLoaded', function() {
               dateSpan.className = 'upcoming-dj-event-date';
               dateSpan.setAttribute('itemprop', 'startDate');
               dateSpan.setAttribute('datetime', eventInfo.date);
-              // Formater la date
+              // Formater la date en UTC
               try {
                 const date = new Date(eventInfo.date);
                 const formattedDate = date.toLocaleDateString('fr-FR', { 
                   day: 'numeric', 
                   month: 'short',
-                  year: 'numeric'
+                  year: 'numeric',
+                  timeZone: 'UTC'
                 });
-                dateSpan.textContent = formattedDate;
+                dateSpan.textContent = formattedDate + ' (UTC)';
               } catch (e) {
                 dateSpan.textContent = eventInfo.date;
               }
@@ -1811,14 +1812,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const gradient = gradients[index % gradients.length];
     const emoji = emojis[index % emojis.length];
     
-    // Format date - utiliser event_date de l'API
+    // Format date - utiliser event_date de l'API, affichage en UTC
     let dateText = '';
     const eventDate = event.event_date || event.date;
     if (eventDate) {
       try {
         const date = new Date(eventDate);
-        const options = { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' };
-        dateText = date.toLocaleDateString('fr-FR', options);
+        const options = { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', timeZone: 'UTC' };
+        dateText = date.toLocaleDateString('fr-FR', options) + ' UTC';
       } catch (e) {
         dateText = eventDate;
       }
@@ -1843,13 +1844,13 @@ document.addEventListener('DOMContentLoaded', function() {
         const date = new Date(eventDate);
         const dayNames = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
         const monthNames = ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE', 'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER', 'NOVEMBER', 'DECEMBER'];
-        dayName = dayNames[date.getDay()];
-        dayNumber = date.getDate();
-        monthName = monthNames[date.getMonth()];
+        dayName = dayNames[date.getUTCDay()];
+        dayNumber = date.getUTCDate();
+        monthName = monthNames[date.getUTCMonth()];
         
         formattedDateOverlay = `${dayName} [${monthName} ${dayNumber}TH]`;
-        formattedDateInfo = `${String(dayNumber).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}`;
-        formattedTimeInfo = `${String(date.getHours()).padStart(2, '0')}h${String(date.getMinutes()).padStart(2, '0')}`;
+        formattedDateInfo = `${String(dayNumber).padStart(2, '0')}/${String(date.getUTCMonth() + 1).padStart(2, '0')}`;
+        formattedTimeInfo = `${String(date.getUTCHours()).padStart(2, '0')}h${String(date.getUTCMinutes()).padStart(2, '0')} UTC`;
       } catch (e) {
         formattedDateOverlay = eventDate;
         formattedDateInfo = '';
