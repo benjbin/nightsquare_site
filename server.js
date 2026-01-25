@@ -12,6 +12,9 @@ const SPOTIFY_CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET || 'a4c8870595c0
 app.use(cors());
 app.use(express.json());
 
+// Servir le site (HTML, CSS, JS, images) pour accès en local
+app.use(express.static(__dirname));
+
 // Cache pour le token d'accès
 let accessToken = null;
 let tokenExpiry = 0;
@@ -188,5 +191,7 @@ app.get('/health', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Spotify API proxy server running on port ${PORT}`);
+  console.log(`Server running at http://localhost:${PORT}`);
+  console.log(`  → Site: http://localhost:${PORT}/`);
+  console.log(`  → API Spotify: http://localhost:${PORT}/api/spotify/artist-track`);
 });

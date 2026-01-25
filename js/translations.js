@@ -8,7 +8,9 @@ const translations = {
       howItWorks: 'Comment ça marche',
       events: 'Événements',
       organizers: 'Organisateurs',
-      download: 'Télécharger'
+      download: 'Télécharger',
+      login: 'Se connecter',
+      signup: 'Inscription'
     },
     // Homepage
     home: {
@@ -289,7 +291,9 @@ const translations = {
       howItWorks: 'How it works',
       events: 'Events',
       organizers: 'Organizers',
-      download: 'Download'
+      download: 'Download',
+      login: 'Log in',
+      signup: 'Sign up'
     },
     // Homepage
     home: {
@@ -570,7 +574,9 @@ const translations = {
       howItWorks: 'So funktioniert es',
       events: 'Veranstaltungen',
       organizers: 'Veranstalter',
-      download: 'Herunterladen'
+      download: 'Herunterladen',
+      login: 'Anmelden',
+      signup: 'Registrieren'
     },
     // Homepage
     home: {
@@ -588,7 +594,9 @@ const translations = {
       howItWorks: 'Cómo funciona',
       events: 'Eventos',
       organizers: 'Organizadores',
-      download: 'Descargar'
+      download: 'Descargar',
+      login: 'Iniciar sesión',
+      signup: 'Registrarse'
     },
     // Homepage
     home: {

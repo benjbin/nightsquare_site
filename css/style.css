@@ -181,6 +181,27 @@ nav {
   transform: translateX(-50%) scaleX(1);
 }
 
+.nav-auth-link {
+  padding: 0.4rem 0.75rem;
+}
+
+.nav-auth-link.nav-auth-cta {
+  background: rgba(178, 152, 107, 0.25);
+  color: var(--accent);
+  border-radius: 8px;
+  border: 1px solid rgba(178, 152, 107, 0.4);
+}
+
+.nav-auth-link.nav-auth-cta:hover {
+  background: rgba(178, 152, 107, 0.35);
+  color: var(--text);
+}
+
+.nav-auth-link.nav-auth-cta::before,
+.nav-auth-link.nav-auth-cta::after {
+  display: none;
+}
+
 
 
 .lang-dropdown {
@@ -3043,6 +3064,18 @@ main {
   font-size: clamp(1rem, 1.6vw, 1.2rem);
   line-height: 1.6;
   padding: 0 1rem;
+}
+
+.articles-loading,
+.articles-error {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+.articles-error {
+  color: var(--accent);
 }
 
 .articles-grid {

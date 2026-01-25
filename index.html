@@ -6,12 +6,12 @@
     <!-- Updated: 2026-01-22 -->
     
     <!-- Content Security Policy -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://*.spotify.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://open.spotify.com https://embed.spotify.com https://*.spotify.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://*.spotify.com; style-src-elem 'self' 'unsafe-inline' https://fonts.googleapis.com https://*.spotify.com; font-src 'self' https://fonts.gstatic.com https://*.spotify.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://api.nightsquarepro.com https://api.spotify.com https://accounts.spotify.com https://corsproxy.io https://api.allorigins.win https://*.vercel.app https://*.spotify.com; frame-src 'self' https://open.spotify.com https://embed.spotify.com https://*.spotify.com; media-src 'self' https://*.spotify.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://*.spotify.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://open.spotify.com https://embed.spotify.com https://*.spotify.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://*.spotify.com; style-src-elem 'self' 'unsafe-inline' https://fonts.googleapis.com https://*.spotify.com; font-src 'self' https://fonts.gstatic.com https://*.spotify.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://api.nightsquarepro.com https://api.spotify.com https://accounts.spotify.com https://corsproxy.io https://api.allorigins.win https://*.vercel.app https://*.spotify.com https://*.supabase.co; frame-src 'self' https://open.spotify.com https://embed.spotify.com https://*.spotify.com; media-src 'self' https://*.spotify.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;">
     
     <!-- Primary Meta Tags -->
     <title>Night Square - Tables VIP & Événements Exclusifs</title>
     <meta name="title" content="Night Square - Tables VIP & Événements Exclusifs">
-    <meta name="description" content="Night Square - Réservez vos tables VIP pour les événements exclusifs. Rejoignez 7,8k utilisateurs. Téléchargez maintenant sur iOS et Android.">
+    <meta name="description" content="Réservez vos tables VIP pour les événements exclusifs et soirées premium. Programmation, réservation en un clic. Téléchargez Night Square sur iOS et Android.">
     <meta name="keywords" content="Night Square, réservation table VIP, événements exclusifs, tables premium">
     <meta name="author" content="Night Square">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -34,7 +34,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://nightsquare.com/">
     <meta property="og:title" content="Night Square - Tables VIP & Événements Exclusifs">
-    <meta property="og:description" content="Réservez vos tables VIP pour les événements exclusifs. Rejoignez 7,8k utilisateurs.">
+    <meta property="og:description" content="Réservez vos tables VIP pour les événements exclusifs et soirées premium. Programmation, réservation en un clic. Téléchargez Night Square sur iOS et Android.">
     <meta property="og:image" content="https://nightsquare.com/src/IMG_9247.PNG">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -47,7 +47,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://nightsquare.com/">
     <meta name="twitter:title" content="Night Square - Tables VIP & Événements Exclusifs">
-    <meta name="twitter:description" content="Réservez vos tables VIP pour les événements exclusifs. Rejoignez 7,8k utilisateurs.">
+    <meta name="twitter:description" content="Réservez vos tables VIP pour les événements exclusifs et soirées premium. Programmation, réservation en un clic. Téléchargez Night Square sur iOS et Android.">
     <meta name="twitter:image" content="https://nightsquare.com/src/IMG_9247.PNG">
     <meta name="twitter:image:alt" content="Night Square - Événements DJ exclusifs et réservation de tables premium">
     <meta name="twitter:creator" content="@nightsquare">
@@ -264,6 +264,8 @@
             </a>
             <ul class="nav-links">
                 <li><a href="organizers.html" data-translate="nav.organizers">Organisateurs</a></li>
+                <li><a href="#login" class="nav-auth-link" data-translate="nav.login">Se connecter</a></li>
+                <li><a href="#inscription" class="nav-auth-link nav-auth-cta" data-translate="nav.signup">Inscription</a></li>
             </ul>
             <div class="lang-dropdown">
                 <button class="lang-dropdown-toggle" id="lang-dropdown-toggle" aria-label="Sélectionner la langue">
@@ -652,8 +654,8 @@
             </div>
         </section>
 
-        <!-- Articles Section -->
-        <section class="articles-section" aria-labelledby="articles-title">
+        <!-- Articles Section (rempli depuis Supabase : table insights_actus) -->
+        <section class="articles-section" id="insights-actus-section" aria-labelledby="articles-title" data-supabase-url="" data-supabase-key="">
             <div class="container">
                 <div class="articles-badge">
                     <span>Articles</span>
@@ -661,58 +663,12 @@
                 <h2 id="articles-title" class="articles-title">Nos insights & actus</h2>
                 <p class="articles-subtitle">Tendances, conseils et coulisses du nightlife premium.</p>
 
-                <div class="articles-grid" role="list">
-                    <article class="article-card" role="listitem" itemscope itemtype="https://schema.org/Article">
-                        <div class="article-media">
-                            <img src="src/IMG_9247.PNG" alt="Comment booster les réservations tables" loading="lazy" itemprop="image">
-                            <span class="article-tag">Insights</span>
-                        </div>
-                        <div class="article-content">
-                            <h3 class="article-title" itemprop="headline">Comment booster les réservations tables</h3>
-                            <p class="article-excerpt" itemprop="description">Des tactiques concrètes pour augmenter vos réservations sans dégrader l'expérience client.</p>
-                            <div class="article-meta">
-                                <span class="article-author" itemprop="author">Night Square</span>
-                                <span class="article-dot">•</span>
-                                <time class="article-date" itemprop="datePublished" datetime="2026-01-07">07 janv. 2026</time>
-                            </div>
-                            <a class="article-cta" href="#" aria-label="Lire l’article : Comment booster les réservations tables">Lire</a>
-                        </div>
-                    </article>
-
-                    <article class="article-card" role="listitem" itemscope itemtype="https://schema.org/Article">
-                        <div class="article-media">
-                            <img src="src/IMG_9248.PNG" alt="Nightlife premium : les tendances 2026" loading="lazy" itemprop="image">
-                            <span class="article-tag">Actus</span>
-                        </div>
-                        <div class="article-content">
-                            <h3 class="article-title" itemprop="headline">Nightlife premium : les tendances 2026</h3>
-                            <p class="article-excerpt" itemprop="description">Ce qui change dans l’expérience VIP : data, parcours client et nouvelles attentes.</p>
-                            <div class="article-meta">
-                                <span class="article-author" itemprop="author">Night Square</span>
-                                <span class="article-dot">•</span>
-                                <time class="article-date" itemprop="datePublished" datetime="2026-01-05">05 janv. 2026</time>
-                            </div>
-                            <a class="article-cta" href="#" aria-label="Lire l’article : Nightlife premium : les tendances 2026">Lire</a>
-                        </div>
-                    </article>
-
-                    <article class="article-card" role="listitem" itemscope itemtype="https://schema.org/Article">
-                        <div class="article-media">
-                            <img src="src/IMG_9249.PNG" alt="Organisateurs : mieux piloter le soir J" loading="lazy" itemprop="image">
-                            <span class="article-tag">Organisateurs</span>
-                        </div>
-                        <div class="article-content">
-                            <h3 class="article-title" itemprop="headline">Organisateurs : mieux piloter le soir J</h3>
-                            <p class="article-excerpt" itemprop="description">Des KPI simples et une exécution terrain plus fluide grâce à une plateforme unique.</p>
-                            <div class="article-meta">
-                                <span class="article-author" itemprop="author">Night Square</span>
-                                <span class="article-dot">•</span>
-                                <time class="article-date" itemprop="datePublished" datetime="2026-01-02">02 janv. 2026</time>
-                            </div>
-                            <a class="article-cta" href="#" aria-label="Lire l’article : Organisateurs : mieux piloter le soir J">Lire</a>
-                        </div>
-                    </article>
+                <div class="articles-grid" id="articles-grid" role="list">
+                    
+                    <!-- Articles chargés par JS depuis Supabase (table insights_actus) -->
                 </div>
+                <div class="articles-loading" id="articles-loading" style="display: none;">Chargement…</div>
+                <div class="articles-error" id="articles-error" style="display: none;"></div>
             </div>
         </section>
 

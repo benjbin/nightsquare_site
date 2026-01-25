@@ -709,16 +709,13 @@ document.addEventListener('DOMContentLoaded', function() {
               dateSpan.className = 'upcoming-dj-event-date';
               dateSpan.setAttribute('itemprop', 'startDate');
               dateSpan.setAttribute('datetime', eventInfo.date);
-              // Formater la date en UTC
               try {
-                const date = new Date(eventInfo.date);
-                const formattedDate = date.toLocaleDateString('fr-FR', { 
-                  day: 'numeric', 
-                  month: 'short',
-                  year: 'numeric',
-                  timeZone: 'UTC'
-                });
-                dateSpan.textContent = formattedDate + ' (UTC)';
+                const iso = String(eventInfo.date).trim().replace(/\s+/, 'T');
+                const date = /Z$|[+-]\d{2}:?\d{2}$/.test(iso) ? new Date(eventInfo.date) : new Date(iso + 'Z');
+                const eventLang = (typeof currentLang !== 'undefined' ? currentLang : localStorage.getItem('nightSquareLang')) || 'fr';
+                const eventLocale = (eventLang === 'en' || String(eventLang).startsWith('en')) ? 'en-US' : 'fr-FR';
+                const formattedDate = date.toLocaleDateString(eventLocale, { day: 'numeric', month: 'short', year: 'numeric' });
+                dateSpan.textContent = formattedDate;
               } catch (e) {
                 dateSpan.textContent = eventInfo.date;
               }
@@ -1032,7 +1029,80 @@ document.addEventListener('DOMContentLoaded', function() {
   // Listen for language changes
   document.addEventListener('languageChanged', function() {
     updateTranslations();
+    if (typeof loadInsightsActus === 'function') loadInsightsActus();
   });
+
+  // --- Nos insights & actus (Supabase: table insights_actus) ---
+  const INSIGHTS_FALLBACK = [
+    { tag: 'Insights', title_fr: 'Comment booster les réservations tables', title_en: 'How to boost table reservations', excerpt_fr: "Des tactiques concrètes pour augmenter vos réservations sans dégrader l'expérience client.", excerpt_en: 'Concrete tactics to increase your reservations without degrading the customer experience.', author: 'Night Square', published_at: '2026-01-07T10:00:00Z', image_url: 'src/IMG_9247.PNG', link_url: null },
+    { tag: 'Actus', title_fr: 'Nightlife premium : les tendances 2026', title_en: 'Premium nightlife: 2026 trends', excerpt_fr: "Ce qui change dans l'expérience VIP : data, parcours client et nouvelles attentes.", excerpt_en: "What's changing in the VIP experience: data, customer journey and new expectations.", author: 'Night Square', published_at: '2026-01-05T10:00:00Z', image_url: 'src/IMG_9248.PNG', link_url: null },
+    { tag: 'Organisateurs', title_fr: 'Organisateurs : mieux piloter le soir J', title_en: 'Organizers: better control on the big night', excerpt_fr: 'Des KPI simples et une exécution terrain plus fluide grâce à une plateforme unique.', excerpt_en: 'Simple KPIs and smoother on-the-ground execution with a single platform.', author: 'Night Square', published_at: '2026-01-02T10:00:00Z', image_url: 'src/IMG_9249.PNG', link_url: null }
+  ];
+
+  function buildInsightsGrid(items) {
+    const grid = document.getElementById('articles-grid');
+    const loadingEl = document.getElementById('articles-loading');
+    const errorEl = document.getElementById('articles-error');
+    if (!grid) return;
+    if (loadingEl) loadingEl.style.display = 'none';
+    if (errorEl) errorEl.style.display = 'none';
+    const lang = (typeof currentLang !== 'undefined' ? currentLang : localStorage.getItem('nightSquareLang')) || 'fr';
+    const isEn = lang === 'en' || String(lang).startsWith('en');
+    const readLabel = isEn ? 'Read' : 'Lire';
+    grid.innerHTML = items.map(function (row) {
+      const title = (isEn && row.title_en) ? row.title_en : (row.title_fr || row.title);
+      const excerpt = (isEn && row.excerpt_en) ? row.excerpt_en : (row.excerpt_fr || row.excerpt);
+      const date = row.published_at ? new Date(row.published_at) : null;
+      const dateStr = date && !isNaN(date.getTime()) ? date.toLocaleDateString(isEn ? 'en-US' : 'fr-FR', { day: 'numeric', month: 'short', year: 'numeric' }) : '';
+      const isoDate = date && !isNaN(date.getTime()) ? date.toISOString().slice(0, 10) : '';
+      const href = (row.link_url && row.link_url.trim()) ? row.link_url : '#';
+      const img = (row.image_url && row.image_url.trim()) ? row.image_url : 'src/IMG_9247.PNG';
+      const tag = row.tag || 'Insights';
+      const author = row.author || 'Night Square';
+      return '<article class="article-card" role="listitem" itemscope itemtype="https://schema.org/Article">' +
+        '<div class="article-media"><img src="' + img.replace(/"/g, '&quot;') + '" alt="' + (title.replace(/"/g, '&quot;')) + '" loading="lazy" itemprop="image"><span class="article-tag">' + (tag.replace(/</g, '&lt;')) + '</span></div>' +
+        '<div class="article-content">' +
+        '<h3 class="article-title" itemprop="headline">' + (title.replace(/</g, '&lt;').replace(/>/g, '&gt;')) + '</h3>' +
+        '<p class="article-excerpt" itemprop="description">' + (excerpt.replace(/</g, '&lt;').replace(/>/g, '&gt;')) + '</p>' +
+        '<div class="article-meta"><span class="article-author" itemprop="author">' + (author.replace(/</g, '&lt;')) + '</span><span class="article-dot">•</span><time class="article-date" itemprop="datePublished" datetime="' + isoDate + '">' + dateStr + '</time></div>' +
+        '<a class="article-cta" href="' + href.replace(/"/g, '&quot;') + '" aria-label="' + readLabel + ': ' + (title.replace(/"/g, '&quot;')) + '">' + readLabel + '</a>' +
+        '</div></article>';
+    }).join('');
+  }
+
+  function loadInsightsActus() {
+    const section = document.getElementById('insights-actus-section');
+    const grid = document.getElementById('articles-grid');
+    const loadingEl = document.getElementById('articles-loading');
+    const errorEl = document.getElementById('articles-error');
+    if (!grid) return;
+    const url = (section && section.getAttribute('data-supabase-url')) ? section.getAttribute('data-supabase-url').trim() : (window.INSIGHTS_SUPABASE_URL || '');
+    const key = (section && section.getAttribute('data-supabase-key')) ? section.getAttribute('data-supabase-key').trim() : (window.INSIGHTS_SUPABASE_ANON_KEY || '');
+    if (!url || !key) {
+      buildInsightsGrid(INSIGHTS_FALLBACK);
+      return;
+    }
+    if (loadingEl) { loadingEl.style.display = 'block'; loadingEl.textContent = (typeof currentLang !== 'undefined' && currentLang === 'en') ? 'Loading…' : 'Chargement…'; }
+    if (errorEl) errorEl.style.display = 'none';
+    grid.innerHTML = '';
+    const apiUrl = url.replace(/\/$/, '') + '/rest/v1/insights_actus?select=id,slug,image_url,tag,title_fr,title_en,excerpt_fr,excerpt_en,author,published_at,link_url,sort_order&is_published=eq.true&order=sort_order.asc,published_at.desc';
+    fetch(apiUrl, { headers: { 'apikey': key, 'Authorization': 'Bearer ' + key, 'Accept': 'application/json' } })
+      .then(function (r) { if (!r.ok) throw new Error(r.statusText); return r.json(); })
+      .then(function (rows) {
+        if (Array.isArray(rows) && rows.length > 0) {
+          buildInsightsGrid(rows);
+        } else {
+          buildInsightsGrid(INSIGHTS_FALLBACK);
+        }
+      })
+      .catch(function (err) {
+        if (loadingEl) loadingEl.style.display = 'none';
+        if (errorEl) { errorEl.textContent = (typeof currentLang !== 'undefined' && currentLang === 'en') ? 'Unable to load articles.' : 'Impossible de charger les articles.'; errorEl.style.display = 'block'; }
+        buildInsightsGrid(INSIGHTS_FALLBACK);
+      });
+  }
+
+  loadInsightsActus();
 
   // Hero Section Phone Scroll Animation
   const heroPhones = document.querySelector('.hero-phones');
@@ -1421,7 +1491,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Inject JSON-LD structured data for events (for SEO)
     injectEventStructuredData(eventsToShow);
   }
-  
+
+  // Réafficher les événements au changement de langue (dates/heures EN = AM/PM, FR = 24h)
+  document.addEventListener('languageChanged', function refreshEventsOnLangChange() {
+    if (Array.isArray(allEvents)) displayEvents(allEvents);
+  });
+
   // Update SEO meta tags with real event and DJ names from API
   function updateSEOMetaTags(events) {
     if (!events || events.length === 0) return;
@@ -1789,6 +1864,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
+  /**
+   * Parse une chaîne date/heure de l'API (stockée en UTC). Sans timezone on la traite comme UTC ; l'affichage se fait en heure locale (ex. 22h30 UTC → 23h30 à Paris).
+   */
+  function parseEventDateAsUTC(dateStr) {
+    if (!dateStr) return null;
+    const s = String(dateStr).trim();
+    if (/Z$|[+-]\d{2}:?\d{2}$/.test(s)) return new Date(s);
+    const normalised = s.replace(/\s+/, 'T') + 'Z';
+    return new Date(normalised);
+  }
+
   function createEventCard(event, index) {
     const card = document.createElement('article');
     card.className = 'current-event-card';
@@ -1812,14 +1898,23 @@ document.addEventListener('DOMContentLoaded', function() {
     const gradient = gradients[index % gradients.length];
     const emoji = emojis[index % emojis.length];
     
-    // Format date - utiliser event_date de l'API, affichage en UTC
+    // Langue : EN = format US + AM/PM, FR = 24h
+    const displayLang = (typeof currentLang !== 'undefined' ? currentLang : localStorage.getItem('nightSquareLang')) || 'fr';
+    const isEn = displayLang === 'en' || String(displayLang).startsWith('en');
+    const dateLocale = isEn ? 'en-US' : 'fr-FR';
+    const dateOpts = isEn ? { weekday: 'short', day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit', hour12: true } : { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', hour12: false };
+
+    // API envoie l'heure en UTC ; on affiche en heure locale (ex. 22h30 UTC → 23h30 à Paris)
     let dateText = '';
     const eventDate = event.event_date || event.date;
     if (eventDate) {
       try {
-        const date = new Date(eventDate);
-        const options = { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', timeZone: 'UTC' };
-        dateText = date.toLocaleDateString('fr-FR', options) + ' UTC';
+        const date = parseEventDateAsUTC(eventDate);
+        if (!isNaN(date.getTime())) {
+          dateText = date.toLocaleDateString(dateLocale, dateOpts);
+        } else {
+          dateText = eventDate;
+        }
       } catch (e) {
         dateText = eventDate;
       }
@@ -1841,16 +1936,21 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (eventDate) {
       try {
-        const date = new Date(eventDate);
-        const dayNames = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
-        const monthNames = ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE', 'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER', 'NOVEMBER', 'DECEMBER'];
-        dayName = dayNames[date.getUTCDay()];
-        dayNumber = date.getUTCDate();
-        monthName = monthNames[date.getUTCMonth()];
-        
+        const date = parseEventDateAsUTC(eventDate);
+        if (!date || isNaN(date.getTime())) throw new Error('Invalid date');
+        const dayNamesEn = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
+        const monthNamesEn = ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE', 'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER', 'NOVEMBER', 'DECEMBER'];
+        const dayNamesFr = ['DIMANCHE', 'LUNDI', 'MARDI', 'MERCREDI', 'JEUDI', 'VENDREDI', 'SAMEDI'];
+        const monthNamesFr = ['JANVIER', 'FÉVRIER', 'MARS', 'AVRIL', 'MAI', 'JUIN', 'JUILLET', 'AOÛT', 'SEPTEMBRE', 'OCTOBRE', 'NOVEMBRE', 'DÉCEMBRE'];
+        const dayNames = isEn ? dayNamesEn : dayNamesFr;
+        const monthNames = isEn ? monthNamesEn : monthNamesFr;
+        dayName = dayNames[date.getDay()];
+        dayNumber = date.getDate();
+        monthName = monthNames[date.getMonth()];
+
         formattedDateOverlay = `${dayName} [${monthName} ${dayNumber}TH]`;
-        formattedDateInfo = `${String(dayNumber).padStart(2, '0')}/${String(date.getUTCMonth() + 1).padStart(2, '0')}`;
-        formattedTimeInfo = `${String(date.getUTCHours()).padStart(2, '0')}h${String(date.getUTCMinutes()).padStart(2, '0')} UTC`;
+        formattedDateInfo = isEn ? date.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit' }) : `${String(dayNumber).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}`;
+        formattedTimeInfo = isEn ? date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) : `${String(date.getHours()).padStart(2, '0')}h${String(date.getMinutes()).padStart(2, '0')}`;
       } catch (e) {
         formattedDateOverlay = eventDate;
         formattedDateInfo = '';
@@ -1888,21 +1988,21 @@ document.addEventListener('DOMContentLoaded', function() {
       venueDisplay = eventCity;
     }
     
-    // Format ISO date for schema.org
+    // Format ISO date for schema.org (même interprétation UTC)
     let isoDate = '';
     let isoEndDate = '';
     if (eventDate) {
       try {
-        const date = new Date(eventDate);
-        isoDate = date.toISOString();
+        const date = parseEventDateAsUTC(eventDate);
+        if (date && !isNaN(date.getTime())) isoDate = date.toISOString();
       } catch (e) {
         console.warn('Invalid date format:', eventDate);
       }
     }
     if (event.event_endDate) {
       try {
-        const endDate = new Date(event.event_endDate);
-        isoEndDate = endDate.toISOString();
+        const endDate = parseEventDateAsUTC(event.event_endDate) || new Date(event.event_endDate);
+        if (!isNaN(endDate.getTime())) isoEndDate = endDate.toISOString();
       } catch (e) {
         console.warn('Invalid end date format:', event.event_endDate);
       }
