@@ -17,6 +17,9 @@ const translations = {
       password: 'Mot de passe',
       confirmPassword: 'Confirmer le mot de passe',
       name: 'Nom',
+      withApple: 'Continuer avec Apple',
+      withGoogle: 'Continuer avec Google',
+      orEmail: 'ou continuer avec email',
       login: {
         title: 'Se connecter',
         subtitle: 'Accédez à votre compte Night Square',
@@ -320,6 +323,9 @@ const translations = {
       password: 'Password',
       confirmPassword: 'Confirm password',
       name: 'Name',
+      withApple: 'Continue with Apple',
+      withGoogle: 'Continue with Google',
+      orEmail: 'or continue with email',
       login: {
         title: 'Log in',
         subtitle: 'Access your Night Square account',
@@ -623,6 +629,9 @@ const translations = {
       password: 'Passwort',
       confirmPassword: 'Passwort bestätigen',
       name: 'Name',
+      withApple: 'Mit Apple fortfahren',
+      withGoogle: 'Mit Google fortfahren',
+      orEmail: 'oder mit E-Mail fortfahren',
       login: {
         title: 'Anmelden',
         subtitle: 'Zugang zu Ihrem Night-Square-Konto',
@@ -663,6 +672,9 @@ const translations = {
       password: 'Contraseña',
       confirmPassword: 'Confirmar contraseña',
       name: 'Nombre',
+      withApple: 'Continuar con Apple',
+      withGoogle: 'Continuar con Google',
+      orEmail: 'o continuar con correo',
       login: {
         title: 'Iniciar sesión',
         subtitle: 'Accede a tu cuenta Night Square',

@@ -246,7 +246,72 @@ nav {
   color: var(--text-muted);
   font-size: 0.95rem;
   text-align: center;
-  margin: 0 0 2rem;
+  margin: 0 0 1.5rem;
+}
+
+.auth-social {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.auth-social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.85rem 1rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-radius: 12px;
+  border: 1px solid rgba(178, 152, 107, 0.35);
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.1s;
+  background: transparent;
+  color: var(--text);
+}
+
+.auth-social-btn:hover {
+  border-color: rgba(178, 152, 107, 0.6);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.auth-social-btn:active {
+  transform: scale(0.98);
+}
+
+.auth-social-apple {
+  background: #000;
+  border-color: #333;
+  color: #fff;
+}
+
+.auth-social-apple:hover {
+  background: #1a1a1a;
+  border-color: #444;
+}
+
+.auth-social-google {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+}
+
+.auth-social-google:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.auth-social-icon {
+  flex-shrink: 0;
+}
+
+.auth-divider {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 0 0 1.25rem;
 }
 
 .auth-form {
