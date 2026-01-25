@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Connectez-vous à Night Square pour réserver vos tables VIP et accéder aux événements exclusifs.">
+    <title>Se connecter - Night Square</title>
+    <link rel="icon" type="image/png" href="src/img/logo.png">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="auth-page">
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <img src="src/img/logo.png" alt="Night Square" class="logo-img">
+            </a>
+            <ul class="nav-links">
+                <li><a href="organizers.html" data-translate="nav.organizers">Organisateurs</a></li>
+                <li><a href="login.html" class="nav-auth-link nav-auth-active" data-translate="nav.login">Se connecter</a></li>
+                <li><a href="inscription.html" class="nav-auth-link nav-auth-cta" data-translate="nav.signup">Inscription</a></li>
+            </ul>
+            <div class="lang-dropdown">
+                <button class="lang-dropdown-toggle" id="lang-dropdown-toggle" aria-label="Sélectionner la langue">
+                    <span class="lang-flag">🇫🇷</span>
+                    <span class="lang-code">FR</span>
+                    <svg class="lang-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 4.5 3 3 3-3"/></svg>
+                </button>
+                <div class="lang-dropdown-menu" id="lang-dropdown-menu">
+                    <button class="lang-option active" data-lang="fr"><span class="lang-flag">🇫🇷</span><span class="lang-name">Français</span></button>
+                    <button class="lang-option" data-lang="en"><span class="lang-flag">🇬🇧</span><span class="lang-name">English</span></button>
+                    <button class="lang-option" data-lang="de"><span class="lang-flag">🇩🇪</span><span class="lang-name">Deutsch</span></button>
+                    <button class="lang-option" data-lang="es"><span class="lang-flag">🇪🇸</span><span class="lang-name">Español</span></button>
+                </div>
+            </div>
+            <button class="mobile-menu-toggle" aria-label="Menu">
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+            </button>
+        </nav>
+    </header>
+
+    <main class="auth-main">
+        <div class="auth-container">
+            <div class="auth-card">
+                <h1 class="auth-title" data-translate="auth.login.title">Se connecter</h1>
+                <p class="auth-subtitle" data-translate="auth.login.subtitle">Accédez à votre compte Night Square</p>
+                <form class="auth-form" id="login-form" action="#" method="post" novalidate>
+                    <div class="auth-field">
+                        <label for="login-email" data-translate="auth.email">Email</label>
+                        <input type="email" id="login-email" name="email" autocomplete="email" required placeholder="vous@exemple.com">
+                        <span class="auth-error" id="login-email-error" aria-live="polite"></span>
+                    </div>
+                    <div class="auth-field">
+                        <label for="login-password" data-translate="auth.password">Mot de passe</label>
+                        <input type="password" id="login-password" name="password" autocomplete="current-password" required>
+                        <span class="auth-error" id="login-password-error" aria-live="polite"></span>
+                    </div>
+                    <button type="submit" class="auth-submit" data-translate="auth.login.submit">Se connecter</button>
+                </form>
+                <p class="auth-switch">
+                    <span data-translate="auth.login.noAccount">Pas encore de compte ?</span>
+                    <a href="inscription.html" data-translate="auth.signup.link">S'inscrire</a>
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-main">
+                <img src="src/img/logo.png" alt="Night Square" class="footer-logo">
+                <p class="footer-tagline">Vivez une expérience nocturne exclusive avec Night Square</p>
+                <a href="mailto:nightsquaresas@gmail.com" class="footer-email-button">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="currentColor"/></svg>
+                    <span>nightsquaresas@gmail.com</span>
+                </a>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-bottom">
+                <p class="footer-copyright">Copyright Night Square</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/translations.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

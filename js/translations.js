@@ -12,6 +12,26 @@ const translations = {
       login: 'Se connecter',
       signup: 'Inscription'
     },
+    auth: {
+      email: 'Email',
+      password: 'Mot de passe',
+      confirmPassword: 'Confirmer le mot de passe',
+      name: 'Nom',
+      login: {
+        title: 'Se connecter',
+        subtitle: 'Accédez à votre compte Night Square',
+        submit: 'Se connecter',
+        noAccount: 'Pas encore de compte ?',
+        link: 'Se connecter'
+      },
+      signup: {
+        title: 'Inscription',
+        subtitle: 'Créez votre compte Night Square',
+        submit: "S'inscrire",
+        hasAccount: 'Déjà un compte ?',
+        link: "S'inscrire"
+      }
+    },
     // Homepage
     home: {
       hero: {
@@ -294,6 +314,26 @@ const translations = {
       download: 'Download',
       login: 'Log in',
       signup: 'Sign up'
+    },
+    auth: {
+      email: 'Email',
+      password: 'Password',
+      confirmPassword: 'Confirm password',
+      name: 'Name',
+      login: {
+        title: 'Log in',
+        subtitle: 'Access your Night Square account',
+        submit: 'Log in',
+        noAccount: "Don't have an account?",
+        link: 'Log in'
+      },
+      signup: {
+        title: 'Sign up',
+        subtitle: 'Create your Night Square account',
+        submit: 'Sign up',
+        hasAccount: 'Already have an account?',
+        link: 'Sign up'
+      }
     },
     // Homepage
     home: {
@@ -578,6 +618,26 @@ const translations = {
       login: 'Anmelden',
       signup: 'Registrieren'
     },
+    auth: {
+      email: 'E-Mail',
+      password: 'Passwort',
+      confirmPassword: 'Passwort bestätigen',
+      name: 'Name',
+      login: {
+        title: 'Anmelden',
+        subtitle: 'Zugang zu Ihrem Night-Square-Konto',
+        submit: 'Anmelden',
+        noAccount: 'Noch kein Konto?',
+        link: 'Anmelden'
+      },
+      signup: {
+        title: 'Registrieren',
+        subtitle: 'Night-Square-Konto erstellen',
+        submit: 'Registrieren',
+        hasAccount: 'Bereits ein Konto?',
+        link: 'Registrieren'
+      }
+    },
     // Homepage
     home: {
       hero: {
@@ -597,6 +657,26 @@ const translations = {
       download: 'Descargar',
       login: 'Iniciar sesión',
       signup: 'Registrarse'
+    },
+    auth: {
+      email: 'Correo electrónico',
+      password: 'Contraseña',
+      confirmPassword: 'Confirmar contraseña',
+      name: 'Nombre',
+      login: {
+        title: 'Iniciar sesión',
+        subtitle: 'Accede a tu cuenta Night Square',
+        submit: 'Iniciar sesión',
+        noAccount: '¿No tienes cuenta?',
+        link: 'Iniciar sesión'
+      },
+      signup: {
+        title: 'Registrarse',
+        subtitle: 'Crea tu cuenta Night Square',
+        submit: 'Registrarse',
+        hasAccount: '¿Ya tienes cuenta?',
+        link: 'Registrarse'
+      }
     },
     // Homepage
     home: {
