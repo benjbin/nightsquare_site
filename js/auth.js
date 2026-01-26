@@ -126,29 +126,60 @@
     });
   }
 
-  // --- Connexion / Inscription avec Apple et Google ---
-  // Google : définir window.NIGHT_SQUARE_GOOGLE_CLIENT_ID (ex. xxx.apps.googleusercontent.com)
-  // Apple  : définir window.NIGHT_SQUARE_APPLE_REDIRECT_URL (URL de ton backend qui redirige vers Apple)
+  // --- Connexion / Inscription avec Apple et Google (fonctionnels) ---
+  // Config : dans login.html et inscription.html, définir avant auth.js :
+  //   window.NIGHT_SQUARE_GOOGLE_CLIENT_ID = 'xxx.apps.googleusercontent.com';
+  //   window.NIGHT_SQUARE_APPLE_REDIRECT_URL = 'https://api.../auth/apple';
+  // Optionnel : window.NIGHT_SQUARE_GOOGLE_LOGIN_URL = 'https://api.../tusers/GoogleLogin.php' pour envoyer le token au backend
+
   function handleGoogleAuth() {
     var clientId = window.NIGHT_SQUARE_GOOGLE_CLIENT_ID;
-    if (!clientId) {
-      if (window.console) console.warn('Night Square: NIGHT_SQUARE_GOOGLE_CLIENT_ID non configuré.');
+    if (!clientId || !clientId.trim()) {
+      alert(typeof currentLang !== 'undefined' && currentLang === 'en'
+        ? 'Google Sign-In is not configured. Add NIGHT_SQUARE_GOOGLE_CLIENT_ID.'
+        : 'Connexion Google non configurée. Ajoutez NIGHT_SQUARE_GOOGLE_CLIENT_ID.');
       return;
     }
-    var redirectUri = window.location.origin + window.location.pathname;
-    var scope = 'email profile openid';
-    var url = 'https://accounts.google.com/o/oauth2/v2/auth?client_id=' + encodeURIComponent(clientId) +
-      '&redirect_uri=' + encodeURIComponent(redirectUri) +
-      '&response_type=token&scope=' + encodeURIComponent(scope) + '&nonce=' + Math.random();
-    window.location.href = url;
+    if (typeof google === 'undefined' || !google.accounts || !google.accounts.oauth2) {
+      alert(typeof currentLang !== 'undefined' && currentLang === 'en'
+        ? 'Google Sign-In script is loading. Please try again in a moment.'
+        : 'Chargement du script Google en cours. Réessayez dans un instant.');
+      return;
+    }
+    var tokenClient = google.accounts.oauth2.initTokenClient({
+      client_id: clientId.trim(),
+      scope: 'email profile openid',
+      callback: function(response) {
+        if (!response || !response.access_token) return;
+        var loginUrl = window.NIGHT_SQUARE_GOOGLE_LOGIN_URL;
+        if (loginUrl && loginUrl.trim()) {
+          var form = document.createElement('form');
+          form.method = 'POST';
+          form.action = loginUrl.trim();
+          form.style.display = 'none';
+          var input = document.createElement('input');
+          input.name = 'access_token';
+          input.value = response.access_token;
+          form.appendChild(input);
+          document.body.appendChild(form);
+          form.submit();
+          return;
+        }
+        try { sessionStorage.setItem('ns_google_token', response.access_token); } catch (e) {}
+        window.location.href = 'index.html';
+      }
+    });
+    tokenClient.requestAccessToken();
   }
 
   function handleAppleAuth() {
     var url = window.NIGHT_SQUARE_APPLE_REDIRECT_URL;
-    if (url) {
-      window.location.href = url;
+    if (url && url.trim()) {
+      window.location.href = url.trim();
     } else {
-      if (window.console) console.warn('Night Square: NIGHT_SQUARE_APPLE_REDIRECT_URL non configuré.');
+      alert(typeof currentLang !== 'undefined' && currentLang === 'en'
+        ? 'Sign in with Apple is not configured. Add NIGHT_SQUARE_APPLE_REDIRECT_URL (your backend URL that redirects to Apple).'
+        : 'Connexion Apple non configurée. Ajoutez NIGHT_SQUARE_APPLE_REDIRECT_URL (URL de votre backend qui redirige vers Apple).');
     }
   }
 
@@ -171,7 +202,7 @@
     bindSocialButtons();
   }
 
-  // Au retour OAuth Google (fragment #access_token=...) : envoyer le token au backend ou rediriger
+  // Retour OAuth Google en redirect (si utilisé avec response_type=token)
   (function checkGoogleReturn() {
     var hash = window.location.hash;
     if (!hash || hash.indexOf('access_token=') === -1) return;
@@ -181,13 +212,23 @@
       if (kv[0] && kv[1]) params[decodeURIComponent(kv[0])] = decodeURIComponent(kv[1]);
     });
     if (params.access_token) {
-      // Nettoyer l’URL (enlève le fragment) et envoyer params.access_token à ton API si besoin
       history.replaceState(null, '', window.location.pathname + window.location.search);
-      if (window.NIGHT_SQUARE_GOOGLE_CALLBACK && typeof window.NIGHT_SQUARE_GOOGLE_CALLBACK === 'function') {
-        window.NIGHT_SQUARE_GOOGLE_CALLBACK(params);
-      } else {
-        window.location.href = 'index.html';
+      var loginUrl = window.NIGHT_SQUARE_GOOGLE_LOGIN_URL;
+      if (loginUrl && loginUrl.trim()) {
+        var form = document.createElement('form');
+        form.method = 'POST';
+        form.action = loginUrl.trim();
+        form.style.display = 'none';
+        var input = document.createElement('input');
+        input.name = 'access_token';
+        input.value = params.access_token;
+        form.appendChild(input);
+        document.body.appendChild(form);
+        form.submit();
+        return;
       }
+      try { sessionStorage.setItem('ns_google_token', params.access_token); } catch (e) {}
+      window.location.href = 'index.html';
     }
   })();
 })();
