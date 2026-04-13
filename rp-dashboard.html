@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr" class="rp-html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promoteur — Liens & réservations | Night Square</title>
+    <meta name="description" content="Liens de réservation personnalisés par soirée et suivi des réservations clients Night Square.">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="canonical" href="https://nightsquare.org/rp-dashboard">
+    <link rel="icon" type="image/png" href="/favicon.php">
+    <link rel="apple-touch-icon" href="/favicon.php">
+    <link rel="stylesheet" href="css/rp-dashboard-standalone.css?v=15">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="rp-dash-page">
+    <script src="js/rp-session.js"></script>
+    <script>
+      (function () {
+        if (!window.NightSquarePromoter || !NightSquarePromoter.isLoggedIn()) {
+          var next = window.location.pathname + window.location.search + window.location.hash;
+          var safeNext = encodeURIComponent(next).replace(/%2F/g, '/');
+          window.location.replace('/rp-connexion?next=' + safeNext);
+        }
+      })();
+    </script>
+    <div id="rp-dash-protected" class="rp-dash-protected" hidden>
+    <header class="rp-dash-appbar">
+        <div class="rp-dash-appbar-inner">
+            <a href="/" class="rp-dash-appbar-brand">
+                <img src="/favicon.php" alt="" class="rp-dash-appbar-logo" width="36" height="36">
+                <span class="rp-dash-appbar-name">Night Square</span>
+            </a>
+            <span class="rp-dash-appbar-module">Promoteur</span>
+            <span class="rp-dash-appbar-spacer"></span>
+            <nav class="rp-dash-appbar-links" aria-label="Navigation">
+                <a href="/events" class="rp-dash-appbar-link">Événements</a>
+                <a href="/rp-promoteur" class="rp-dash-appbar-link">Espace RP</a>
+            </nav>
+            <button type="button" class="rp-dash-btn rp-dash-btn--ghost" id="rp-dash-logout">Déconnexion</button>
+            <button type="button" class="rp-dash-btn rp-dash-btn--primary" id="rp-dash-refresh" title="Rafraîchir">
+                <svg class="rp-dash-btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
+                Actualiser
+            </button>
+        </div>
+    </header>
+
+    <main class="rp-dash-main">
+        <div class="rp-dash-container">
+            <header class="rp-dash-hero">
+                <p class="rp-dash-eyebrow">Flux de travail</p>
+                <h1 class="rp-dash-title">Tes soirées, ton lien, tes résas</h1>
+                <p class="rp-dash-lead">Coche les événements sur lesquels tu travailles. Pour chacun, copie le lien de réservation avec ton prénom — le client arrive avec le champ promoteur déjà rempli. Puis suis les réservations ici.</p>
+                <p id="rp-dash-live-status" class="rp-dash-status-pill" role="status" aria-live="polite"></p>
+            </header>
+
+            <section class="rp-dash-identity" aria-labelledby="rp-dash-identity-heading">
+                <div class="rp-dash-identity-card">
+                    <h2 id="rp-dash-identity-heading" class="rp-dash-identity-heading">1. Ton prénom</h2>
+                    <p class="rp-dash-identity-desc">Ajouté à la fin de l’URL de réservation et pré-rempli dans le champ promoteur.</p>
+                    <label class="rp-dash-identity-field">
+                        <span class="rp-dash-identity-label">Prénom</span>
+                        <input type="text" id="rp-dash-firstname" class="rp-dash-identity-input" placeholder="Ex. Alex" maxlength="80" autocomplete="given-name">
+                    </label>
+                </div>
+            </section>
+
+            <section class="rp-dash-kpi-grid" aria-label="Synthèse">
+                <article class="rp-dash-kpi"><p class="rp-dash-kpi-label">Soirées suivies</p><p class="rp-dash-kpi-value" id="rp-dash-m-tracked">0</p></article>
+                <article class="rp-dash-kpi"><p class="rp-dash-kpi-label">Réservations</p><p class="rp-dash-kpi-value" id="rp-dash-m-reserv">0</p></article>
+                <article class="rp-dash-kpi"><p class="rp-dash-kpi-label">Volume affiché</p><p class="rp-dash-kpi-value rp-dash-kpi-value--money" id="rp-dash-m-amount">—</p></article>
+                <article class="rp-dash-kpi"><p class="rp-dash-kpi-label">Soirées listées</p><p class="rp-dash-kpi-value" id="rp-dash-m-total-events">0</p></article>
+            </section>
+
+            <div class="rp-dash-viewtabs" role="tablist" aria-label="Vue mobile">
+                <button type="button" class="rp-dash-tab is-active" role="tab" id="rp-dash-tab-events" aria-selected="true" aria-controls="rp-dash-panel-events" data-rp-tab="events">Soirées &amp; liens</button>
+                <button type="button" class="rp-dash-tab" role="tab" id="rp-dash-tab-reserv" aria-selected="false" aria-controls="rp-dash-panel-reserv" data-rp-tab="reserv">Réservations</button>
+            </div>
+
+            <div class="rp-dash-workspace rp-dash-workspace--stack" id="rp-dash-workspace" data-rp-view="events">
+                <div class="rp-dash-workspace-primary" id="rp-dash-panel-events" role="tabpanel" aria-labelledby="rp-dash-tab-events">
+                    <section class="rp-dash-panel rp-dash-panel--events" aria-labelledby="rp-dash-events-heading">
+                        <div class="rp-dash-panel-head rp-dash-panel-head--events">
+                            <div class="rp-dash-events-head-text">
+                                <h2 id="rp-dash-events-heading" class="rp-dash-panel-title">2. Soirées à venir</h2>
+                                <p class="rp-dash-panel-desc">Coche une ligne pour activer le suivi des réservations et afficher ton lien dédié.</p>
+                                <p class="rp-dash-list-hint" aria-live="polite"><strong id="rp-dash-events-count">0</strong> soirée(s) affichée(s)</p>
+                            </div>
+                            <p class="rp-dash-selected-summary" id="rp-dash-selected-summary" role="status" aria-live="polite">Aucune soirée sélectionnée</p>
+                            <div class="rp-dash-panel-tools rp-dash-toolbar rp-dash-toolbar--full">
+                                <div class="rp-dash-events-viewseg" role="group" aria-label="Filtrer la liste des soirées">
+                                    <button type="button" class="rp-dash-seg-btn is-active" id="rp-dash-filter-upcoming" data-rp-events-filter="upcoming" aria-pressed="true">Soirées à venir</button>
+                                    <button type="button" class="rp-dash-seg-btn" id="rp-dash-filter-selected" data-rp-events-filter="selected" aria-pressed="false">Soirées sélectionnées</button>
+                                </div>
+                                <div class="rp-dash-toolbar-row">
+                                    <button type="button" class="rp-dash-btn rp-dash-btn--ghost rp-dash-btn--compact" id="rp-dash-select-visible">Tout cocher</button>
+                                    <button type="button" class="rp-dash-btn rp-dash-btn--ghost rp-dash-btn--compact" id="rp-dash-clear-selection">Tout décocher</button>
+                                </div>
+                                <label class="rp-dash-search-wrap">
+                                    <span class="sr-only">Recherche</span>
+                                    <svg class="rp-dash-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                                    <input type="search" id="rp-dash-event-filter" class="rp-dash-search-input" placeholder="Filtrer…" autocomplete="off">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="rp-dash-panel-body rp-dash-panel-body--events">
+                            <div id="rp-dash-events-loading" class="rp-dash-events-loading-wrap" hidden>
+                                <div class="rp-dash-skeleton" aria-hidden="true">
+                                    <div class="rp-dash-skeleton-row"></div>
+                                    <div class="rp-dash-skeleton-row"></div>
+                                    <div class="rp-dash-skeleton-row"></div>
+                                </div>
+                                <p class="rp-dash-loading-text">Chargement…</p>
+                            </div>
+                            <div id="rp-dash-events-error" class="rp-dash-alert rp-dash-alert--error" hidden></div>
+                            <div id="rp-dash-events-list" class="rp-dash-events-list"></div>
+                        </div>
+                    </section>
+                </div>
+                <div class="rp-dash-workspace-secondary" id="rp-dash-panel-reserv" role="tabpanel" aria-labelledby="rp-dash-tab-reserv">
+                    <section class="rp-dash-panel rp-dash-panel--table rp-dash-panel--reserv-wide" aria-labelledby="rp-dash-res-heading">
+                        <div class="rp-dash-panel-head">
+                            <div>
+                                <h2 id="rp-dash-res-heading" class="rp-dash-panel-title">Réservations clients</h2>
+                                <p class="rp-dash-panel-desc">Données agrégées pour les soirées cochées.</p>
+                            </div>
+                        </div>
+                        <div class="rp-dash-panel-body rp-dash-panel-body--flush">
+                            <div id="rp-dash-reserv-loading" class="rp-dash-table-loading" hidden>Chargement des réservations…</div>
+                            <p id="rp-dash-reserv-hint" class="rp-dash-empty-state">Coche au moins une soirée (onglet « Soirées &amp; liens » sur mobile) pour afficher les réservations.</p>
+                            <div class="rp-dash-table-scroll">
+                                <table class="rp-dash-data-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Réf.</th>
+                                            <th scope="col">Événement</th>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">Type</th>
+                                            <th scope="col" class="rp-dash-col-num">Montant</th>
+                                            <th scope="col">Statut</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="rp-dash-reserv-tbody"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="rp-dash-footer">
+        <div class="rp-dash-container rp-dash-footer-inner">
+            <span class="rp-dash-footer-copy">© Night Square</span>
+            <a href="/privacy" class="rp-dash-footer-link">Confidentialité</a>
+            <a href="mailto:nightsquaresas@gmail.com" class="rp-dash-footer-link">Contact</a>
+        </div>
+    </footer>
+    </div>
+
+    <script src="js/rp-dashboard.js?v=16"></script>
+</body>
+</html>
