@@ -1,11 +1,11 @@
 User-agent: *
 Allow: /
+Allow: /events/
 Disallow: /api/
 Allow: /events.html
 Allow: /index.html
 
-# Sitemap
-Sitemap: https://nightsquare.com/sitemap.xml
-
-# Crawl-delay
-Crawl-delay: 0.5
+# Sitemaps
+Sitemap: https://nightsquare.org/sitemap-index.xml
+Sitemap: https://nightsquare.org/sitemap.xml
+Sitemap: https://nightsquare.org/sitemap-events.xml

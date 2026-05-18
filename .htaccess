@@ -1,0 +1,127 @@
+# Night Square - URLs propres (SEO-friendly)
+# Supprime les extensions .html des URLs
+
+RewriteEngine On
+RewriteBase /
+Options -MultiViews
+
+# Page 404 personnalisée
+ErrorDocument 404 /404.html
+
+# /reservation et /event (avec ou sans hash) → pages correspondantes
+RewriteCond %{REQUEST_URI} ^/reservation
+RewriteRule ^reservation(/.*)?$ reservation.html [L,QSA]
+RewriteCond %{REQUEST_URI} ^/event
+RewriteRule ^event(/.*)?$ event.html [L,QSA]
+# Compat locale backoffice → page réservation (onglet actif)
+# Ex: /backoffice/events/1/table.html | /alcool.html | /ticket.html
+RewriteRule ^backoffice/events/([0-9]+)/(table|plan|plan-de-table|plan_de_table|alcool|alcohol|ticket|tickets|equipe|team)\.html$ reservation.html?event_id=$1&tab=$2 [L,QSA,NC]
+# /rp-auth → page authentification promoteur
+RewriteCond %{REQUEST_URI} ^/rp-auth/?$
+RewriteRule ^rp-auth/?$ rp-auth.html [L,QSA]
+# URLs dédiées pour éviter "connexion" et "inscription" au même point d'entrée
+RewriteCond %{REQUEST_URI} ^/rp-connexion/?$
+RewriteRule ^rp-connexion/?$ rp-auth.html?mode=login [L,QSA]
+RewriteCond %{REQUEST_URI} ^/rp-inscription/?$
+RewriteRule ^rp-inscription/?$ rp-auth.html?mode=signup [L,QSA]
+# Normaliser les anciennes URLs date en -dd-mm vers -ddmm (301 SEO)
+RewriteCond %{REQUEST_URI} ^/events/([0-9]+-.+)-([0-9]{2})-([0-9]{2})/?$ [NC]
+RewriteRule ^ /events/%1-%2%3 [R=301,L]
+# Pages événement SEO statiques (events/<slug>.html) — priorité sur event.html dynamique
+RewriteCond %{REQUEST_URI} ^/events/([^/.]+)/?$ [NC]
+RewriteCond %{DOCUMENT_ROOT}/events/%1.html -f
+RewriteRule ^events/([^/.]+)/?$ events/$1.html [L]
+# /events/<id>-<slug> → page détail événement dynamique (si pas de HTML statique)
+RewriteCond %{REQUEST_URI} ^/events/.+ [NC]
+RewriteRule ^ event.html [L,QSA]
+
+# Rediriger /index vers / (URL propre)
+RewriteRule ^index/?$ / [NC,R=301,L]
+
+# API : bloquer l'accès HTTP aux libs internes, secrets et configs sensibles
+RewriteRule ^api/(_lib/|config/) - [F,L]
+RewriteRule ^api/stripe/(stripe-config\.php|_table_deposit_lib\.php)$ - [F,L]
+RewriteRule ^api/tusers/apple-config\.php$ - [F,L]
+
+# IMPORTANT: Ne jamais réécrire /api/ - laisser Apache servir les fichiers PHP directement
+RewriteCond %{REQUEST_URI} ^/api/
+RewriteRule ^ - [L]
+
+# Contourner les 403 sur /logo-og.png en servant le favicon PHP
+RewriteRule ^logo-og\.png$ favicon.php [L]
+
+# Favicon et logo : éviter 403
+<Files "logo-og.png">
+    <IfModule mod_authz_core.c>
+        Require all granted
+    </IfModule>
+</Files>
+
+# S'assurer que /src/img/ est accessible (éviter 403)
+<IfModule mod_rewrite.c>
+RewriteRule ^src/img/ - [L]
+</IfModule>
+
+# Rediriger les URLs avec .html vers URLs propres (301 permanent)
+# QSA préserve les paramètres (ex. ?apple_callback=1&user_id=...) pour le retour Apple OAuth
+RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
+RewriteRule ^ /%1 [NC,L,R=301,QSA]
+
+# Réécrire les URLs propres vers les fichiers .html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.*)$ $1.html [NC,L]
+
+# Page d'accueil
+RewriteRule ^$ index.html [NC,L]
+
+# URLs inconnues (pas de fichier ni .html correspondant) → 404
+RewriteCond %{REQUEST_URI} !^/api/
+RewriteCond %{REQUEST_URI} !^/404\.html$
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html !-f
+RewriteRule . /404.html [L,R=404]
+
+# Empêcher l'accès direct aux fichiers .html (optionnel - commenté pour compatibilité)
+# RewriteCond %{THE_REQUEST} \s/+(.+)\.html[\s?] [NC]
+# RewriteRule ^ /%1 [R=301,L]
+
+# Headers de sécurité et cache
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+    <FilesMatch "\.(html|htm)$">
+        Header set Cache-Control "max-age=0, must-revalidate, no-cache"
+    </FilesMatch>
+</IfModule>
+
+# Compression Brotli (si module dispo — meilleure densité que gzip)
+<IfModule mod_brotli.c>
+    BrotliCompressionQuality 5
+    AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/xml text/css text/javascript application/javascript application/json
+</IfModule>
+
+# Compression GZIP (fallback)
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+</IfModule>
+
+# Cache des fichiers statiques
+<IfModule mod_expires.c>
+    ExpiresActive On
+    # HTML : toujours revalider pour récupérer les nouvelles URLs versionnées
+    ExpiresByType text/html "access plus 0 seconds"
+    # Images : cache long
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    # CSS / JS : 1 an — les HTML pointent vers ?v=… (inject-version au déploiement)
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType text/javascript "access plus 1 year"
+</IfModule>
